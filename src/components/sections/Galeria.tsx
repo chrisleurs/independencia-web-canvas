@@ -1,80 +1,108 @@
 
 import React from 'react';
-import { Button } from '@/components/ui/button';
-import { ExternalLink } from 'lucide-react';
+import { Card } from '@/components/ui/card';
+import { 
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel';
 
 const Galeria = () => {
   const imagenes = [
     {
       titulo: 'Recepción Principal',
       descripcion: 'Área de recepción y bienvenida',
+      imagen: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=600&h=400&fit=crop&crop=center'
     },
     {
-      titulo: 'Habitaciones',
-      descripcion: 'Habitaciones privadas equipadas',
+      titulo: 'Habitaciones Privadas',
+      descripcion: 'Habitaciones equipadas con tecnología moderna',
+      imagen: 'https://images.unsplash.com/photo-1631815588090-d4bfec5b1ccb?w=600&h=400&fit=crop&crop=center'
     },
     {
       titulo: 'Quirófanos',
-      descripcion: 'Quirófanos con tecnología avanzada',
+      descripcion: 'Salas de cirugía con equipamiento avanzado',
+      imagen: 'https://images.unsplash.com/photo-1551190822-a9333d879b1f?w=600&h=400&fit=crop&crop=center'
+    },
+    {
+      titulo: 'Equipo Médico',
+      descripcion: 'Profesionales de la salud en acción',
+      imagen: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&h=400&fit=crop&crop=center'
+    },
+    {
+      titulo: 'Laboratorio Clínico',
+      descripcion: 'Equipos de análisis y diagnóstico',
+      imagen: 'https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=600&h=400&fit=crop&crop=center'
     },
     {
       titulo: 'Sala de Espera',
-      descripcion: 'Espacios cómodos para familiares',
-    },
-    {
-      titulo: 'Laboratorio',
-      descripcion: 'Equipos de análisis clínicos',
-    },
-    {
-      titulo: 'Área de Urgencias',
-      descripcion: 'Atención de emergencias 24/7',
+      descripcion: 'Espacios cómodos para pacientes y familiares',
+      imagen: 'https://images.unsplash.com/photo-1473177104440-ffee2f376098?w=600&h=400&fit=crop&crop=center'
     },
   ];
 
   return (
-    <section id="galeria" className="section-padding bg-white">
+    <section className="section-padding bg-gray-50">
       <div className="container-custom">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Nuestras Instalaciones
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-hospital-primary mb-4">
+            Galería
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Conoce nuestras modernas instalaciones diseñadas para brindar comodidad y la mejor atención médica
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Conoce nuestras modernas instalaciones y el ambiente profesional que caracteriza al Hospital Independencia
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {imagenes.map((imagen, index) => (
-            <div key={index} className="group relative overflow-hidden rounded-xl bg-slate-100 aspect-[4/3]">
-              {/* Image Placeholder */}
-              <div className="w-full h-full bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
-                <div className="text-center text-muted-foreground">
-                  <div className="w-16 h-16 mx-auto mb-3 bg-slate-200 rounded-lg flex items-center justify-center">
-                    <div className="w-8 h-8 bg-slate-300 rounded"></div>
-                  </div>
-                  <p className="font-medium">{imagen.titulo}</p>
-                </div>
-              </div>
-              
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-all duration-300 flex items-center justify-center">
-                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center text-white">
-                  <h3 className="font-semibold text-lg mb-2">{imagen.titulo}</h3>
-                  <p className="text-sm mb-4">{imagen.descripcion}</p>
-                  <Button size="sm" variant="secondary">
-                    <ExternalLink className="w-4 h-4 mr-2" />
-                    Ver más
-                  </Button>
-                </div>
-              </div>
-            </div>
-          ))}
+        {/* Mobile Carousel */}
+        <div className="md:hidden">
+          <Carousel className="w-full">
+            <CarouselContent>
+              {imagenes.map((imagen, index) => (
+                <CarouselItem key={index}>
+                  <Card className="overflow-hidden border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <div className="relative group">
+                      <img
+                        src={imagen.imagen}
+                        alt={imagen.titulo}
+                        className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+                          <h3 className="font-semibold text-lg mb-1">{imagen.titulo}</h3>
+                          <p className="text-sm opacity-90">{imagen.descripcion}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </Card>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="left-2" />
+            <CarouselNext className="right-2" />
+          </Carousel>
         </div>
 
-        <div className="text-center mt-12">
-          <Button size="lg" variant="outline">
-            Ver Galería Completa
-          </Button>
+        {/* Desktop Grid */}
+        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {imagenes.map((imagen, index) => (
+            <Card key={index} className="overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 card-hover">
+              <div className="relative group">
+                <img
+                  src={imagen.imagen}
+                  alt={imagen.titulo}
+                  className="w-full h-56 lg:h-64 object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+                    <h3 className="font-semibold text-lg mb-1">{imagen.titulo}</h3>
+                    <p className="text-sm opacity-90">{imagen.descripcion}</p>
+                  </div>
+                </div>
+              </div>
+            </Card>
+          ))}
         </div>
       </div>
     </section>
