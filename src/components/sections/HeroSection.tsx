@@ -1,7 +1,6 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Shield, Heart, Users, Phone, MessageCircle } from 'lucide-react';
+import { ArrowRight, Shield, Heart, Users, Phone, MessageCircle, MapPin } from 'lucide-react';
 
 const HeroSection = () => {
   const handleWhatsAppClick = () => {
