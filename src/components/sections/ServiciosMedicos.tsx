@@ -2,7 +2,7 @@
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Heart, Lungs, Ambulance, Utensils, Baby, MessageCircle } from 'lucide-react';
+import { Heart, Wind, Ambulance, Utensils, Baby, MessageCircle } from 'lucide-react';
 
 const ServiciosMedicos = () => {
   const servicios = [
@@ -12,7 +12,7 @@ const ServiciosMedicos = () => {
       descripcion: 'Atención especializada 24/7 con tecnología avanzada.',
     },
     {
-      icon: Lungs,
+      icon: Wind,
       titulo: 'Atención Respiratoria',
       descripcion: 'Soporte pulmonar y tratamiento integral de enfermedades respiratorias.',
     },
