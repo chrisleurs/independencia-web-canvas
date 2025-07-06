@@ -18,6 +18,11 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close mobile menu when route changes
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [location]);
+
   const navigationItems = [
     { label: 'Inicio', href: '/' },
     { label: 'Especialidades', href: '/especialidades' },
