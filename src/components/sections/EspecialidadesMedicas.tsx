@@ -11,10 +11,10 @@ import {
   Ambulance, 
   Brain, 
   Utensils, 
-  Lungs,
+  Wind,
   Shield,
   Activity,
-  Wind,
+  Wind as Wind2,
   Scissors,
   User,
   Sparkles,
@@ -63,7 +63,7 @@ const EspecialidadesMedicas = () => {
       descripcion: 'Planes alimentarios personalizados'
     },
     {
-      icon: Lungs,
+      icon: Wind,
       titulo: 'Cardioneumología',
       descripcion: 'Especialidad del corazón y pulmones'
     },
@@ -78,7 +78,7 @@ const EspecialidadesMedicas = () => {
       descripcion: 'Especialidad en riñones y vías urinarias'
     },
     {
-      icon: Wind,
+      icon: Wind2,
       titulo: 'Neumología',
       descripcion: 'Tratamiento de enfermedades respiratorias'
     },
@@ -127,34 +127,43 @@ const EspecialidadesMedicas = () => {
   return (
     <section className="section-padding bg-white">
       <div className="container-custom">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-hospital-primary">
-            Especialidades Médicas
+        <div className="flex justify-between items-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-hospital-primary">
+            Nuestras Especialidades
           </h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Contamos con más de 19 especialidades médicas con profesionales altamente calificados para brindar atención integral a tu salud
-          </p>
+          <Link to="/especialidades" className="text-hospital-accent hover:text-hospital-accent/80 transition-colors flex items-center gap-2 font-semibold">
+            Ver todas
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          {especialidades.map((especialidad, index) => {
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+          {especialidades.slice(0, 10).map((especialidad, index) => {
             const Icon = especialidad.icon;
             return (
-              <Card key={index} className="group relative overflow-hidden bg-gradient-to-br from-hospital-light to-white border-0 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                <CardContent className="p-6 h-32 flex flex-col justify-center items-center text-center relative">
-                  <div className="w-12 h-12 bg-hospital-primary/10 rounded-lg flex items-center justify-center mb-3 group-hover:bg-hospital-primary group-hover:scale-110 transition-all duration-300">
-                    <Icon className="w-6 h-6 text-hospital-primary group-hover:text-white transition-colors duration-300" />
-                  </div>
+              <Card key={index} className="group relative overflow-hidden bg-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 rounded-xl">
+                <CardContent className="p-0 h-48 relative">
+                  {/* Background gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-hospital-light to-white"></div>
                   
-                  <h3 className="text-sm font-semibold text-hospital-primary group-hover:text-hospital-secondary transition-colors duration-300 leading-tight">
-                    {especialidad.titulo}
-                  </h3>
+                  {/* Icon */}
+                  <div className="absolute inset-0 flex flex-col items-center justify-center p-6">
+                    <div className="w-16 h-16 bg-hospital-primary/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-hospital-primary group-hover:scale-110 transition-all duration-300">
+                      <Icon className="w-8 h-8 text-hospital-primary group-hover:text-white transition-colors duration-300" />
+                    </div>
+                    
+                    <h3 className="text-center text-sm font-semibold text-hospital-primary group-hover:text-hospital-secondary transition-colors duration-300 leading-tight">
+                      {especialidad.titulo}
+                    </h3>
+                  </div>
 
                   {/* Overlay con descripción en hover */}
-                  <div className="absolute inset-0 bg-hospital-primary/95 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4">
+                  <div className="absolute inset-0 bg-hospital-primary/95 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-6">
                     <div className="text-center">
-                      <Icon className="w-8 h-8 text-white mx-auto mb-2" />
-                      <h4 className="text-white font-semibold text-sm mb-2">
+                      <Icon className="w-8 h-8 text-white mx-auto mb-3" />
+                      <h4 className="text-white font-semibold text-sm mb-3">
                         {especialidad.titulo}
                       </h4>
                       <p className="text-white/90 text-xs leading-relaxed">
@@ -166,18 +175,6 @@ const EspecialidadesMedicas = () => {
               </Card>
             );
           })}
-        </div>
-
-        {/* Botón CTA */}
-        <div className="text-center">
-          <Link to="/especialidades">
-            <Button 
-              className="bg-hospital-secondary hover:bg-hospital-secondary/90 text-white font-semibold px-8 py-4 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
-              size="lg"
-            >
-              Ver todas las especialidades
-            </Button>
-          </Link>
         </div>
       </div>
     </section>
