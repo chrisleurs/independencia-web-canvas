@@ -1,11 +1,13 @@
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Phone, MapPin } from 'lucide-react';
+import { Menu, X, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Link, useLocation } from 'react-router-dom';
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,26 +19,24 @@ const Navigation = () => {
   }, []);
 
   const navigationItems = [
-    { label: 'Inicio', href: '#hero' },
-    { label: 'Especialidades', href: '#especialidades' },
-    { label: 'Sobre Nosotros', href: '#sobre-nosotros' },
-    { label: 'Servicios', href: '#servicios' },
-    { label: 'Galería', href: '#galeria' },
-    { label: 'Ubicación', href: '#ubicacion' },
-    { label: 'Contacto', href: '#contacto' },
+    { label: 'Inicio', href: '/' },
+    { label: 'Especialidades', href: '/especialidades' },
+    { label: 'Servicios', href: '/servicios' },
+    { label: 'Nosotros', href: '/nosotros' },
+    { label: 'Doctores', href: '/doctores' },
+    { label: 'Contacto', href: '/contacto' },
   ];
-
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-    setIsMenuOpen(false);
-  };
 
   const handleContactClick = () => {
     const phoneNumber = 'tel:+522381234567';
     window.open(phoneNumber, '_self');
+  };
+
+  const isActive = (href: string) => {
+    if (href === '/') {
+      return location.pathname === '/';
+    }
+    return location.pathname.startsWith(href);
   };
 
   return (
@@ -50,7 +50,7 @@ const Navigation = () => {
       <div className="container-custom">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <div className="flex items-center space-x-3">
+          <Link to="/" className="flex items-center space-x-3">
             <div className="w-10 h-10 md:w-12 md:h-12 bg-white rounded-xl flex items-center justify-center shadow-sm">
               <div className="w-6 h-6 md:w-7 md:h-7 bg-hospital-primary rounded-lg flex items-center justify-center">
                 <div className="w-3 h-3 md:w-4 md:h-4 bg-white rounded-sm"></div>
@@ -64,18 +64,20 @@ const Navigation = () => {
                 Tehuacán, Puebla
               </div>
             </div>
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8">
             {navigationItems.map((item) => (
-              <button
+              <Link
                 key={item.label}
-                onClick={() => scrollToSection(item.href)}
-                className="text-white/90 hover:text-white hover:border-b-2 hover:border-hospital-secondary transition-all duration-200 font-medium py-2"
+                to={item.href}
+                className={`text-white/90 hover:text-white hover:border-b-2 hover:border-hospital-secondary transition-all duration-200 font-medium py-2 ${
+                  isActive(item.href) ? 'text-white border-b-2 border-hospital-secondary' : ''
+                }`}
               >
                 {item.label}
-              </button>
+              </Link>
             ))}
             <Button 
               onClick={handleContactClick}
@@ -104,13 +106,16 @@ const Navigation = () => {
           <div className="lg:hidden absolute top-full left-0 right-0 bg-hospital-primary shadow-xl border-t border-hospital-secondary/20">
             <div className="py-4 space-y-2">
               {navigationItems.map((item) => (
-                <button
+                <Link
                   key={item.label}
-                  onClick={() => scrollToSection(item.href)}
-                  className="block w-full text-left px-6 py-3 text-white/90 hover:text-white hover:bg-hospital-secondary/20 transition-colors duration-200 font-medium"
+                  to={item.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className={`block w-full text-left px-6 py-3 text-white/90 hover:text-white hover:bg-hospital-secondary/20 transition-colors duration-200 font-medium ${
+                    isActive(item.href) ? 'text-white bg-hospital-secondary/20' : ''
+                  }`}
                 >
                   {item.label}
-                </button>
+                </Link>
               ))}
               <div className="px-6 pt-2">
                 <Button 

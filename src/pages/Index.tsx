@@ -1,48 +1,13 @@
 
 import React from 'react';
-import Navigation from '@/components/Navigation';
-import HeroSection from '@/components/sections/HeroSection';
-import EspecialidadesDestacadas from '@/components/sections/EspecialidadesDestacadas';
-import EspecialidadesGenerales from '@/components/sections/EspecialidadesGenerales';
-import SobreHospital from '@/components/sections/SobreHospital';
-import ServiciosMedicos from '@/components/sections/ServiciosMedicos';
-import Galeria from '@/components/sections/Galeria';
-import Mapa from '@/components/sections/Mapa';
-import Footer from '@/components/sections/Footer';
-import WhatsAppFloat from '@/components/WhatsAppFloat';
+import Layout from '@/components/Layout';
+import Inicio from './Inicio';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-white">
-      <Navigation />
-      
-      <main>
-        <HeroSection />
-        
-        <div className="section-divider"></div>
-        <EspecialidadesDestacadas />
-        
-        <div className="section-divider"></div>
-        <EspecialidadesGenerales />
-        
-        <div className="section-divider"></div>
-        <SobreHospital />
-        
-        <div className="section-divider"></div>
-        <ServiciosMedicos />
-        
-        <div className="section-divider"></div>
-        <Galeria />
-        
-        <div className="section-divider"></div>
-        <Mapa />
-      </main>
-      
-      <Footer />
-      
-      {/* WhatsApp Floating Button */}
-      <WhatsAppFloat />
-    </div>
+    <Layout>
+      <Inicio />
+    </Layout>
   );
 };
 
