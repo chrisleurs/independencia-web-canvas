@@ -1,102 +1,94 @@
 
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
-import { Stethoscope, Ambulance, FlaskConical, Scan } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Heart, Lungs, Ambulance, Utensils, Baby, MessageCircle } from 'lucide-react';
 
 const ServiciosMedicos = () => {
   const servicios = [
     {
-      icon: Stethoscope,
-      titulo: 'Consulta Externa',
-      descripcion: 'Atención ambulatoria con especialistas',
-      items: ['Citas programadas', 'Consultas de urgencia', 'Seguimiento médico'],
+      icon: Heart,
+      titulo: 'Terapia Intensiva / Pacientes Críticos',
+      descripcion: 'Atención especializada 24/7 con tecnología avanzada.',
+    },
+    {
+      icon: Lungs,
+      titulo: 'Atención Respiratoria',
+      descripcion: 'Soporte pulmonar y tratamiento integral de enfermedades respiratorias.',
+    },
+    {
+      icon: Heart,
+      titulo: 'Atención Cardiaca',
+      descripcion: 'Diagnóstico y tratamiento de enfermedades cardiovasculares con tecnología moderna.',
     },
     {
       icon: Ambulance,
-      titulo: 'Urgencias 24/7',
-      descripcion: 'Atención de emergencias las 24 horas',
-      items: ['Sala de emergencias', 'Unidad de trauma', 'Cuidados intensivos'],
+      titulo: 'Ayuda de Emergencia / Urgencias 24/7',
+      descripcion: 'Atención inmediata con ambulancias disponibles todos los días.',
     },
     {
-      icon: FlaskConical,
-      titulo: 'Laboratorio',
-      descripcion: 'Análisis clínicos y diagnósticos',
-      items: ['Análisis de sangre', 'Microbiología', 'Patología'],
+      icon: Utensils,
+      titulo: 'Atención Nutricional Personalizada',
+      descripcion: 'Planes nutricionales diseñados para cada paciente para apoyar la recuperación.',
     },
     {
-      icon: Scan,
-      titulo: 'Imagenología',
-      descripción: 'Estudios de imagen de alta precisión',
-      items: ['Rayos X', 'Tomografía', 'Resonancia magnética'],
+      icon: Baby,
+      titulo: 'Ginecología',
+      descripcion: 'Cuidado ginecológico y obstétrico integral para todas las etapas de la mujer.',
     },
   ];
+
+  const handleWhatsAppClick = () => {
+    const phoneNumber = '522381234567';
+    const message = encodeURIComponent('Hola, me gustaría obtener información sobre los servicios del Hospital Independencia');
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+    window.open(whatsappUrl, '_blank');
+  };
 
   return (
     <section id="servicios" className="section-padding bg-slate-50">
       <div className="container-custom">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Servicios Médicos
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-hospital-primary">
+            Nuestros Servicios
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Ofrecemos una amplia gama de servicios médicos con tecnología de vanguardia y atención personalizada
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+            Ofrecemos una amplia gama de servicios médicos especializados con tecnología de vanguardia y atención personalizada las 24 horas del día
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 gap-8 mb-12">
           {servicios.map((servicio, index) => {
             const Icon = servicio.icon;
             return (
-              <Card key={index} className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                <CardContent className="p-6">
-                  <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
-                    <Icon className="w-7 h-7 text-primary group-hover:text-white transition-colors duration-300" />
+              <Card key={index} className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-white">
+                <CardContent className="p-8">
+                  <div className="w-16 h-16 bg-hospital-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-hospital-primary group-hover:scale-110 transition-all duration-300">
+                    <Icon className="w-8 h-8 text-hospital-primary group-hover:text-white transition-colors duration-300" />
                   </div>
                   
-                  <h3 className="text-lg font-semibold mb-2">{servicio.titulo}</h3>
-                  <p className="text-muted-foreground text-sm mb-4">
+                  <h3 className="text-xl font-semibold mb-4 text-hospital-primary group-hover:text-hospital-secondary transition-colors duration-300">
+                    {servicio.titulo}
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed">
                     {servicio.descripcion}
                   </p>
-                  
-                  <ul className="space-y-1">
-                    {servicio.items.map((item, itemIndex) => (
-                      <li key={itemIndex} className="flex items-center text-sm text-muted-foreground">
-                        <div className="w-1.5 h-1.5 bg-primary rounded-full mr-2"></div>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
                 </CardContent>
               </Card>
             );
           })}
         </div>
 
-        {/* Additional Services Grid */}
-        <div className="mt-16 grid md:grid-cols-3 gap-8">
-          <div className="text-center">
-            <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-              <div className="w-8 h-8 bg-primary/20 rounded-lg"></div>
-            </div>
-            <h3 className="font-semibold mb-2">Hospitalización</h3>
-            <p className="text-sm text-muted-foreground">Habitaciones privadas y compartidas con todos los servicios</p>
-          </div>
-          
-          <div className="text-center">
-            <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-              <div className="w-8 h-8 bg-primary/20 rounded-lg"></div>
-            </div>
-            <h3 className="font-semibold mb-2">Cirugía</h3>
-            <p className="text-sm text-muted-foreground">Quirófanos equipados con tecnología de última generación</p>
-          </div>
-          
-          <div className="text-center">
-            <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-              <div className="w-8 h-8 bg-primary/20 rounded-lg"></div>
-            </div>
-            <h3 className="font-semibold mb-2">Rehabilitación</h3>
-            <p className="text-sm text-muted-foreground">Programas de fisioterapia y rehabilitación integral</p>
-          </div>
+        {/* WhatsApp CTA */}
+        <div className="text-center">
+          <Button 
+            onClick={handleWhatsAppClick}
+            className="bg-hospital-accent hover:bg-hospital-accent/90 text-white font-semibold px-8 py-4 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+            size="lg"
+          >
+            <MessageCircle className="w-6 h-6 mr-3" />
+            Contáctanos por WhatsApp
+          </Button>
         </div>
       </div>
     </section>
