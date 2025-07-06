@@ -9,10 +9,11 @@ import ServiciosMedicos from '@/components/sections/ServiciosMedicos';
 import Galeria from '@/components/sections/Galeria';
 import Mapa from '@/components/sections/Mapa';
 import Footer from '@/components/sections/Footer';
+import WhatsAppFloat from '@/components/WhatsAppFloat';
 
 const Index = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-white">
       <Navigation />
       
       <main>
@@ -38,6 +39,9 @@ const Index = () => {
       </main>
       
       <Footer />
+      
+      {/* WhatsApp Floating Button */}
+      <WhatsAppFloat />
     </div>
   );
 };

@@ -34,24 +34,36 @@ const Navigation = () => {
     setIsMenuOpen(false);
   };
 
+  const handleContactClick = () => {
+    const phoneNumber = 'tel:+522381234567';
+    window.open(phoneNumber, '_self');
+  };
+
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-md'
-          : 'bg-transparent'
+          ? 'bg-hospital-primary/95 backdrop-blur-md shadow-lg'
+          : 'bg-hospital-primary'
       }`}
     >
       <div className="container-custom">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 md:w-10 md:h-10 medical-gradient rounded-lg flex items-center justify-center">
-              <div className="w-4 h-4 md:w-5 md:h-5 bg-white rounded-sm"></div>
+          <div className="flex items-center space-x-3">
+            <div className="w-10 h-10 md:w-12 md:h-12 bg-white rounded-xl flex items-center justify-center shadow-sm">
+              <div className="w-6 h-6 md:w-7 md:h-7 bg-hospital-primary rounded-lg flex items-center justify-center">
+                <div className="w-3 h-3 md:w-4 md:h-4 bg-white rounded-sm"></div>
+              </div>
             </div>
-            <span className="text-lg md:text-xl font-bold text-primary">
-              Hospital Independencia
-            </span>
+            <div className="text-white">
+              <div className="text-lg md:text-xl font-bold font-heading">
+                Hospital Independencia
+              </div>
+              <div className="text-xs md:text-sm opacity-90 font-light">
+                Tehuacán, Puebla
+              </div>
+            </div>
           </div>
 
           {/* Desktop Navigation */}
@@ -60,21 +72,24 @@ const Navigation = () => {
               <button
                 key={item.label}
                 onClick={() => scrollToSection(item.href)}
-                className="text-foreground hover:text-primary transition-colors duration-200 font-medium"
+                className="text-white/90 hover:text-white hover:border-b-2 hover:border-hospital-secondary transition-all duration-200 font-medium py-2"
               >
                 {item.label}
               </button>
             ))}
-            <Button className="ml-4">
+            <Button 
+              onClick={handleContactClick}
+              className="ml-4 bg-hospital-accent hover:bg-hospital-accent/90 text-white font-semibold"
+            >
               <Phone className="w-4 h-4 mr-2" />
-              Contactar
+              Llamar
             </Button>
           </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden p-2 text-foreground hover:text-primary transition-colors"
+            className="lg:hidden p-2 text-white hover:text-hospital-secondary transition-colors"
           >
             {isMenuOpen ? (
               <X className="w-6 h-6" />
@@ -86,21 +101,24 @@ const Navigation = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="lg:hidden absolute top-full left-0 right-0 bg-white shadow-lg border-t">
+          <div className="lg:hidden absolute top-full left-0 right-0 bg-hospital-primary shadow-xl border-t border-hospital-secondary/20">
             <div className="py-4 space-y-2">
               {navigationItems.map((item) => (
                 <button
                   key={item.label}
                   onClick={() => scrollToSection(item.href)}
-                  className="block w-full text-left px-4 py-2 text-foreground hover:text-primary hover:bg-secondary/50 transition-colors duration-200"
+                  className="block w-full text-left px-6 py-3 text-white/90 hover:text-white hover:bg-hospital-secondary/20 transition-colors duration-200 font-medium"
                 >
                   {item.label}
                 </button>
               ))}
-              <div className="px-4 pt-2">
-                <Button className="w-full">
+              <div className="px-6 pt-2">
+                <Button 
+                  onClick={handleContactClick}
+                  className="w-full bg-hospital-accent hover:bg-hospital-accent/90 text-white font-semibold"
+                >
                   <Phone className="w-4 h-4 mr-2" />
-                  Contactar
+                  Llamar Ahora
                 </Button>
               </div>
             </div>
