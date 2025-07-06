@@ -1,8 +1,7 @@
 
 import React from 'react';
 import Layout from '@/components/Layout';
-import EspecialidadesDestacadas from '@/components/sections/EspecialidadesDestacadas';
-import EspecialidadesGenerales from '@/components/sections/EspecialidadesGenerales';
+import EspecialidadesCompletas from '@/components/sections/EspecialidadesCompletas';
 
 const Especialidades = () => {
   return (
@@ -14,13 +13,12 @@ const Especialidades = () => {
               Especialidades Médicas
             </h1>
             <p className="text-xl opacity-90 max-w-3xl mx-auto">
-              Contamos con más de 30 especialidades médicas y un equipo de profesionales altamente calificados para brindar la mejor atención a tu salud
+              Contamos con más de 19 especialidades médicas y un equipo de profesionales altamente calificados para brindar la mejor atención a tu salud
             </p>
           </div>
         </section>
         
-        <EspecialidadesDestacadas />
-        <EspecialidadesGenerales />
+        <EspecialidadesCompletas />
       </div>
     </Layout>
   );
