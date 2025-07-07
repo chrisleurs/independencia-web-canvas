@@ -10,7 +10,7 @@ import {
   BreadcrumbPage, 
   BreadcrumbSeparator 
 } from '@/components/ui/breadcrumb';
-import { ArrowLeft, Phone, Calendar, CheckCircle, User } from 'lucide-react';
+import { ArrowLeft, Phone, Calendar, CheckCircle, User, MessageCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Especialidad } from '@/data/especialidades';
 
@@ -20,6 +20,13 @@ interface EspecialidadDetalleProps {
 
 const EspecialidadDetalle = ({ especialidad }: EspecialidadDetalleProps) => {
   const Icon = especialidad.icon;
+
+  const handleWhatsAppBooking = (doctorName: string) => {
+    const phoneNumber = '522381234567'; // Hospital's WhatsApp number
+    const message = encodeURIComponent(`Hola, me gustaría agendar una cita con ${doctorName} en ${especialidad.titulo}. ¿Podrían ayudarme con la disponibilidad?`);
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+    window.open(whatsappUrl, '_blank');
+  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -175,11 +182,12 @@ const EspecialidadDetalle = ({ especialidad }: EspecialidadDetalleProps) => {
                     </div>
 
                     <Button 
-                      className="w-full mt-4" 
-                      variant="outline"
+                      className="w-full mt-4 bg-green-600 hover:bg-green-700 text-white" 
                       size="sm"
+                      onClick={() => handleWhatsAppBooking(doctor.nombre)}
                     >
-                      Agendar con {doctor.nombre.split(' ')[0]}
+                      <MessageCircle className="w-4 h-4 mr-2" />
+                      Agendar por WhatsApp
                     </Button>
                   </div>
                 </CardContent>

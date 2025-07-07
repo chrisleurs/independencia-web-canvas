@@ -1,4 +1,3 @@
-
 import { 
   Heart, 
   Stethoscope, 
@@ -58,11 +57,60 @@ export const especialidadesData: Especialidad[] = [
     ],
     doctores: [
       {
-        id: 'dr1',
-        nombre: 'Dr. Carlos Mendoza',
+        id: 'dr_medicina_1',
+        nombre: 'Dr. Héctor Vladimir Sandoval Ocampo',
+        titulo: 'Médico General',
+        experiencia: '12 años de experiencia',
+        certificaciones: ['Colegio Médico del Perú', 'Medicina General', 'Medicina Familiar']
+      },
+      {
+        id: 'dr_medicina_2',
+        nombre: 'Dr. Luis Alonso Palomino Alva',
         titulo: 'Médico General',
         experiencia: '15 años de experiencia',
-        certificaciones: ['Colegio Médico del Perú', 'Medicina Familiar']
+        certificaciones: ['Colegio Médico del Perú', 'Medicina General', 'Atención Primaria']
+      },
+      {
+        id: 'dr_medicina_3',
+        nombre: 'Dra. María Fernanda Salirrosas Gutiérrez',
+        titulo: 'Médico General',
+        experiencia: '10 años de experiencia',
+        certificaciones: ['Colegio Médico del Perú', 'Medicina General', 'Medicina Preventiva']
+      },
+      {
+        id: 'dr_medicina_4',
+        nombre: 'Dr. Marco Antonio Alva Chinchay',
+        titulo: 'Médico General',
+        experiencia: '18 años de experiencia',
+        certificaciones: ['Colegio Médico del Perú', 'Medicina General', 'Medicina Familiar']
+      },
+      {
+        id: 'dr_medicina_5',
+        nombre: 'Dr. Richard Henrry Angeles Navarro',
+        titulo: 'Médico General',
+        experiencia: '14 años de experiencia',
+        certificaciones: ['Colegio Médico del Perú', 'Medicina General', 'Emergencias Médicas']
+      },
+      {
+        id: 'dr_medicina_6',
+        nombre: 'Dra. Mariela Francisca Sandoval Ocampo',
+        titulo: 'Médico General',
+        experiencia: '16 años de experiencia',
+        certificaciones: ['Colegio Médico del Perú', 'Medicina General', 'Medicina Comunitaria']
+      },
+      {
+        id: 'dr_medicina_7',
+        nombre: 'Dr. Alfonso Rodolfo Ramos Cabrera',
+        titulo: 'Médico General',
+        experiencia: '20 años de experiencia',
+        certificaciones: ['Colegio Médico del Perú', 'Medicina General', 'Geriatría']
+      },
+      {
+        id: 'dr_medicina_8',
+        nombre: 'Dr. Jóse Alfredo Bazán Espíritu',
+        titulo: 'Médico General',
+        experiencia: '13 años de experiencia',
+        certificaciones: ['Colegio Médico del Perú', 'Medicina General', 'Medicina Interna']
       }
     ]
   },
