@@ -1,3 +1,4 @@
+
 import { 
   Heart, 
   Stethoscope, 
@@ -28,6 +29,7 @@ export interface Doctor {
   certificaciones: string[];
   foto?: string;
   whatsapp?: string;
+  telefonoHospital?: string;
   hasDetailedProfile?: boolean;
   formacion?: string;
   especialidades?: string[];
@@ -66,8 +68,9 @@ export const especialidadesData: Especialidad[] = [
         nombre: 'Dra. Karina Peña Tello',
         titulo: 'Médico General',
         experiencia: '15 años de experiencia',
-        certificaciones: ['Universidad Autónoma de Puebla', 'Colegio Médico del Perú', 'Medicina General'],
+        certificaciones: ['Universidad Autónoma de Puebla', 'Medicina General'],
         whatsapp: '2381338026',
+        telefonoHospital: '2381234567',
         hasDetailedProfile: true,
         formacion: 'Universidad Autónoma de Puebla',
         especialidades: ['Medicina General', 'Atención Primaria'],
@@ -80,6 +83,7 @@ export const especialidadesData: Especialidad[] = [
         experiencia: '20 años de experiencia',
         certificaciones: ['BUAP', 'Especialista en Diabetes', 'Especialista en Hipertensión'],
         whatsapp: '2381022504',
+        telefonoHospital: '2381234567',
         hasDetailedProfile: true,
         formacion: 'Benemérita Universidad Autónoma de Puebla (BUAP)',
         especialidades: ['Medicina General', 'Diabetes', 'Hipertensión'],
@@ -90,8 +94,9 @@ export const especialidadesData: Especialidad[] = [
         nombre: 'Dr. Javier Carrasco González',
         titulo: 'Médico Cirujano y Partero',
         experiencia: '18 años de experiencia',
-        certificaciones: ['Licenciado en Médico Cirujano y Partero', 'Colegio Médico del Perú'],
+        certificaciones: ['Licenciado en Médico Cirujano y Partero'],
         whatsapp: '2381902659',
+        telefonoHospital: '2381234567',
         hasDetailedProfile: true,
         formacion: 'Médico Cirujano y Partero',
         especialidades: ['Medicina General', 'Cirugía Menor'],
@@ -104,6 +109,7 @@ export const especialidadesData: Especialidad[] = [
         experiencia: '22 años de experiencia',
         certificaciones: ['BUAP', 'Maestría', 'Especialista en Urgencias'],
         whatsapp: '2381117877',
+        telefonoHospital: '2381234567',
         hasDetailedProfile: true,
         formacion: 'Benemérita Universidad Autónoma de Puebla (BUAP) con Maestría',
         especialidades: ['Medicina General', 'Medicina de Urgencias'],
@@ -114,8 +120,9 @@ export const especialidadesData: Especialidad[] = [
         nombre: 'Dr. Raymundo Romero Ventura',
         titulo: 'Médico General',
         experiencia: '35+ años de experiencia',
-        certificaciones: ['Egresado 1984', 'Colegio Médico del Perú', 'Medicina General'],
+        certificaciones: ['Egresado 1984', 'Medicina General'],
         whatsapp: '2381300097',
+        telefonoHospital: '2381234567',
         hasDetailedProfile: true,
         formacion: 'Egresado en 1984',
         especialidades: ['Medicina General', 'Medicina Familiar'],
@@ -126,7 +133,8 @@ export const especialidadesData: Especialidad[] = [
         nombre: 'Dr. Hipólito Coyotl Cruz',
         titulo: 'Médico General',
         experiencia: '12 años de experiencia',
-        certificaciones: ['Colegio Médico del Perú', 'Medicina General'],
+        certificaciones: ['Medicina General'],
+        telefonoHospital: '2381234567',
         hasDetailedProfile: false
       },
       {
@@ -134,7 +142,8 @@ export const especialidadesData: Especialidad[] = [
         nombre: 'Dr. Emilio Gerardo Montoro Hidalgo',
         titulo: 'Médico General',
         experiencia: '14 años de experiencia',
-        certificaciones: ['Colegio Médico del Perú', 'Medicina General'],
+        certificaciones: ['Medicina General'],
+        telefonoHospital: '2381234567',
         hasDetailedProfile: false
       },
       {
@@ -142,7 +151,8 @@ export const especialidadesData: Especialidad[] = [
         nombre: 'Dr. Héctor López Aparicio',
         titulo: 'Médico General',
         experiencia: '16 años de experiencia',
-        certificaciones: ['Colegio Médico del Perú', 'Medicina General'],
+        certificaciones: ['Medicina General'],
+        telefonoHospital: '2381234567',
         hasDetailedProfile: false
       }
     ]
@@ -580,6 +590,11 @@ export const especialidadesData: Especialidad[] = [
     ]
   }
 ];
+
+// Function to get all doctors from all specialties
+export const getAllDoctors = (): Doctor[] => {
+  return especialidadesData.flatMap(especialidad => especialidad.doctores);
+};
 
 export const getDoctorBySlug = (slug: string): Doctor | undefined => {
   for (const especialidad of especialidadesData) {

@@ -2,36 +2,35 @@
 import React from 'react';
 import Layout from '@/components/Layout';
 import { Button } from '@/components/ui/button';
-import { User, Phone, Mail } from 'lucide-react';
+import { User, Phone, MessageCircle } from 'lucide-react';
+import { getAllDoctors } from '@/data/especialidades';
 
 const Doctores = () => {
-  // Placeholder data - en el futuro se reemplazará con datos reales
-  const doctores = [
-    {
-      id: 'dra-karina-pena-tello',
-      nombre: 'Dra. Karina Peña Tello',
-      especialidad: 'Cardiología',
-      descripcion: 'Especialista en cardiología con más de 15 años de experiencia',
-      telefono: '(238) 123-4567',
-      email: 'karina.pena@hospitalindependencia.com'
-    },
-    {
-      id: 'dr-juan-perez',
-      nombre: 'Dr. Juan Pérez',
-      especialidad: 'Neurología',
-      descripcion: 'Neurólogo especializado en trastornos del sistema nervioso',
-      telefono: '(238) 123-4568',
-      email: 'juan.perez@hospitalindependencia.com'
-    },
-    {
-      id: 'dra-maria-gonzalez',
-      nombre: 'Dra. María González',
-      especialidad: 'Pediatría',
-      descripcion: 'Pediatra con enfoque en atención integral infantil',
-      telefono: '(238) 123-4569',
-      email: 'maria.gonzalez@hospitalindependencia.com'
+  const doctores = getAllDoctors();
+
+  const handleWhatsAppContact = (doctor: any) => {
+    if (doctor.whatsapp) {
+      const phoneNumber = `52${doctor.whatsapp}`;
+      const message = encodeURIComponent(`Hola ${doctor.nombre}, me gustaría agendar una cita. ¿Cuál es su disponibilidad?`);
+      const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+      window.open(whatsappUrl, '_blank');
     }
-  ];
+  };
+
+  const handleCallHospital = (doctor: any) => {
+    if (doctor.telefonoHospital) {
+      window.open(`tel:+52${doctor.telefonoHospital}`, '_self');
+    }
+  };
+
+  const getInitials = (nombre: string) => {
+    return nombre
+      .split(' ')
+      .map(word => word.charAt(0))
+      .join('')
+      .substring(0, 2)
+      .toUpperCase();
+  };
 
   return (
     <Layout>
@@ -52,32 +51,62 @@ const Doctores = () => {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {doctores.map((doctor) => (
                 <div key={doctor.id} className="bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-lg transition-shadow duration-300">
-                  {/* Foto placeholder */}
-                  <div className="w-24 h-24 bg-gradient-to-br from-hospital-primary/10 to-hospital-primary/5 rounded-full mx-auto mb-4 flex items-center justify-center">
-                    <User className="w-12 h-12 text-hospital-primary" />
+                  {/* Foto del doctor */}
+                  <div className="w-32 h-32 bg-gradient-to-br from-hospital-primary to-hospital-secondary rounded-full mx-auto mb-4 flex items-center justify-center text-white text-2xl font-bold">
+                    {doctor.foto ? (
+                      <img 
+                        src={doctor.foto} 
+                        alt={doctor.nombre}
+                        className="w-full h-full rounded-full object-cover"
+                      />
+                    ) : (
+                      getInitials(doctor.nombre)
+                    )}
                   </div>
                   
                   <div className="text-center mb-4">
                     <h3 className="text-xl font-bold mb-2">{doctor.nombre}</h3>
-                    <p className="text-hospital-primary font-medium mb-2">{doctor.especialidad}</p>
-                    <p className="text-muted-foreground text-sm">{doctor.descripcion}</p>
+                    <p className="text-hospital-primary font-medium mb-2">{doctor.titulo}</p>
+                    <p className="text-muted-foreground text-sm mb-3">{doctor.experiencia}</p>
                   </div>
                   
-                  <div className="space-y-2 mb-4">
-                    <div className="flex items-center justify-center space-x-2 text-sm text-muted-foreground">
-                      <Phone className="w-4 h-4" />
-                      <span>{doctor.telefono}</span>
-                    </div>
-                    <div className="flex items-center justify-center space-x-2 text-sm text-muted-foreground">
-                      <Mail className="w-4 h-4" />
-                      <span className="text-xs">{doctor.email}</span>
-                    </div>
+                  <div className="space-y-3 mb-4">
+                    {doctor.whatsapp && (
+                      <div className="flex items-center justify-center space-x-2 text-sm text-muted-foreground">
+                        <MessageCircle className="w-4 h-4 text-green-600" />
+                        <span>WhatsApp: {doctor.whatsapp}</span>
+                      </div>
+                    )}
+                    {doctor.telefonoHospital && (
+                      <div className="flex items-center justify-center space-x-2 text-sm text-muted-foreground">
+                        <Phone className="w-4 h-4 text-hospital-primary" />
+                        <span>Hospital: {doctor.telefonoHospital}</span>
+                      </div>
+                    )}
                   </div>
                   
-                  <div className="text-center">
-                    <Button size="sm" className="w-full">
-                      Agendar Cita
-                    </Button>
+                  <div className="space-y-2">
+                    {doctor.whatsapp && (
+                      <Button 
+                        size="sm" 
+                        className="w-full bg-green-600 hover:bg-green-700 text-white"
+                        onClick={() => handleWhatsAppContact(doctor)}
+                      >
+                        <MessageCircle className="w-4 h-4 mr-2" />
+                        WhatsApp
+                      </Button>
+                    )}
+                    {doctor.telefonoHospital && (
+                      <Button 
+                        variant="outline" 
+                        size="sm" 
+                        className="w-full"
+                        onClick={() => handleCallHospital(doctor)}
+                      >
+                        <Phone className="w-4 h-4 mr-2" />
+                        Llamar Hospital
+                      </Button>
+                    )}
                   </div>
                 </div>
               ))}
@@ -87,10 +116,11 @@ const Doctores = () => {
               <div className="bg-slate-50 p-8 rounded-2xl max-w-2xl mx-auto">
                 <h2 className="text-2xl font-bold mb-4">¿Buscas una especialidad específica?</h2>
                 <p className="text-muted-foreground mb-6">
-                  Contamos con más de 30 especialidades médicas. Contáctanos para conocer la disponibilidad de nuestros especialistas.
+                  Contamos con más de 18 especialidades médicas. Contacta con nosotros para conocer la disponibilidad de nuestros especialistas.
                 </p>
                 <Button size="lg">
-                  Contactar para Más Información
+                  <Phone className="w-5 h-5 mr-2" />
+                  Contactar: (238) 123-4567
                 </Button>
               </div>
             </div>
