@@ -27,6 +27,11 @@ export interface Doctor {
   experiencia: string;
   certificaciones: string[];
   foto?: string;
+  whatsapp?: string;
+  hasDetailedProfile?: boolean;
+  formacion?: string;
+  especialidades?: string[];
+  slug?: string;
 }
 
 export interface Especialidad {
@@ -57,60 +62,88 @@ export const especialidadesData: Especialidad[] = [
     ],
     doctores: [
       {
-        id: 'dr_medicina_1',
-        nombre: 'Dr. Héctor Vladimir Sandoval Ocampo',
-        titulo: 'Médico General',
-        experiencia: '12 años de experiencia',
-        certificaciones: ['Colegio Médico del Perú', 'Medicina General', 'Medicina Familiar']
-      },
-      {
-        id: 'dr_medicina_2',
-        nombre: 'Dr. Luis Alonso Palomino Alva',
+        id: 'dra_karina_pena_tello',
+        nombre: 'Dra. Karina Peña Tello',
         titulo: 'Médico General',
         experiencia: '15 años de experiencia',
-        certificaciones: ['Colegio Médico del Perú', 'Medicina General', 'Atención Primaria']
+        certificaciones: ['Universidad Autónoma de Puebla', 'Colegio Médico del Perú', 'Medicina General'],
+        whatsapp: '2381338026',
+        hasDetailedProfile: true,
+        formacion: 'Universidad Autónoma de Puebla',
+        especialidades: ['Medicina General', 'Atención Primaria'],
+        slug: 'dra-karina-pena-tello'
       },
       {
-        id: 'dr_medicina_3',
-        nombre: 'Dra. María Fernanda Salirrosas Gutiérrez',
-        titulo: 'Médico General',
-        experiencia: '10 años de experiencia',
-        certificaciones: ['Colegio Médico del Perú', 'Medicina General', 'Medicina Preventiva']
-      },
-      {
-        id: 'dr_medicina_4',
-        nombre: 'Dr. Marco Antonio Alva Chinchay',
-        titulo: 'Médico General',
-        experiencia: '18 años de experiencia',
-        certificaciones: ['Colegio Médico del Perú', 'Medicina General', 'Medicina Familiar']
-      },
-      {
-        id: 'dr_medicina_5',
-        nombre: 'Dr. Richard Henrry Angeles Navarro',
-        titulo: 'Médico General',
-        experiencia: '14 años de experiencia',
-        certificaciones: ['Colegio Médico del Perú', 'Medicina General', 'Emergencias Médicas']
-      },
-      {
-        id: 'dr_medicina_6',
-        nombre: 'Dra. Mariela Francisca Sandoval Ocampo',
-        titulo: 'Médico General',
-        experiencia: '16 años de experiencia',
-        certificaciones: ['Colegio Médico del Perú', 'Medicina General', 'Medicina Comunitaria']
-      },
-      {
-        id: 'dr_medicina_7',
-        nombre: 'Dr. Alfonso Rodolfo Ramos Cabrera',
+        id: 'dr_bernardo_velasco_olalde',
+        nombre: 'Dr. Bernardo Velasco Olalde',
         titulo: 'Médico General',
         experiencia: '20 años de experiencia',
-        certificaciones: ['Colegio Médico del Perú', 'Medicina General', 'Geriatría']
+        certificaciones: ['BUAP', 'Especialista en Diabetes', 'Especialista en Hipertensión'],
+        whatsapp: '2381022504',
+        hasDetailedProfile: true,
+        formacion: 'Benemérita Universidad Autónoma de Puebla (BUAP)',
+        especialidades: ['Medicina General', 'Diabetes', 'Hipertensión'],
+        slug: 'dr-bernardo-velasco-olalde'
       },
       {
-        id: 'dr_medicina_8',
-        nombre: 'Dr. Jóse Alfredo Bazán Espíritu',
+        id: 'dr_javier_carrasco_gonzalez',
+        nombre: 'Dr. Javier Carrasco González',
+        titulo: 'Médico Cirujano y Partero',
+        experiencia: '18 años de experiencia',
+        certificaciones: ['Licenciado en Médico Cirujano y Partero', 'Colegio Médico del Perú'],
+        whatsapp: '2381902659',
+        hasDetailedProfile: true,
+        formacion: 'Médico Cirujano y Partero',
+        especialidades: ['Medicina General', 'Cirugía Menor'],
+        slug: 'dr-javier-carrasco-gonzalez'
+      },
+      {
+        id: 'dr_gerardo_valderrama_lopez',
+        nombre: 'Dr. Gerardo Antonio Valderrama López',
         titulo: 'Médico General',
-        experiencia: '13 años de experiencia',
-        certificaciones: ['Colegio Médico del Perú', 'Medicina General', 'Medicina Interna']
+        experiencia: '22 años de experiencia',
+        certificaciones: ['BUAP', 'Maestría', 'Especialista en Urgencias'],
+        whatsapp: '2381117877',
+        hasDetailedProfile: true,
+        formacion: 'Benemérita Universidad Autónoma de Puebla (BUAP) con Maestría',
+        especialidades: ['Medicina General', 'Medicina de Urgencias'],
+        slug: 'dr-gerardo-valderrama-lopez'
+      },
+      {
+        id: 'dr_raymundo_romero_ventura',
+        nombre: 'Dr. Raymundo Romero Ventura',
+        titulo: 'Médico General',
+        experiencia: '35+ años de experiencia',
+        certificaciones: ['Egresado 1984', 'Colegio Médico del Perú', 'Medicina General'],
+        whatsapp: '2381300097',
+        hasDetailedProfile: true,
+        formacion: 'Egresado en 1984',
+        especialidades: ['Medicina General', 'Medicina Familiar'],
+        slug: 'dr-raymundo-romero-ventura'
+      },
+      {
+        id: 'dr_hipolito_coyotl_cruz',
+        nombre: 'Dr. Hipólito Coyotl Cruz',
+        titulo: 'Médico General',
+        experiencia: '12 años de experiencia',
+        certificaciones: ['Colegio Médico del Perú', 'Medicina General'],
+        hasDetailedProfile: false
+      },
+      {
+        id: 'dr_emilio_montoro_hidalgo',
+        nombre: 'Dr. Emilio Gerardo Montoro Hidalgo',
+        titulo: 'Médico General',
+        experiencia: '14 años de experiencia',
+        certificaciones: ['Colegio Médico del Perú', 'Medicina General'],
+        hasDetailedProfile: false
+      },
+      {
+        id: 'dr_hector_lopez_aparicio',
+        nombre: 'Dr. Héctor López Aparicio',
+        titulo: 'Médico General',
+        experiencia: '16 años de experiencia',
+        certificaciones: ['Colegio Médico del Perú', 'Medicina General'],
+        hasDetailedProfile: false
       }
     ]
   },
@@ -547,6 +580,14 @@ export const especialidadesData: Especialidad[] = [
     ]
   }
 ];
+
+export const getDoctorBySlug = (slug: string): Doctor | undefined => {
+  for (const especialidad of especialidadesData) {
+    const doctor = especialidad.doctores.find(doctor => doctor.slug === slug);
+    if (doctor) return doctor;
+  }
+  return undefined;
+};
 
 export const getEspecialidadBySlug = (slug: string): Especialidad | undefined => {
   return especialidadesData.find(especialidad => especialidad.slug === slug);
