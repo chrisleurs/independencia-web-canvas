@@ -10,7 +10,7 @@ import {
   BreadcrumbPage, 
   BreadcrumbSeparator 
 } from '@/components/ui/breadcrumb';
-import { ArrowLeft, Phone, Calendar, CheckCircle, User, MessageCircle, GraduationCap, Award } from 'lucide-react';
+import { ArrowLeft, Phone, Calendar, CheckCircle, User, MessageCircle, GraduationCap, Award, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Doctor } from '@/data/especialidades';
 
@@ -30,6 +30,15 @@ const DoctorProfile = ({ doctor }: DoctorProfileProps) => {
     if (doctor.whatsapp) {
       window.open(`tel:+52${doctor.whatsapp}`, '_self');
     }
+  };
+
+  const getInitials = (nombre: string) => {
+    return nombre
+      .split(' ')
+      .map(word => word.charAt(0))
+      .join('')
+      .substring(0, 2)
+      .toUpperCase();
   };
 
   return (
@@ -79,8 +88,18 @@ const DoctorProfile = ({ doctor }: DoctorProfileProps) => {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <div className="flex items-center gap-6 mb-6">
-                <div className="w-24 h-24 bg-white/20 rounded-full flex items-center justify-center">
-                  <User className="w-16 h-16 text-white" />
+                <div className="w-24 h-24 bg-white/20 rounded-full flex items-center justify-center overflow-hidden">
+                  {doctor.foto ? (
+                    <img 
+                      src={doctor.foto} 
+                      alt={doctor.nombre}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gradient-to-br from-hospital-primary to-hospital-secondary rounded-full flex items-center justify-center text-white text-lg font-bold">
+                      {getInitials(doctor.nombre)}
+                    </div>
+                  )}
                 </div>
                 <div>
                   <h1 className="text-4xl md:text-5xl font-bold text-white mb-2">
@@ -97,8 +116,14 @@ const DoctorProfile = ({ doctor }: DoctorProfileProps) => {
               </p>
               
               {doctor.formacion && (
-                <p className="text-lg text-white/80 mb-8">
+                <p className="text-lg text-white/80 mb-4">
                   {doctor.formacion}
+                </p>
+              )}
+
+              {doctor.mision && (
+                <p className="text-md text-white/80 mb-8 italic">
+                  "{doctor.mision}"
                 </p>
               )}
 
@@ -126,8 +151,16 @@ const DoctorProfile = ({ doctor }: DoctorProfileProps) => {
             </div>
 
             <div className="relative">
-              <div className="aspect-square bg-white/10 rounded-2xl flex items-center justify-center backdrop-blur-sm">
-                <User className="w-32 h-32 text-white/30" />
+              <div className="aspect-square bg-white/10 rounded-2xl flex items-center justify-center backdrop-blur-sm overflow-hidden">
+                {doctor.foto ? (
+                  <img 
+                    src={doctor.foto} 
+                    alt={doctor.nombre}
+                    className="w-full h-full object-cover rounded-2xl"
+                  />
+                ) : (
+                  <User className="w-32 h-32 text-white/30" />
+                )}
               </div>
               <div className="absolute -top-4 -right-4 w-24 h-24 bg-white/10 rounded-full"></div>
               <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-white/20 rounded-full"></div>
@@ -178,6 +211,44 @@ const DoctorProfile = ({ doctor }: DoctorProfileProps) => {
                     <div key={index} className="flex items-start gap-3">
                       <CheckCircle className="w-5 h-5 text-hospital-accent flex-shrink-0 mt-1" />
                       <span className="text-hospital-gray">{especialidad}</span>
+                    </div>
+                  ))}
+                </CardContent>
+              </Card>
+            )}
+
+            {/* Horarios */}
+            {doctor.horarios && (
+              <Card className="hover:shadow-lg transition-shadow duration-300">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-3 text-hospital-primary">
+                    <Clock className="w-6 h-6" />
+                    Horarios de Atención
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-hospital-accent flex-shrink-0 mt-1" />
+                    <span className="text-hospital-gray">{doctor.horarios}</span>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+
+            {/* Reconocimientos */}
+            {doctor.reconocimientos && doctor.reconocimientos.length > 0 && (
+              <Card className="hover:shadow-lg transition-shadow duration-300">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-3 text-hospital-primary">
+                    <Award className="w-6 h-6" />
+                    Reconocimientos y Membresías
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  {doctor.reconocimientos.map((reconocimiento, index) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <CheckCircle className="w-5 h-5 text-hospital-accent flex-shrink-0 mt-1" />
+                      <span className="text-hospital-gray">{reconocimiento}</span>
                     </div>
                   ))}
                 </CardContent>

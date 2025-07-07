@@ -1,4 +1,3 @@
-
 import { 
   Heart, 
   Stethoscope, 
@@ -34,6 +33,9 @@ export interface Doctor {
   formacion?: string;
   especialidades?: string[];
   slug?: string;
+  horarios?: string;
+  mision?: string;
+  reconocimientos?: string[];
 }
 
 export interface Especialidad {
@@ -66,28 +68,46 @@ export const especialidadesData: Especialidad[] = [
       {
         id: 'dra_karina_pena_tello',
         nombre: 'Dra. Karina Peña Tello',
-        titulo: 'Médico General',
+        titulo: 'Médico General / Ginecóloga Obstetra',
         experiencia: '15 años de experiencia',
-        certificaciones: ['Universidad Autónoma de Puebla', 'Medicina General'],
+        certificaciones: ['Universidad Autónoma de Puebla', 'Medicina General', 'Ginecología y Obstetricia'],
+        foto: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&h=400&fit=crop&crop=face',
         whatsapp: '2381338026',
         telefonoHospital: '2381234567',
         hasDetailedProfile: true,
         formacion: 'Universidad Autónoma de Puebla',
-        especialidades: ['Medicina General', 'Atención Primaria'],
-        slug: 'dra-karina-pena-tello'
+        especialidades: ['Medicina General', 'Ginecología', 'Obstetricia', 'Atención Materno Infantil'],
+        slug: 'dra-karina-pena-tello',
+        horarios: 'Lunes a Viernes: 8:00 AM - 6:00 PM, Sábados: 8:00 AM - 2:00 PM',
+        mision: 'Brindar atención médica integral con calidez humana, especializada en salud femenina y medicina familiar, comprometida con el bienestar de mis pacientes.',
+        reconocimientos: [
+          'Miembro del Colegio de Médicos Generales',
+          'Certificación en Medicina Materno Fetal',
+          'Especialista en Control Prenatal',
+          '15 años de experiencia en atención médica'
+        ]
       },
       {
         id: 'dr_bernardo_velasco_olalde',
         nombre: 'Dr. Bernardo Velasco Olalde',
-        titulo: 'Médico General',
+        titulo: 'Médico General / Especialista en Diabetes e Hipertensión',
         experiencia: '20 años de experiencia',
         certificaciones: ['BUAP', 'Especialista en Diabetes', 'Especialista en Hipertensión'],
+        foto: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&h=400&fit=crop&crop=face',
         whatsapp: '2381022504',
         telefonoHospital: '2381234567',
         hasDetailedProfile: true,
         formacion: 'Benemérita Universidad Autónoma de Puebla (BUAP)',
-        especialidades: ['Medicina General', 'Diabetes', 'Hipertensión'],
-        slug: 'dr-bernardo-velasco-olalde'
+        especialidades: ['Medicina General', 'Diabetes Mellitus', 'Hipertensión Arterial', 'Enfermedades Crónico Degenerativas'],
+        slug: 'dr-bernardo-velasco-olalde',
+        horarios: 'Lunes a Viernes: 7:00 AM - 7:00 PM, Sábados: 8:00 AM - 3:00 PM',
+        mision: 'Especialista en el manejo integral de diabetes e hipertensión, comprometido con mejorar la calidad de vida de mis pacientes a través de un tratamiento personalizado.',
+        reconocimientos: [
+          'Especialista certificado en Diabetes Mellitus',
+          'Especialista certificado en Hipertensión Arterial',
+          '20 años de experiencia clínica',
+          'Miembro de la Asociación Mexicana de Diabetes'
+        ]
       },
       {
         id: 'dr_javier_carrasco_gonzalez',
@@ -134,8 +154,20 @@ export const especialidadesData: Especialidad[] = [
         titulo: 'Médico General',
         experiencia: '12 años de experiencia',
         certificaciones: ['Medicina General'],
+        foto: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&h=400&fit=crop&crop=face',
+        whatsapp: '2381379034',
         telefonoHospital: '2381234567',
-        hasDetailedProfile: false
+        hasDetailedProfile: true,
+        formacion: 'Médico Cirujano',
+        especialidades: ['Medicina General', 'Atención Primaria'],
+        slug: 'dr-hipolito-coyotl-cruz',
+        horarios: 'Lunes a Viernes: 9:00 AM - 5:00 PM, Sábados: 9:00 AM - 1:00 PM',
+        mision: 'Proporcionar atención médica integral y humanizada, enfocado en la prevención y el tratamiento oportuno de enfermedades.',
+        reconocimientos: [
+          'Médico Cirujano certificado',
+          '12 años de experiencia en medicina general',
+          'Especialista en atención primaria'
+        ]
       },
       {
         id: 'dr_emilio_montoro_hidalgo',
@@ -177,7 +209,8 @@ export const especialidadesData: Especialidad[] = [
         nombre: 'Dra. Ana Herrera',
         titulo: 'Especialista en Medicina Intensiva',
         experiencia: '12 años de experiencia',
-        certificaciones: ['UCI Avanzada', 'Soporte Vital']
+        certificaciones: ['UCI Avanzada', 'Soporte Vital'],
+        telefonoHospital: '2381234567'
       }
     ]
   },
@@ -201,7 +234,8 @@ export const especialidadesData: Especialidad[] = [
         nombre: 'Dr. Luis Ramírez',
         titulo: 'Pediatra Neonatólogo',
         experiencia: '18 años de experiencia',
-        certificaciones: ['Pediatría', 'Neonatología', 'UCIN']
+        certificaciones: ['Pediatría', 'Neonatología', 'UCIN'],
+        telefonoHospital: '2381234567'
       }
     ]
   },
@@ -225,7 +259,8 @@ export const especialidadesData: Especialidad[] = [
         nombre: 'Dr. Roberto Silva',
         titulo: 'Traumatólogo Ortopedista',
         experiencia: '20 años de experiencia',
-        certificaciones: ['Ortopedia', 'Traumatología', 'Artroscopia']
+        certificaciones: ['Ortopedia', 'Traumatología', 'Artroscopia'],
+        telefonoHospital: '2381234567'
       }
     ]
   },
@@ -249,7 +284,8 @@ export const especialidadesData: Especialidad[] = [
         nombre: 'Dra. Patricia Vega',
         titulo: 'Especialista en Medicina de Emergencias',
         experiencia: '10 años de experiencia',
-        certificaciones: ['Medicina de Emergencias', 'ACLS', 'ATLS']
+        certificaciones: ['Medicina de Emergencias', 'ACLS', 'ATLS'],
+        telefonoHospital: '2381234567'
       }
     ]
   },
@@ -273,7 +309,8 @@ export const especialidadesData: Especialidad[] = [
         nombre: 'Dr. Miguel Torres',
         titulo: 'Neurólogo',
         experiencia: '14 años de experiencia',
-        certificaciones: ['Neurología', 'Neurofisiología']
+        certificaciones: ['Neurología', 'Neurofisiología'],
+        telefonoHospital: '2381234567'
       }
     ]
   },
@@ -297,7 +334,8 @@ export const especialidadesData: Especialidad[] = [
         nombre: 'Lic. Carmen López',
         titulo: 'Nutricionista Clínica',
         experiencia: '8 años de experiencia',
-        certificaciones: ['Nutrición Clínica', 'Dietética']
+        certificaciones: ['Nutrición Clínica', 'Dietética'],
+        telefonoHospital: '2381234567'
       }
     ]
   },
@@ -321,7 +359,8 @@ export const especialidadesData: Especialidad[] = [
         nombre: 'Dr. Eduardo Paz',
         titulo: 'Cardioneumólogo',
         experiencia: '16 años de experiencia',
-        certificaciones: ['Cardiología', 'Neumología']
+        certificaciones: ['Cardiología', 'Neumología'],
+        telefonoHospital: '2381234567'
       }
     ]
   },
@@ -345,7 +384,8 @@ export const especialidadesData: Especialidad[] = [
         nombre: 'Dr. Francisco Morales',
         titulo: 'Gastroenterólogo',
         experiencia: '13 años de experiencia',
-        certificaciones: ['Gastroenterología', 'Endoscopia']
+        certificaciones: ['Gastroenterología', 'Endoscopia'],
+        telefonoHospital: '2381234567'
       }
     ]
   },
@@ -369,7 +409,8 @@ export const especialidadesData: Especialidad[] = [
         nombre: 'Dra. Isabel Cruz',
         titulo: 'Nefróloga',
         experiencia: '11 años de experiencia',
-        certificaciones: ['Nefrología', 'Diálisis']
+        certificaciones: ['Nefrología', 'Diálisis'],
+        telefonoHospital: '2381234567'
       }
     ]
   },
@@ -393,7 +434,8 @@ export const especialidadesData: Especialidad[] = [
         nombre: 'Dr. Andrés Gutiérrez',
         titulo: 'Neumólogo',
         experiencia: '17 años de experiencia',
-        certificaciones: ['Neumología', 'Medicina Respiratoria']
+        certificaciones: ['Neumología', 'Medicina Respiratoria'],
+        telefonoHospital: '2381234567'
       }
     ]
   },
@@ -417,7 +459,8 @@ export const especialidadesData: Especialidad[] = [
         nombre: 'Dr. Manuel Sánchez',
         titulo: 'Cirujano General',
         experiencia: '22 años de experiencia',
-        certificaciones: ['Cirugía General', 'Laparoscopia']
+        certificaciones: ['Cirugía General', 'Laparoscopia'],
+        telefonoHospital: '2381234567'
       }
     ]
   },
@@ -441,7 +484,8 @@ export const especialidadesData: Especialidad[] = [
         nombre: 'Dr. José Fernández',
         titulo: 'Urólogo',
         experiencia: '19 años de experiencia',
-        certificaciones: ['Urología', 'Andrología']
+        certificaciones: ['Urología', 'Andrología'],
+        telefonoHospital: '2381234567'
       }
     ]
   },
@@ -465,7 +509,8 @@ export const especialidadesData: Especialidad[] = [
         nombre: 'Dra. Sofía Ruiz',
         titulo: 'Dermatóloga',
         experiencia: '9 años de experiencia',
-        certificaciones: ['Dermatología', 'Dermatología Estética']
+        certificaciones: ['Dermatología', 'Dermatología Estética'],
+        telefonoHospital: '2381234567'
       }
     ]
   },
@@ -489,7 +534,8 @@ export const especialidadesData: Especialidad[] = [
         nombre: 'Dra. Karina Peña Tello',
         titulo: 'Ginecóloga Obstetra',
         experiencia: '15 años de experiencia',
-        certificaciones: ['Ginecología', 'Obstetricia', 'Medicina Materno Fetal']
+        certificaciones: ['Ginecología', 'Obstetricia', 'Medicina Materno Fetal'],
+        telefonoHospital: '2381234567'
       }
     ]
   },
@@ -513,7 +559,8 @@ export const especialidadesData: Especialidad[] = [
         nombre: 'Dr. Alberto Díaz',
         titulo: 'Anestesiólogo',
         experiencia: '14 años de experiencia',
-        certificaciones: ['Anestesiología', 'Dolor']
+        certificaciones: ['Anestesiología', 'Dolor'],
+        telefonoHospital: '2381234567'
       }
     ]
   },
@@ -537,7 +584,8 @@ export const especialidadesData: Especialidad[] = [
         nombre: 'Dr. Ricardo Paredes',
         titulo: 'Cirujano Plástico',
         experiencia: '16 años de experiencia',
-        certificaciones: ['Cirugía Plástica', 'Cirugía Reconstructiva']
+        certificaciones: ['Cirugía Plástica', 'Cirugía Reconstructiva'],
+        telefonoHospital: '2381234567'
       }
     ]
   },
@@ -561,7 +609,8 @@ export const especialidadesData: Especialidad[] = [
         nombre: 'Dr. Óscar Medina',
         titulo: 'Neurocirujano',
         experiencia: '21 años de experiencia',
-        certificaciones: ['Neurocirugía', 'Cirugía de Columna']
+        certificaciones: ['Neurocirugía', 'Cirugía de Columna'],
+        telefonoHospital: '2381234567'
       }
     ]
   },
@@ -585,7 +634,8 @@ export const especialidadesData: Especialidad[] = [
         nombre: 'Dra. Lucía Campos',
         titulo: 'Oftalmóloga Pediatra',
         experiencia: '12 años de experiencia',
-        certificaciones: ['Oftalmología', 'Oftalmología Pediátrica']
+        certificaciones: ['Oftalmología', 'Oftalmología Pediátrica'],
+        telefonoHospital: '2381234567'
       }
     ]
   }
