@@ -2,41 +2,12 @@
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Heart, Wind, Ambulance, Utensils, Baby, MessageCircle } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { MessageCircle } from 'lucide-react';
+import { getAllServicios } from '@/data/servicios';
 
 const ServiciosMedicos = () => {
-  const servicios = [
-    {
-      icon: Heart,
-      titulo: 'Terapia Intensiva / Pacientes Críticos',
-      descripcion: 'Atención especializada 24/7 con tecnología avanzada.',
-    },
-    {
-      icon: Wind,
-      titulo: 'Atención Respiratoria',
-      descripcion: 'Soporte pulmonar y tratamiento integral de enfermedades respiratorias.',
-    },
-    {
-      icon: Heart,
-      titulo: 'Atención Cardiaca',
-      descripcion: 'Diagnóstico y tratamiento de enfermedades cardiovasculares con tecnología moderna.',
-    },
-    {
-      icon: Ambulance,
-      titulo: 'Ayuda de Emergencia / Urgencias 24/7',
-      descripcion: 'Atención inmediata con ambulancias disponibles todos los días.',
-    },
-    {
-      icon: Utensils,
-      titulo: 'Atención Nutricional Personalizada',
-      descripcion: 'Planes nutricionales diseñados para cada paciente para apoyar la recuperación.',
-    },
-    {
-      icon: Baby,
-      titulo: 'Ginecología',
-      descripcion: 'Cuidado ginecológico y obstétrico integral para todas las etapas de la mujer.',
-    },
-  ];
+  const servicios = getAllServicios();
 
   const handleWhatsAppClick = () => {
     const phoneNumber = '522381234567';
@@ -58,23 +29,33 @@ const ServiciosMedicos = () => {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 mb-12">
-          {servicios.map((servicio, index) => {
+          {servicios.slice(0, 6).map((servicio) => {
             const Icon = servicio.icon;
             return (
-              <Card key={index} className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-white">
-                <CardContent className="p-8">
-                  <div className="w-16 h-16 bg-hospital-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-hospital-primary group-hover:scale-110 transition-all duration-300">
-                    <Icon className="w-8 h-8 text-hospital-primary group-hover:text-white transition-colors duration-300" />
-                  </div>
-                  
-                  <h3 className="text-xl font-semibold mb-4 text-hospital-primary group-hover:text-hospital-secondary transition-colors duration-300">
-                    {servicio.titulo}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {servicio.descripcion}
-                  </p>
-                </CardContent>
-              </Card>
+              <Link
+                key={servicio.id}
+                to={`/servicios/${servicio.slug}`}
+                className="block"
+              >
+                <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-white cursor-pointer h-full">
+                  <CardContent className="p-8">
+                    <div className="w-16 h-16 bg-hospital-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-hospital-primary group-hover:scale-110 transition-all duration-300">
+                      <Icon className="w-8 h-8 text-hospital-primary group-hover:text-white transition-colors duration-300" />
+                    </div>
+                    
+                    <h3 className="text-xl font-semibold mb-4 text-hospital-primary group-hover:text-hospital-secondary transition-colors duration-300">
+                      {servicio.titulo}
+                    </h3>
+                    <p className="text-muted-foreground leading-relaxed mb-4">
+                      {servicio.descripcionCorta}
+                    </p>
+                    
+                    <div className="text-hospital-accent font-medium text-sm group-hover:text-hospital-primary transition-colors duration-300">
+                      Ver más detalles →
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
             );
           })}
         </div>
