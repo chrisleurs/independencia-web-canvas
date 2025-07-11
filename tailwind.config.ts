@@ -62,6 +62,10 @@ export default {
 					gray: 'hsl(var(--hospital-gray))',
 					title: 'hsl(var(--hospital-title))',
 					'title-light': 'hsl(var(--hospital-title-light))',
+					// New gold variations
+					gold: 'hsl(var(--hospital-gold))',
+					'gold-light': 'hsl(var(--hospital-gold-light))',
+					'gold-dark': 'hsl(var(--hospital-gold-dark))',
 				}
 			},
 			fontFamily: {

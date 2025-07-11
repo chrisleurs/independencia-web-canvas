@@ -54,18 +54,20 @@ const Navigation = () => {
     >
       <div className="container-custom">
         <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo */}
+          {/* Logo con imagen real */}
           <Link to="/" className="flex items-center space-x-3">
-            <div className="w-10 h-10 md:w-12 md:h-12 bg-white rounded-xl flex items-center justify-center shadow-sm">
-              <div className="w-6 h-6 md:w-7 md:h-7 bg-hospital-primary rounded-lg flex items-center justify-center">
-                <div className="w-3 h-3 md:w-4 md:h-4 bg-white rounded-sm"></div>
-              </div>
+            <div className="w-12 h-12 md:w-14 md:h-14 bg-white rounded-xl flex items-center justify-center shadow-sm p-1">
+              <img 
+                src="/lovable-uploads/34c5be76-cf86-4d35-a2e4-c27b77abb024.png" 
+                alt="Hospital Independencia Logo"
+                className="w-full h-full object-contain"
+              />
             </div>
             <div className="text-white">
               <div className="text-lg md:text-xl font-bold font-heading">
                 Hospital Independencia
               </div>
-              <div className="text-xs md:text-sm opacity-90 font-light">
+              <div className="text-xs md:text-sm opacity-90 font-light text-hospital-gold-light">
                 Tehuacán, Puebla
               </div>
             </div>
@@ -77,8 +79,8 @@ const Navigation = () => {
               <Link
                 key={item.label}
                 to={item.href}
-                className={`text-white/90 hover:text-white hover:border-b-2 hover:border-hospital-secondary transition-all duration-200 font-medium py-2 ${
-                  isActive(item.href) ? 'text-white border-b-2 border-hospital-secondary' : ''
+                className={`text-white/90 hover:text-white hover:border-b-2 hover:border-hospital-gold transition-all duration-200 font-medium py-2 ${
+                  isActive(item.href) ? 'text-white border-b-2 border-hospital-gold' : ''
                 }`}
               >
                 {item.label}
@@ -86,7 +88,7 @@ const Navigation = () => {
             ))}
             <Button 
               onClick={handleContactClick}
-              className="ml-4 bg-hospital-accent hover:bg-hospital-accent/90 text-white font-semibold"
+              className="ml-4 btn-gold font-semibold"
             >
               <Phone className="w-4 h-4 mr-2" />
               Llamar
@@ -96,7 +98,7 @@ const Navigation = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden p-2 text-white hover:text-hospital-secondary transition-colors"
+            className="lg:hidden p-2 text-white hover:text-hospital-gold transition-colors"
           >
             {isMenuOpen ? (
               <X className="w-6 h-6" />
@@ -108,15 +110,15 @@ const Navigation = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="lg:hidden absolute top-full left-0 right-0 bg-hospital-primary shadow-xl border-t border-hospital-secondary/20">
+          <div className="lg:hidden absolute top-full left-0 right-0 bg-hospital-primary shadow-xl border-t border-hospital-gold/20">
             <div className="py-4 space-y-2">
               {navigationItems.map((item) => (
                 <Link
                   key={item.label}
                   to={item.href}
                   onClick={() => setIsMenuOpen(false)}
-                  className={`block w-full text-left px-6 py-3 text-white/90 hover:text-white hover:bg-hospital-secondary/20 transition-colors duration-200 font-medium ${
-                    isActive(item.href) ? 'text-white bg-hospital-secondary/20' : ''
+                  className={`block w-full text-left px-6 py-3 text-white/90 hover:text-white hover:bg-hospital-gold/20 transition-colors duration-200 font-medium ${
+                    isActive(item.href) ? 'text-white bg-hospital-gold/20 border-r-4 border-hospital-gold' : ''
                   }`}
                 >
                   {item.label}
@@ -125,7 +127,7 @@ const Navigation = () => {
               <div className="px-6 pt-2">
                 <Button 
                   onClick={handleContactClick}
-                  className="w-full bg-hospital-accent hover:bg-hospital-accent/90 text-white font-semibold"
+                  className="w-full btn-gold font-semibold"
                 >
                   <Phone className="w-4 h-4 mr-2" />
                   Llamar Ahora

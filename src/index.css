@@ -26,8 +26,8 @@
     --secondary: 192 69% 54%; /* Azul medio/celeste #3CB6DD */
     --secondary-foreground: 0 0% 100%;
 
-    --accent: 142 71% 45%; /* Verde brillante #28C76F */
-    --accent-foreground: 0 0% 100%;
+    --accent: 43 96% 56%; /* Dorado brillante #f59e0b - reemplaza el verde */
+    --accent-foreground: 0 0% 0%;
 
     --muted: 210 40% 96%;
     --muted-foreground: 215 16% 47%;
@@ -44,13 +44,18 @@
     /* Hospital Brand Specific Colors */
     --hospital-primary: 213 100% 32%; /* Azul oscuro principal */
     --hospital-secondary: 192 69% 54%; /* Azul celeste */
-    --hospital-accent: 142 71% 45%; /* Verde WhatsApp/CTA */
+    --hospital-accent: 43 96% 56%; /* Dorado/Amarillo #f59e0b - antes era verde */
     --hospital-light: 210 40% 98%; /* Fondo claro */
     --hospital-gray: 215 16% 47%; /* Texto auxiliar */
     
     /* New: Title colors with better contrast */
     --hospital-title: 213 100% 15%; /* Azul muy oscuro para títulos */
     --hospital-title-light: 0 0% 100%; /* Blanco para fondos oscuros */
+
+    /* New: Gold variations for different uses */
+    --hospital-gold: 43 96% 56%; /* Dorado principal #f59e0b */
+    --hospital-gold-light: 48 100% 67%; /* Dorado claro #fbbf24 */
+    --hospital-gold-dark: 32 95% 44%; /* Dorado oscuro #d97706 */
   }
 
   .dark {
@@ -59,6 +64,7 @@
     --primary: 192 69% 54%;
     --primary-foreground: 0 0% 100%;
     --hospital-title: 0 0% 100%;
+    --hospital-accent: 48 100% 67%; /* Dorado más claro en modo oscuro */
   }
 }
 
@@ -160,6 +166,31 @@
   .text-hospital-title-light {
     color: hsl(var(--hospital-title-light));
   }
+
+  /* New gold color utilities */
+  .text-hospital-gold {
+    color: hsl(var(--hospital-gold));
+  }
+
+  .text-hospital-gold-light {
+    color: hsl(var(--hospital-gold-light));
+  }
+
+  .text-hospital-gold-dark {
+    color: hsl(var(--hospital-gold-dark));
+  }
+
+  .bg-hospital-gold {
+    background-color: hsl(var(--hospital-gold));
+  }
+
+  .bg-hospital-gold-light {
+    background-color: hsl(var(--hospital-gold-light));
+  }
+
+  .bg-hospital-gold-dark {
+    background-color: hsl(var(--hospital-gold-dark));
+  }
 }
 
 /* Smooth scrolling */
@@ -170,6 +201,10 @@ html {
 /* Hospital gradient backgrounds */
 .hospital-gradient-primary {
   background: linear-gradient(135deg, hsl(var(--hospital-primary)) 0%, hsl(var(--hospital-secondary)) 100%);
+}
+
+.hospital-gradient-gold {
+  background: linear-gradient(135deg, hsl(var(--hospital-gold-light)) 0%, hsl(var(--hospital-gold)) 100%);
 }
 
 .hospital-gradient-light {
@@ -184,6 +219,15 @@ html {
 .hospital-gradient-primary h5,
 .hospital-gradient-primary h6 {
   color: hsl(var(--hospital-title-light));
+}
+
+.hospital-gradient-gold h1,
+.hospital-gradient-gold h2,
+.hospital-gradient-gold h3,
+.hospital-gradient-gold h4,
+.hospital-gradient-gold h5,
+.hospital-gradient-gold h6 {
+  color: hsl(var(--hospital-title));
 }
 
 /* Section dividers */
@@ -201,7 +245,7 @@ html {
   animation: float 3s ease-in-out infinite;
 }
 
-/* WhatsApp button styles */
+/* WhatsApp button styles - mantener verde para consistencia con la app */
 .whatsapp-float {
   position: fixed;
   bottom: 24px;
@@ -230,4 +274,17 @@ html {
 .card-hover:hover {
   transform: translateY(-4px);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Gold button effects */
+.btn-gold {
+  background: linear-gradient(135deg, hsl(var(--hospital-gold-light)) 0%, hsl(var(--hospital-gold)) 100%);
+  color: hsl(var(--hospital-title));
+  transition: all 0.3s ease;
+}
+
+.btn-gold:hover {
+  background: linear-gradient(135deg, hsl(var(--hospital-gold)) 0%, hsl(var(--hospital-gold-dark)) 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
 }
