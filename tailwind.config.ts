@@ -60,6 +60,8 @@ export default {
 					accent: 'hsl(var(--hospital-accent))',
 					light: 'hsl(var(--hospital-light))',
 					gray: 'hsl(var(--hospital-gray))',
+					title: 'hsl(var(--hospital-title))',
+					'title-light': 'hsl(var(--hospital-title-light))',
 				}
 			},
 			fontFamily: {
