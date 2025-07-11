@@ -2,7 +2,8 @@
 import React from 'react';
 import Layout from '@/components/Layout';
 import { Button } from '@/components/ui/button';
-import { User, Phone, MessageCircle } from 'lucide-react';
+import { User, Phone, MessageCircle, ExternalLink } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { getAllDoctors } from '@/data/especialidades';
 
 const Doctores = () => {
@@ -50,9 +51,9 @@ const Doctores = () => {
           <div className="container-custom">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {doctores.map((doctor) => (
-                <div key={doctor.id} className="bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-lg transition-shadow duration-300">
+                <div key={doctor.id} className="bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-lg transition-all duration-300 group">
                   {/* Foto del doctor */}
-                  <div className="w-32 h-32 bg-gradient-to-br from-hospital-primary to-hospital-secondary rounded-full mx-auto mb-4 flex items-center justify-center text-white text-2xl font-bold">
+                  <div className="w-32 h-32 bg-gradient-to-br from-hospital-primary to-hospital-secondary rounded-full mx-auto mb-4 flex items-center justify-center text-white text-2xl font-bold overflow-hidden">
                     {doctor.foto ? (
                       <img 
                         src={doctor.foto} 
@@ -86,6 +87,18 @@ const Doctores = () => {
                   </div>
                   
                   <div className="space-y-2">
+                    {doctor.hasDetailedProfile && (
+                      <Link to={`/doctores/${doctor.slug}`}>
+                        <Button 
+                          size="sm" 
+                          className="w-full bg-hospital-primary hover:bg-hospital-primary/90 text-white mb-2"
+                        >
+                          <ExternalLink className="w-4 h-4 mr-2" />
+                          Ver Perfil Completo
+                        </Button>
+                      </Link>
+                    )}
+                    
                     {doctor.whatsapp && (
                       <Button 
                         size="sm" 
@@ -96,6 +109,7 @@ const Doctores = () => {
                         WhatsApp
                       </Button>
                     )}
+                    
                     {doctor.telefonoHospital && (
                       <Button 
                         variant="outline" 
@@ -118,7 +132,12 @@ const Doctores = () => {
                 <p className="text-muted-foreground mb-6">
                   Contamos con más de 18 especialidades médicas. Contacta con nosotros para conocer la disponibilidad de nuestros especialistas.
                 </p>
-                <Button size="lg">
+                <Link to="/especialidades">
+                  <Button size="lg" className="mr-4">
+                    Ver Especialidades
+                  </Button>
+                </Link>
+                <Button size="lg" variant="outline">
                   <Phone className="w-5 h-5 mr-2" />
                   Contactar: (238) 123-4567
                 </Button>

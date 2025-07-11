@@ -120,7 +120,14 @@ export const especialidadesData: Especialidad[] = [
         hasDetailedProfile: true,
         formacion: 'Médico Cirujano y Partero',
         especialidades: ['Medicina General', 'Cirugía Menor'],
-        slug: 'dr-javier-carrasco-gonzalez'
+        slug: 'dr-javier-carrasco-gonzalez',
+        horarios: 'Lunes a Viernes: 8:00 AM - 5:00 PM, Sábados: 8:00 AM - 1:00 PM',
+        mision: 'Dedicado a proporcionar atención médica integral y cirugía menor con experiencia y dedicación, comprometido con la salud y bienestar de mis pacientes.',
+        reconocimientos: [
+          'Médico Cirujano y Partero certificado',
+          '18 años de experiencia en medicina general',
+          'Especialista en cirugía menor'
+        ]
       },
       {
         id: 'dr_gerardo_valderrama_lopez',
@@ -133,7 +140,15 @@ export const especialidadesData: Especialidad[] = [
         hasDetailedProfile: true,
         formacion: 'Benemérita Universidad Autónoma de Puebla (BUAP) con Maestría',
         especialidades: ['Medicina General', 'Medicina de Urgencias'],
-        slug: 'dr-gerardo-valderrama-lopez'
+        slug: 'dr-gerardo-valderrama-lopez',
+        horarios: 'Lunes a Viernes: 6:00 AM - 8:00 PM, Guardias de urgencias 24/7',
+        mision: 'Médico con amplia experiencia en medicina general y urgencias, comprometido con brindar atención médica de calidad en situaciones críticas y consulta general.',
+        reconocimientos: [
+          'Maestría en Medicina',
+          'Especialista certificado en Urgencias',
+          '22 años de experiencia médica',
+          'Médico de guardia en urgencias'
+        ]
       },
       {
         id: 'dr_raymundo_romero_ventura',
@@ -146,7 +161,15 @@ export const especialidadesData: Especialidad[] = [
         hasDetailedProfile: true,
         formacion: 'Egresado en 1984',
         especialidades: ['Medicina General', 'Medicina Familiar'],
-        slug: 'dr-raymundo-romero-ventura'
+        slug: 'dr-raymundo-romero-ventura',
+        horarios: 'Lunes a Viernes: 7:00 AM - 4:00 PM, Sábados: 7:00 AM - 12:00 PM',
+        mision: 'Con más de 35 años de experiencia, me dedico a brindar atención médica familiar con calidez y profesionalismo, siendo un pilar en la salud de la comunidad.',
+        reconocimientos: [
+          'Más de 35 años de experiencia médica',
+          'Médico de cabecera de múltiples familias',
+          'Especialista en medicina familiar',
+          'Egresado generación 1984'
+        ]
       },
       {
         id: 'dr_hipolito_coyotl_cruz',

@@ -9,13 +9,13 @@ const DoctorIndividual = () => {
   const { slug } = useParams<{ slug: string }>();
   
   if (!slug) {
-    return <Navigate to="/especialidades" replace />;
+    return <Navigate to="/doctores" replace />;
   }
 
   const doctor = getDoctorBySlug(slug);
 
   if (!doctor || !doctor.hasDetailedProfile) {
-    return <Navigate to="/especialidades/medicina-general" replace />;
+    return <Navigate to="/doctores" replace />;
   }
 
   return (

@@ -30,13 +30,8 @@ const App = () => (
           <Route path="/nosotros" element={<Nosotros />} />
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/doctores" element={<Doctores />} />
-          {/* Rutas para perfiles individuales de doctores */}
-          <Route path="/doctor/dra-karina-pena-tello" element={<DoctorIndividual />} />
-          <Route path="/doctor/dr-bernardo-velasco-olalde" element={<DoctorIndividual />} />
-          <Route path="/doctor/dr-javier-carrasco-gonzalez" element={<DoctorIndividual />} />
-          <Route path="/doctor/dr-gerardo-valderrama-lopez" element={<DoctorIndividual />} />
-          <Route path="/doctor/dr-raymundo-romero-ventura" element={<DoctorIndividual />} />
-          <Route path="/doctor/dr-hipolito-coyotl-cruz" element={<DoctorIndividual />} />
+          {/* Rutas dinámicas para perfiles individuales de doctores */}
+          <Route path="/doctores/:slug" element={<DoctorIndividual />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -10,7 +10,7 @@ import {
   BreadcrumbPage, 
   BreadcrumbSeparator 
 } from '@/components/ui/breadcrumb';
-import { ArrowLeft, Phone, Calendar, CheckCircle, User, MessageCircle, GraduationCap, Award, Clock } from 'lucide-react';
+import { ArrowLeft, Phone, CheckCircle, User, MessageCircle, GraduationCap, Award, Clock, Stethoscope } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Doctor } from '@/data/especialidades';
 
@@ -21,7 +21,7 @@ interface DoctorProfileProps {
 const DoctorProfile = ({ doctor }: DoctorProfileProps) => {
   const handleWhatsAppBooking = () => {
     const phoneNumber = doctor.whatsapp ? `52${doctor.whatsapp}` : '522381234567';
-    const message = encodeURIComponent(`Hola Dr./Dra. ${doctor.nombre.split(' ').slice(-2).join(' ')}, me gustaría agendar una cita. ¿Cuál es su disponibilidad?`);
+    const message = encodeURIComponent(`Hola Dr./Dra. ${doctor.nombre.split(' ').slice(-2).join(' ')}, me gustaría agendar una consulta. ¿Cuál es su disponibilidad?`);
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
     window.open(whatsappUrl, '_blank');
   };
@@ -41,6 +41,22 @@ const DoctorProfile = ({ doctor }: DoctorProfileProps) => {
       .toUpperCase();
   };
 
+  const getEspecialidadSlug = (especialidad: string) => {
+    const slugMap: { [key: string]: string } = {
+      'Medicina General': 'medicina-general',
+      'Ginecología': 'ginecologia',
+      'Obstetricia': 'ginecologia',
+      'Diabetes Mellitus': 'medicina-general',
+      'Hipertensión Arterial': 'medicina-general',
+      'Cirugía Menor': 'cirugia-general-especializada',
+      'Medicina de Urgencias': 'urgenciologia',
+      'Medicina Familiar': 'medicina-general',
+      'Atención Primaria': 'medicina-general',
+      'Atención Materno Infantil': 'ginecologia'
+    };
+    return slugMap[especialidad] || 'medicina-general';
+  };
+
   return (
     <div className="min-h-screen bg-white">
       {/* Breadcrumb */}
@@ -56,13 +72,7 @@ const DoctorProfile = ({ doctor }: DoctorProfileProps) => {
               <BreadcrumbSeparator />
               <BreadcrumbItem>
                 <BreadcrumbLink asChild>
-                  <Link to="/especialidades">Especialidades</Link>
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbLink asChild>
-                  <Link to="/especialidades/medicina-general">Medicina General</Link>
+                  <Link to="/doctores">Doctores</Link>
                 </BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
@@ -77,11 +87,11 @@ const DoctorProfile = ({ doctor }: DoctorProfileProps) => {
         <div className="container-custom">
           <div className="flex items-center gap-4 mb-8">
             <Link
-              to="/especialidades/medicina-general"
+              to="/doctores"
               className="inline-flex items-center gap-2 text-white/80 hover:text-white transition-colors"
             >
               <ArrowLeft className="w-5 h-5" />
-              Volver a Medicina General
+              Volver a Doctores
             </Link>
           </div>
 
@@ -134,7 +144,7 @@ const DoctorProfile = ({ doctor }: DoctorProfileProps) => {
                   onClick={handleWhatsAppBooking}
                 >
                   <MessageCircle className="w-5 h-5 mr-2" />
-                  WhatsApp
+                  Agendar por WhatsApp
                 </Button>
                 {doctor.whatsapp && (
                   <Button 
@@ -173,6 +183,31 @@ const DoctorProfile = ({ doctor }: DoctorProfileProps) => {
       <section className="section-padding bg-white">
         <div className="container-custom">
           <div className="grid md:grid-cols-2 gap-8">
+            {/* Especialidades */}
+            {doctor.especialidades && doctor.especialidades.length > 0 && (
+              <Card className="hover:shadow-lg transition-shadow duration-300">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-3 text-hospital-primary">
+                    <Stethoscope className="w-6 h-6" />
+                    Especialidades
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  {doctor.especialidades.map((especialidad, index) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <CheckCircle className="w-5 h-5 text-hospital-accent flex-shrink-0 mt-1" />
+                      <Link 
+                        to={`/especialidades/${getEspecialidadSlug(especialidad)}`}
+                        className="text-hospital-gray hover:text-hospital-primary transition-colors hover:underline"
+                      >
+                        {especialidad}
+                      </Link>
+                    </div>
+                  ))}
+                </CardContent>
+              </Card>
+            )}
+
             {/* Formación */}
             <Card className="hover:shadow-lg transition-shadow duration-300">
               <CardHeader>
@@ -196,26 +231,6 @@ const DoctorProfile = ({ doctor }: DoctorProfileProps) => {
                 ))}
               </CardContent>
             </Card>
-
-            {/* Especialidades */}
-            {doctor.especialidades && doctor.especialidades.length > 0 && (
-              <Card className="hover:shadow-lg transition-shadow duration-300">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-3 text-hospital-primary">
-                    <Award className="w-6 h-6" />
-                    Especialidades
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  {doctor.especialidades.map((especialidad, index) => (
-                    <div key={index} className="flex items-start gap-3">
-                      <CheckCircle className="w-5 h-5 text-hospital-accent flex-shrink-0 mt-1" />
-                      <span className="text-hospital-gray">{especialidad}</span>
-                    </div>
-                  ))}
-                </CardContent>
-              </Card>
-            )}
 
             {/* Horarios */}
             {doctor.horarios && (

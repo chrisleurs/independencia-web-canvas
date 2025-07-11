@@ -156,96 +156,72 @@ const EspecialidadDetalle = ({ especialidad }: EspecialidadDetalleProps) => {
             {especialidad.doctores.map((doctor) => (
               <Card 
                 key={doctor.id} 
-                className={`group transition-all duration-300 ${
-                  doctor.hasDetailedProfile 
-                    ? 'hover:shadow-lg hover:-translate-y-2 cursor-pointer' 
-                    : 'hover:shadow-md hover:-translate-y-1'
-                }`}
+                className="group transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
               >
-                {doctor.hasDetailedProfile ? (
-                  <Link to={`/doctor/${doctor.slug}`} className="block">
-                    <CardHeader className="text-center pb-4">
-                      <div className="w-24 h-24 mx-auto mb-4 bg-hospital-primary/10 rounded-full flex items-center justify-center group-hover:bg-hospital-primary group-hover:scale-110 transition-all duration-300">
-                        <User className="w-12 h-12 text-hospital-primary group-hover:text-white transition-colors duration-300" />
-                      </div>
-                      <CardTitle className="text-xl text-hospital-primary flex items-center justify-center gap-2">
-                        {doctor.nombre}
-                        <ExternalLink className="w-4 h-4 opacity-60" />
-                      </CardTitle>
-                      <p className="text-hospital-secondary font-medium">{doctor.titulo}</p>
-                    </CardHeader>
-                    <CardContent className="pt-0">
-                      <div className="space-y-3">
-                        <div className="flex items-center gap-2 text-sm text-hospital-gray">
-                          <CheckCircle className="w-4 h-4 text-hospital-accent" />
-                          {doctor.experiencia}
-                        </div>
-                        
-                        <div className="space-y-2">
-                          <p className="text-sm font-medium text-hospital-primary">Certificaciones:</p>
-                          <div className="space-y-1">
-                            {doctor.certificaciones.slice(0, 2).map((cert, index) => (
-                              <div key={index} className="flex items-center gap-2 text-sm text-hospital-gray">
-                                <CheckCircle className="w-3 h-3 text-hospital-accent" />
-                                {cert}
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-
-                        <div className="mt-4 pt-4 border-t">
-                          <p className="text-xs text-hospital-secondary text-center">
-                            Click para ver perfil completo
-                          </p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Link>
-                ) : (
-                  <>
-                    <CardHeader className="text-center pb-4">
-                      <div className="w-24 h-24 mx-auto mb-4 bg-hospital-primary/10 rounded-full flex items-center justify-center group-hover:bg-hospital-primary group-hover:scale-110 transition-all duration-300">
-                        <User className="w-12 h-12 text-hospital-primary group-hover:text-white transition-colors duration-300" />
-                      </div>
-                      <CardTitle className="text-xl text-hospital-primary">{doctor.nombre}</CardTitle>
-                      <p className="text-hospital-secondary font-medium">{doctor.titulo}</p>
-                    </CardHeader>
-                    <CardContent className="pt-0">
-                      <div className="space-y-3">
-                        <div className="flex items-center gap-2 text-sm text-hospital-gray">
-                          <CheckCircle className="w-4 h-4 text-hospital-accent" />
-                          {doctor.experiencia}
-                        </div>
-                        
-                        <div className="space-y-2">
-                          <p className="text-sm font-medium text-hospital-primary">Certificaciones:</p>
-                          <div className="space-y-1">
-                            {doctor.certificaciones.map((cert, index) => (
-                              <div key={index} className="flex items-center gap-2 text-sm text-hospital-gray">
-                                <CheckCircle className="w-3 h-3 text-hospital-accent" />
-                                {cert}
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </>
-                )}
-                
+                <CardHeader className="text-center pb-4">
+                  <div className="w-24 h-24 mx-auto mb-4 bg-hospital-primary/10 rounded-full flex items-center justify-center group-hover:bg-hospital-primary group-hover:scale-110 transition-all duration-300 overflow-hidden">
+                    {doctor.foto ? (
+                      <img 
+                        src={doctor.foto} 
+                        alt={doctor.nombre}
+                        className="w-full h-full object-cover rounded-full"
+                      />
+                    ) : (
+                      <User className="w-12 h-12 text-hospital-primary group-hover:text-white transition-colors duration-300" />
+                    )}
+                  </div>
+                  <CardTitle className="text-xl text-hospital-primary flex items-center justify-center gap-2">
+                    {doctor.nombre}
+                    {doctor.hasDetailedProfile && <ExternalLink className="w-4 h-4 opacity-60" />}
+                  </CardTitle>
+                  <p className="text-hospital-secondary font-medium">{doctor.titulo}</p>
+                </CardHeader>
                 <CardContent className="pt-0">
-                  <Button 
-                    className="w-full mt-4 bg-green-600 hover:bg-green-700 text-white" 
-                    size="sm"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      handleWhatsAppBooking(doctor);
-                    }}
-                  >
-                    <MessageCircle className="w-4 h-4 mr-2" />
-                    Agendar por WhatsApp
-                  </Button>
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-2 text-sm text-hospital-gray">
+                      <CheckCircle className="w-4 h-4 text-hospital-accent" />
+                      {doctor.experiencia}
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <p className="text-sm font-medium text-hospital-primary">Certificaciones:</p>
+                      <div className="space-y-1">
+                        {doctor.certificaciones.slice(0, 2).map((cert, index) => (
+                          <div key={index} className="flex items-center gap-2 text-sm text-hospital-gray">
+                            <CheckCircle className="w-3 h-3 text-hospital-accent" />
+                            {cert}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="flex flex-col gap-2 mt-4">
+                      {doctor.hasDetailedProfile && (
+                        <Link to={`/doctores/${doctor.slug}`}>
+                          <Button 
+                            className="w-full bg-hospital-primary hover:bg-hospital-primary/90 text-white" 
+                            size="sm"
+                          >
+                            <ExternalLink className="w-4 h-4 mr-2" />
+                            Ver Perfil Completo
+                          </Button>
+                        </Link>
+                      )}
+                      
+                      <Button 
+                        className="w-full bg-green-600 hover:bg-green-700 text-white" 
+                        size="sm"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          handleWhatsAppBooking(doctor);
+                        }}
+                      >
+                        <MessageCircle className="w-4 h-4 mr-2" />
+                        Agendar por WhatsApp
+                      </Button>
+                    </div>
+                  </div>
                 </CardContent>
               </Card>
             ))}
