@@ -1,4 +1,3 @@
-
 import { 
   Heart, 
   Stethoscope, 
@@ -37,6 +36,10 @@ export interface Doctor {
   horarios?: string;
   mision?: string;
   reconocimientos?: string[];
+  procedimientos?: string[];
+  areasAtencion?: string[];
+  telefonosAdicionales?: string[];
+  horarioDetallado?: string;
 }
 
 export interface Especialidad {
@@ -63,7 +66,10 @@ export const especialidadesData: Especialidad[] = [
       'Chequeos preventivos',
       'Control de enfermedades crónicas',
       'Vacunación',
-      'Certificados médicos'
+      'Certificados médicos',
+      'Atención de urgencias 24/7',
+      'Medicina familiar',
+      'Manejo de enfermedades crónico-degenerativas'
     ],
     doctores: [
       {
@@ -133,22 +139,31 @@ export const especialidadesData: Especialidad[] = [
       {
         id: 'dr_gerardo_valderrama_lopez',
         nombre: 'Dr. Gerardo Antonio Valderrama López',
-        titulo: 'Médico General',
-        experiencia: '22 años de experiencia',
-        certificaciones: ['BUAP', 'Maestría', 'Especialista en Urgencias'],
+        titulo: 'Médico General / Especialista en Urgencias',
+        experiencia: '22 años de experiencia con maestría en administración de instituciones de salud',
+        certificaciones: ['BUAP', 'Maestría en Administración de Instituciones de Salud', 'Especialista en Urgencias'],
         whatsapp: '2381117877',
-        telefonoHospital: '2381234567',
+        telefonoHospital: '2383824819',
         hasDetailedProfile: true,
-        formacion: 'Benemérita Universidad Autónoma de Puebla (BUAP) con Maestría',
-        especialidades: ['Medicina General', 'Medicina de Urgencias'],
+        formacion: 'Licenciatura en Médico Cirujano y Partero BUAP, Maestría en Administración de Instituciones de Salud',
+        especialidades: ['Medicina General', 'Medicina de Urgencias', 'Medicina Familiar', 'Enfermedades Crónico-degenerativas'],
         slug: 'dr-gerardo-valderrama-lopez',
-        horarios: 'Lunes a Viernes: 6:00 AM - 8:00 PM, Guardias de urgencias 24/7',
-        mision: 'Médico con amplia experiencia en medicina general y urgencias, comprometido con brindar atención médica de calidad en situaciones críticas y consulta general.',
+        horarios: 'Lunes a Viernes: 10:00 AM - 2:00 PM, Sábados: 10:00 AM - 2:00 PM',
+        horarioDetallado: 'Consulta: Lunes a Viernes 10-14 hrs, Sábados 10-14 hrs | Urgencias: 24/7',
+        mision: 'Otorgar atención médica de calidad integral para el bienestar de nuestros pacientes.',
         reconocimientos: [
-          'Maestría en Medicina',
-          'Especialista certificado en Urgencias',
-          '22 años de experiencia médica',
-          'Médico de guardia en urgencias'
+          'Adscrito al Servicio de Urgencias Médicas ISSSTE',
+          'Maestría en Administración de Instituciones de Salud',
+          '22 años de experiencia médica'
+        ],
+        areasAtencion: [
+          'Atención médica primaria de Urgencias',
+          'Medicina Familiar', 
+          'Enfermedades Crónico-degenerativas'
+        ],
+        telefonosAdicionales: [
+          '2383829648',
+          '2382493811'
         ]
       },
       {
@@ -744,7 +759,11 @@ export const especialidadesData: Especialidad[] = [
       'Cirugía estética',
       'Quemaduras',
       'Microsirugía',
-      'Rejuvenecimiento facial'
+      'Rejuvenecimiento facial',
+      'Aumento de busto',
+      'Liposucción',
+      'Abdominoplastia',
+      'Mommy makeover'
     ],
     doctores: [
       {
@@ -767,9 +786,36 @@ export const especialidadesData: Especialidad[] = [
         id: 'dra_samaria_mejia_rivera',
         nombre: 'Dra. Samaria Estefanía Mejía Rivera',
         titulo: 'Cirujana Plástica, Estética y Reconstructiva',
-        experiencia: '10 años de experiencia',
-        certificaciones: ['Cirugía Plástica', 'Cirugía Estética', 'Cirugía Reconstructiva'],
-        telefonoHospital: '2381234567'
+        experiencia: '10 años de experiencia especializada en procedimientos de vanguardia',
+        certificaciones: ['BUAP', 'UNAM', 'Hospital General de México "Dr. Eduardo Liceaga"'],
+        whatsapp: '2382130011',
+        telefonoHospital: '2382130011',
+        hasDetailedProfile: true,
+        formacion: 'BUAP, UNAM y Hospital General de México "Dr. Eduardo Liceaga"',
+        especialidades: ['Cirugía Plástica', 'Cirugía Estética', 'Cirugía Reconstructiva'],
+        slug: 'dra-samaria-mejia-rivera',
+        horarios: 'Disponible mediante cita previa',
+        mision: 'Especialista en cirugía plástica, estética y reconstructiva, comprometida con ofrecer procedimientos de la más alta calidad y seguridad.',
+        reconocimientos: [
+          'Consejo Mexicano de Cirugía Plástica, Estética y Reconstructiva',
+          'Asociación Mexicana de Cirugía Plástica, Estética y Reconstructiva',
+          'International Society of Aesthetic Plastic Surgery'
+        ],
+        procedimientos: [
+          'Rejuvenecimiento/estiramiento facial (facelift)',
+          'Rejuvenecimiento de cuello (necklift)',
+          'Lipofilling facial (injerto graso)',
+          'Cirugía de párpados',
+          'Levantamiento/acortamiento de labio superior (lip lift)',
+          'Aumento de busto',
+          'Levantamiento de busto con o sin implantes',
+          'Explantación mamaria (retiro de implantes de busto)',
+          'Liposucción 360 con aumento graso de glúteo',
+          'Mommy makeover',
+          'Lipoabdominoplastia',
+          'Liposucción de brazos',
+          'Braquiplastia'
+        ]
       }
     ]
   },

@@ -2,7 +2,7 @@
 import React from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import Layout from '@/components/Layout';
-import DoctorProfile from '@/components/sections/DoctorProfile';
+import DoctorProfileEnhanced from '@/components/sections/DoctorProfileEnhanced';
 import { getDoctorBySlug } from '@/data/especialidades';
 
 const DoctorIndividual = () => {
@@ -21,7 +21,7 @@ const DoctorIndividual = () => {
   return (
     <Layout>
       <div className="pt-16 md:pt-20">
-        <DoctorProfile doctor={doctor} />
+        <DoctorProfileEnhanced doctor={doctor} />
       </div>
     </Layout>
   );
