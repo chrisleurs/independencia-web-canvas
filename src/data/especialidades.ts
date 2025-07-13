@@ -538,18 +538,74 @@ export const especialidadesData: Especialidad[] = [
       {
         id: 'dra_silvia_huerta_damian',
         nombre: 'Dra. Silvia Huerta Damian',
-        titulo: 'Especialista en Medicina de Emergencias',
-        experiencia: '12 años de experiencia',
-        certificaciones: ['Medicina de Emergencias', 'ACLS', 'ATLS'],
-        telefonoHospital: '2381234567'
+        titulo: 'Médico General de Urgencias y Consulta Familiar Privada',
+        experiencia: '22 años de experiencia',
+        certificaciones: ['BUAP', 'Maestría en Administración de Instituciones de Salud', 'Diplomado en Colposcopía', 'Diplomado en Urgencias Pediátricas'],
+        whatsapp: '2383882225',
+        telefonoHospital: '2383824819',
+        hasDetailedProfile: true,
+        formacion: 'Médico Cirujano y Partero - Benemérita Universidad Autónoma de Puebla, Maestría en Administración de Instituciones de Salud - Universidad EIU',
+        especialidades: ['Medicina de Urgencias', 'Medicina General', 'Consulta Familiar'],
+        slug: 'dra-silvia-huerta-damian',
+        mision: 'Atender con profesionalismo y excelente atención de salud integral a mis pacientes. Soy Médica profesional del área de urgencias del hospital general de Tehuacán, y atención médica de consulta general particular, con más 22 años de experiencia y capacidad para la atención de pacientes en urgencias médicas y consultas familiares presenciales y a distancia.',
+        reconocimientos: [
+          'Médico Adscrito al servicio de Urgencias en el hospital general Tehuacán desde hace más de 10 años',
+          'Médico docente en universidades de Tehuacán (UVP, UGMEX, CUT, UNID, ATENEO, ICT)',
+          'Diplomado en Colposcopía y Cáncer en la mujer',
+          'Diplomado en Urgencias en Pediatría',
+          'Diplomado en Farmacología Médica y Terapéutica'
+        ],
+        areasAtencion: [
+          'Urgencias médicas',
+          'Consulta general',
+          'Medicina familiar',
+          'Urgencias pediátricas',
+          'Atención presencial y a distancia'
+        ],
+        telefonosAdicionales: [
+          '2383829648'
+        ],
+        contactoTitulos: {
+          whatsapp: 'Celular y Mensaje WhatsApp',
+          hospital: 'Hospital',
+          adicionales: ['Hospital']
+        }
       },
       {
         id: 'dr_porfirio_apam_cruz',
         nombre: 'Dr. Porfirio Apam Cruz',
-        titulo: 'Especialista en Urgenciología',
+        titulo: 'Urgencias Médico Quirúrgicas',
         experiencia: '15 años de experiencia',
-        certificaciones: ['Urgenciología', 'Medicina de Emergencias'],
-        telefonoHospital: '2381234567'
+        certificaciones: ['IPN', 'UNAM FES Zaragoza', 'Universidad mesoamericana'],
+        whatsapp: '2381178593',
+        telefonoHospital: '2383824819',
+        hasDetailedProfile: true,
+        formacion: 'Médico Especialista en Urgencias Medico Quirúrgicas por el Instituto Politécnico Nacional, Diplomado en ultrasonido diagnóstico por la UNAM FES Zaragoza, Maestría en ciencias forenses y periciales por la Universidad mesoamericana',
+        especialidades: ['Urgencias Médico Quirúrgicas', 'Ultrasonido Diagnóstico', 'Ciencias Forenses'],
+        slug: 'dr-porfirio-apam-cruz',
+        horarios: '8:00 - 13:00 hrs lunes a sábado',
+        mision: 'Otorgar a mis pacientes medicina ética, pronta, efectiva y vanguardista con el fin de satisfacer el alto estándar que la actualidad emergente como médicos nos demanda.',
+        reconocimientos: [
+          'Médico Especialista certificado por el IPN',
+          'Diplomado en ultrasonido diagnóstico UNAM',
+          'Maestría en ciencias forenses y periciales',
+          'Certificaciones: ACLS, ATLS, MIP, ALSO, Accesos vasculares',
+          'Adscrito al área de urgencias del Hospital General de Zona número 15 de Tehuacán Puebla'
+        ],
+        areasAtencion: [
+          'Biomédica',
+          'Atención de urgencias',
+          'Urgencias médico quirúrgicas',
+          'Ultrasonido diagnóstico'
+        ],
+        telefonosAdicionales: [
+          '2383829648'
+        ],
+        contactoTitulos: {
+          whatsapp: 'Celular y Mensaje WhatsApp',
+          hospital: 'Hospital',
+          adicionales: ['Hospital']
+        }
       }
     ]
   },
@@ -571,10 +627,31 @@ export const especialidadesData: Especialidad[] = [
       {
         id: 'dr_jorge_almanza_islas',
         nombre: 'Dr. Jorge Alberto Almanza Islas',
-        titulo: 'Neurólogo',
+        titulo: 'Neurólogo y Neurofisiólogo',
         experiencia: '14 años de experiencia',
         certificaciones: ['Neurología', 'Neurofisiología'],
-        telefonoHospital: '2381234567'
+        whatsapp: '5529806563',
+        telefonoHospital: '2381234567',
+        hasDetailedProfile: true,
+        formacion: 'Facultad de Medicina de Veracruz, Especialidad en Neurología, Especialidad en Neurofisiología',
+        especialidades: ['Neurología', 'Neurofisiología'],
+        slug: 'dr-jorge-almanza-islas',
+        mision: 'Especialista en neurología y neurofisiología comprometido con el diagnóstico y tratamiento de enfermedades del sistema nervioso.',
+        reconocimientos: [
+          'Especialista en el Instituto Mexicano del Seguro Social durante 13 años',
+          'Especialidad en Neurofisiología',
+          'Especialidad en Neurología',
+          'Realizó diferentes estudios fisiológicos'
+        ],
+        areasAtencion: [
+          'Enfermedades neurológicas',
+          'Estudios neurofisiológicos',
+          'Diagnóstico neurológico',
+          'Electroencefalografía'
+        ],
+        contactoTitulos: {
+          whatsapp: 'Contacto'
+        }
       }
     ]
   },
@@ -596,10 +673,44 @@ export const especialidadesData: Especialidad[] = [
       {
         id: 'lnc_carlos_escobar_olivier',
         nombre: 'L.N.C. Carlos Escobar Olivier',
-        titulo: 'Licenciado en Nutrición Clínica',
+        titulo: 'Nutriólogo clínico – Técnico auxiliar en lactancia materna',
         experiencia: '8 años de experiencia',
-        certificaciones: ['Nutrición Clínica', 'Dietética'],
-        telefonoHospital: '2381234567'
+        certificaciones: ['Centro Universitario Milenium', 'Federación Nacional de Nutrición y Ciencia - UAEM'],
+        whatsapp: '2381306208',
+        telefonoHospital: '2383824819',
+        hasDetailedProfile: true,
+        formacion: 'Licenciado en Nutrición Clínica - Centro Universitario Milenium, Certificado por Federación Nacional de Nutrición y Ciencia - UAEM',
+        especialidades: ['Nutrición Clínica', 'Lactancia Materna', 'Inmunonutrición', 'Onconutrición'],
+        slug: 'lnc-carlos-escobar-olivier',
+        mision: 'Resaltar la importancia de la nutrición en su uso clínico y hospitalario para la mejora del paciente a través de un tratamiento nutricional que implique la correcta elección de nutrientes y cantidades de estos, necesarios para tratar la enfermedad del paciente. Enaltecer a la nutrición clínica como una especialidad médica de suma importancia y estar a la par de la toma de decisiones en cuanto al tratamiento del paciente se refiere.',
+        reconocimientos: [
+          'Diplomado en Abordaje integral del paciente con enfermedades crónicas',
+          'Certificado por Federación Nacional de Nutrición y Ciencia - UAEM',
+          'Técnico auxiliar en lactancia materna'
+        ],
+        areasAtencion: [
+          'Paciente crítico',
+          'Desnutrición severa',
+          'Diabetes',
+          'Hipertensión',
+          'Inmunonutrición',
+          'Onconutrición',
+          'Obesidad y sobrepeso',
+          'Embarazo y lactancia materna',
+          'Aplicación de nutrición enteral y parenteral',
+          'Enfermedad renal crónica',
+          'Enfermedades gastrointestinales',
+          'Enfermedades pulmonares',
+          'Enfermedades ginecológicas'
+        ],
+        telefonosAdicionales: [
+          '2383829648'
+        ],
+        contactoTitulos: {
+          whatsapp: 'Celular y Mensaje WhatsApp',
+          hospital: 'Hospital',
+          adicionales: ['Hospital']
+        }
       }
     ]
   },
