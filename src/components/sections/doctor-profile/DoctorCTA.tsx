@@ -11,6 +11,8 @@ interface DoctorCTAProps {
 }
 
 const DoctorCTA = ({ doctor, onWhatsAppBooking, onCallDoctor }: DoctorCTAProps) => {
+  const whatsappTitle = doctor.contactoTitulos?.whatsapp || 'WhatsApp';
+  
   return (
     <section className="section-padding bg-hospital-primary text-white">
       <div className="container-custom text-center">
@@ -28,7 +30,7 @@ const DoctorCTA = ({ doctor, onWhatsAppBooking, onCallDoctor }: DoctorCTAProps) 
             onClick={onWhatsAppBooking}
           >
             <MessageCircle className="w-5 h-5 mr-2" />
-            Contactar por WhatsApp
+            Contactar por {whatsappTitle}
           </Button>
           {doctor.whatsapp && (
             <Button 

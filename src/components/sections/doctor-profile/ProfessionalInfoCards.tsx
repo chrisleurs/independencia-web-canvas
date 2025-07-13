@@ -162,20 +162,47 @@ const ProfessionalInfoCards = ({ doctor, getEspecialidadSlug }: ProfessionalInfo
         </Card>
       )}
 
-      {/* Contactos Adicionales */}
-      {doctor.telefonosAdicionales && doctor.telefonosAdicionales.length > 0 && (
+      {/* Información de Contacto */}
+      {(doctor.whatsapp || doctor.telefonoHospital || (doctor.telefonosAdicionales && doctor.telefonosAdicionales.length > 0)) && (
         <Card className="hover:shadow-lg transition-shadow duration-300">
           <CardHeader>
             <CardTitle className="flex items-center gap-3 text-hospital-primary">
               <Phone className="w-6 h-6" />
-              Contactos Adicionales
+              Información de Contacto
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
-            {doctor.telefonosAdicionales.map((telefono, index) => (
+            {doctor.whatsapp && (
+              <div className="flex items-start gap-3">
+                <CheckCircle className="w-5 h-5 text-hospital-accent flex-shrink-0 mt-1" />
+                <div className="flex flex-col">
+                  <span className="text-hospital-gray font-medium">
+                    {doctor.contactoTitulos?.whatsapp || 'WhatsApp'}
+                  </span>
+                  <span className="text-hospital-gray">{doctor.whatsapp}</span>
+                </div>
+              </div>
+            )}
+            {doctor.telefonoHospital && (
+              <div className="flex items-start gap-3">
+                <CheckCircle className="w-5 h-5 text-hospital-accent flex-shrink-0 mt-1" />
+                <div className="flex flex-col">
+                  <span className="text-hospital-gray font-medium">
+                    {doctor.contactoTitulos?.hospital || 'Hospital'}
+                  </span>
+                  <span className="text-hospital-gray">{doctor.telefonoHospital}</span>
+                </div>
+              </div>
+            )}
+            {doctor.telefonosAdicionales && doctor.telefonosAdicionales.map((telefono, index) => (
               <div key={index} className="flex items-start gap-3">
                 <CheckCircle className="w-5 h-5 text-hospital-accent flex-shrink-0 mt-1" />
-                <span className="text-hospital-gray">{telefono}</span>
+                <div className="flex flex-col">
+                  <span className="text-hospital-gray font-medium">
+                    {doctor.contactoTitulos?.adicionales?.[index] || `Contacto Adicional ${index + 1}`}
+                  </span>
+                  <span className="text-hospital-gray">{telefono}</span>
+                </div>
               </div>
             ))}
           </CardContent>

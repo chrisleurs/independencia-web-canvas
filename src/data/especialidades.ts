@@ -40,6 +40,11 @@ export interface Doctor {
   areasAtencion?: string[];
   telefonosAdicionales?: string[];
   horarioDetallado?: string;
+  contactoTitulos?: {
+    whatsapp?: string;
+    hospital?: string;
+    adicionales?: string[];
+  };
 }
 
 export interface Especialidad {
@@ -164,7 +169,12 @@ export const especialidadesData: Especialidad[] = [
         telefonosAdicionales: [
           '2383829648',
           '2382493811'
-        ]
+        ],
+        contactoTitulos: {
+          whatsapp: 'Celular y Mensaje WhatsApp',
+          hospital: 'Hospital',
+          adicionales: ['Contacto Adicional 1', 'Contacto Adicional 2']
+        }
       },
       {
         id: 'dr_raymundo_romero_ventura',
@@ -789,7 +799,6 @@ export const especialidadesData: Especialidad[] = [
         experiencia: '10 años de experiencia especializada en procedimientos de vanguardia',
         certificaciones: ['BUAP', 'UNAM', 'Hospital General de México "Dr. Eduardo Liceaga"'],
         whatsapp: '2382130011',
-        telefonoHospital: '2382130011',
         hasDetailedProfile: true,
         formacion: 'BUAP, UNAM y Hospital General de México "Dr. Eduardo Liceaga"',
         especialidades: ['Cirugía Plástica', 'Cirugía Estética', 'Cirugía Reconstructiva'],
@@ -815,7 +824,10 @@ export const especialidadesData: Especialidad[] = [
           'Lipoabdominoplastia',
           'Liposucción de brazos',
           'Braquiplastia'
-        ]
+        ],
+        contactoTitulos: {
+          whatsapp: 'WhatsApp y Consultas'
+        }
       }
     ]
   },
