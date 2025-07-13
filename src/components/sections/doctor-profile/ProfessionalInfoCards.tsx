@@ -9,7 +9,8 @@ import {
   GraduationCap, 
   Clock, 
   Award, 
-  Phone 
+  Phone,
+  Heart
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Doctor } from '@/data/especialidades';
@@ -41,6 +42,26 @@ const ProfessionalInfoCards = ({ doctor, getEspecialidadSlug }: ProfessionalInfo
                 >
                   {especialidad}
                 </Link>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
+      )}
+
+      {/* Servicios */}
+      {doctor.servicios && doctor.servicios.length > 0 && (
+        <Card className="hover:shadow-lg transition-shadow duration-300">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-3 text-hospital-primary">
+              <Heart className="w-6 h-6" />
+              Servicios
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            {doctor.servicios.map((servicio, index) => (
+              <div key={index} className="flex items-start gap-3">
+                <CheckCircle className="w-5 h-5 text-hospital-accent flex-shrink-0 mt-1" />
+                <span className="text-hospital-gray">{servicio}</span>
               </div>
             ))}
           </CardContent>

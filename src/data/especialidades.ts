@@ -45,6 +45,7 @@ export interface Doctor {
     hospital?: string;
     adicionales?: string[];
   };
+  servicios?: string[];
 }
 
 export interface Especialidad {
@@ -146,7 +147,7 @@ export const especialidadesData: Especialidad[] = [
         ],
         contactoTitulos: {
           whatsapp: 'Celular y Mensaje WhatsApp',
-          hospital: 'Hospital'
+          adicionales: ['Hospital', 'Hospital']
         }
       },
       {
@@ -179,7 +180,7 @@ export const especialidadesData: Especialidad[] = [
         ],
         contactoTitulos: {
           whatsapp: 'Celular y Mensaje WhatsApp',
-          hospital: 'Hospital'
+          adicionales: ['Hospital', 'Hospital']
         }
       },
       {
@@ -208,7 +209,7 @@ export const especialidadesData: Especialidad[] = [
         ],
         contactoTitulos: {
           whatsapp: 'Celular y Mensaje WhatsApp',
-          hospital: 'Hospital'
+          adicionales: ['Hospital', 'Hospital']
         }
       },
       {
@@ -298,6 +299,9 @@ export const especialidadesData: Especialidad[] = [
           'Enfermedad Pulmonar Obstructiva Crónica (EPOC)',
           'Infecciones Severas',
           'Cuidados Anestésicos y Post Quirúrgicos Avanzados',
+          'Medicina Interna',
+          'Medicina Critica',
+          'Terapia Intensiva',
           'Broncoscopia'
         ],
         telefonosAdicionales: [
@@ -306,7 +310,7 @@ export const especialidadesData: Especialidad[] = [
         ],
         contactoTitulos: {
           whatsapp: 'Celular y Mensaje WhatsApp',
-          hospital: 'Hospital'
+          adicionales: ['Hospital', 'Hospital']
         }
       },
       {
@@ -341,7 +345,7 @@ export const especialidadesData: Especialidad[] = [
         ],
         contactoTitulos: {
           whatsapp: 'Celular y Mensaje WhatsApp',
-          hospital: 'Hospital'
+          adicionales: ['Hospital', 'Hospital']
         }
       }
     ]
@@ -364,26 +368,75 @@ export const especialidadesData: Especialidad[] = [
       {
         id: 'dr_abraham_tellez_barragan',
         nombre: 'Dr. Abraham Téllez Barragán',
-        titulo: 'Pediatra Neonatólogo',
+        titulo: 'Pediatra',
         experiencia: '18 años de experiencia',
-        certificaciones: ['Pediatría', 'Neonatología'],
-        telefonoHospital: '2381234567'
+        certificaciones: ['La Facultad de Medicina en la Universidad Regional de Sureste de Oaxaca', 'Posgrado en Pediatría en el Hospital del Niño Poblano'],
+        whatsapp: '2381680976',
+        hasDetailedProfile: true,
+        formacion: 'La Facultad de Medicina en la Universidad Regional de Sureste de Oaxaca, Posgrado en Pediatría en el Hospital del Niño Poblano',
+        especialidades: ['Pediatría'],
+        slug: 'dr-abraham-tellez-barragan',
+        mision: 'Ayudar a mis pacientes en la prevención, diagnóstico, tratamiento de enfermedades y lesiones de la etapa más importante del ser humano: la infancia. Asesoramos a los Papás desde la concepción al nacimiento y adolescencia de una forma integral.',
+        reconocimientos: [
+          'Pediatra Certificado por el Consejo Mexicano de Certificación en Pediatría',
+          'Certificado en Reanimación Neonatal y Pediátrica Avanzada',
+          'Pediatra Prolactancia'
+        ],
+        servicios: [
+          'Asesoría Prenatal',
+          'Vacunas',
+          'Atención del Recién Nacido Sano y Enfermo',
+          'Asesorías de Lactancia Materna',
+          'Asesorías en Alimentación Complementaria',
+          'Consulta de Niño Sano y de Urgencia'
+        ],
+        telefonosAdicionales: [
+          '2383824819',
+          '2383829648'
+        ],
+        contactoTitulos: {
+          whatsapp: 'Celular y Mensaje WhatsApp',
+          adicionales: ['Hospital', 'Hospital']
+        }
       },
       {
         id: 'dr_irvin_romero_ponce',
         nombre: 'Dr. Irvin Omar Romero Ponce',
         titulo: 'Pediatra',
         experiencia: '10 años de experiencia',
-        certificaciones: ['Pediatría'],
-        telefonoHospital: '2381234567'
+        certificaciones: ['Medicina en la Universidad Popular Autónoma del Estado de Puebla, UPAEP', 'Especialidad en Pediatría Hospital Juárez de México'],
+        whatsapp: '2225079022',
+        hasDetailedProfile: true,
+        formacion: 'Médico Pediatra en la Universidad Popular Autónoma del Estado de Puebla',
+        especialidades: ['Pediatría'],
+        slug: 'dr-irvin-romero-ponce',
+        reconocimientos: [
+          'Internado en el Hospital de la Margarita IMSS',
+          'Servicio Social Santiago Miahuatlán',
+          'Certificado por el Consejo Mexicano',
+          'Diplomas en cursos de terapia intensiva, urgencias pediátricas, BLS, ACLS, PALS y RENEO'
+        ],
+        contactoTitulos: {
+          whatsapp: 'Contacto'
+        }
       },
       {
         id: 'dra_eltzy_rocha_rivera',
         nombre: 'Dra. Eltzy Rubí Rocha Rivera',
-        titulo: 'Pediatra',
+        titulo: 'Médico Neonatóloga Pediatra',
         experiencia: '8 años de experiencia',
-        certificaciones: ['Pediatría'],
-        telefonoHospital: '2381234567'
+        certificaciones: ['La Facultad de Medicina en pediatría en la Benemérita Universidad Autónoma de Puebla', 'La Facultad de Medicina en neonatología en la Benemérita Universidad Autónoma de Puebla'],
+        whatsapp: '2381478768',
+        hasDetailedProfile: true,
+        formacion: 'Benemérita Universidad Autónoma de Puebla - Pediatría y Neonatología',
+        especialidades: ['Pediatría', 'Neonatología'],
+        slug: 'dra-eltzy-rocha-rivera',
+        reconocimientos: [
+          'Rotación en Hospital de la paz España en la subespecialidad'
+        ],
+        contactoTitulos: {
+          whatsapp: 'Contacto'
+        }
       },
       {
         id: 'dr_alberto_delgado_sandoval',
@@ -391,7 +444,8 @@ export const especialidadesData: Especialidad[] = [
         titulo: 'Pediatra Neonatólogo',
         experiencia: '14 años de experiencia',
         certificaciones: ['Pediatría', 'Neonatología'],
-        telefonoHospital: '2381234567'
+        telefonoHospital: '2381234567',
+        hasDetailedProfile: false
       }
     ]
   },
@@ -412,19 +466,57 @@ export const especialidadesData: Especialidad[] = [
     doctores: [
       {
         id: 'dr_cesar_gonzalez_martinez',
-        nombre: 'Dr. Cesar González Martínez',
+        nombre: 'Dr. César González Martínez',
         titulo: 'Traumatólogo Ortopedista',
         experiencia: '20 años de experiencia',
-        certificaciones: ['Ortopedia', 'Traumatología'],
-        telefonoHospital: '2381234567'
+        certificaciones: ['Médico cirujano y partero por la Universidad Autónoma de Nuevo León', 'Posgrado en Traumatología y Ortopedia por la Benemérita Universidad Autónoma de Puebla'],
+        whatsapp: '8180865876',
+        hasDetailedProfile: true,
+        formacion: 'Médico cirujano y partero por la Universidad Autónoma de Nuevo León, Posgrado en Traumatología y Ortopedia por la Benemérita Universidad Autónoma de Puebla',
+        especialidades: ['Traumatología', 'Ortopedia'],
+        slug: 'dr-cesar-gonzalez-martinez',
+        horarios: '12:00 a 14:00 y 17:30 a 19:30',
+        mision: 'Prevenir, diagnosticar y tratar enfermedades y lesiones relacionadas con el sistema músculo esquelético.',
+        areasAtencion: [
+          'Esguinces',
+          'Luxaciones',
+          'Fracturas',
+          'Artrosis',
+          'Pacientes con patología del sistema músculo esquelético'
+        ],
+        telefonosAdicionales: [
+          '2383824819',
+          '2383829648'
+        ],
+        contactoTitulos: {
+          whatsapp: 'Celular y Mensaje WhatsApp',
+          adicionales: ['Hospital', 'Hospital']
+        }
       },
       {
         id: 'dr_arturo_dominguez_millan',
         nombre: 'Dr. Arturo Domínguez Millan',
-        titulo: 'Traumatólogo Ortopedista',
+        titulo: 'Alta Especialidad en Cirugía Articular',
         experiencia: '16 años de experiencia',
-        certificaciones: ['Ortopedia', 'Traumatología'],
-        telefonoHospital: '2381234567'
+        certificaciones: ['Hospital General de México Traumatología y Ortopedia'],
+        whatsapp: '2221133552',
+        hasDetailedProfile: true,
+        formacion: 'Hospital General de México Traumatología y Ortopedia',
+        especialidades: ['Traumatología', 'Ortopedia', 'Cirugía Articular'],
+        slug: 'dr-arturo-dominguez-millan',
+        horarios: 'L-M-V: 8:00hr a 12:00hr, M-J: 10:00hr a 12:00hr y 15:00hr a 20:00 hr, Urgencias 24 hrs',
+        mision: 'Tratar a mis pacientes con un trato especializado y cordial, con alta calidad humana, con alto espíritu de servicio y con genuino compromiso en el fomento de la salud.',
+        reconocimientos: [
+          'Certificado por el Consejo Mexicano de Ortopedia y Traumatología A. C.'
+        ],
+        telefonosAdicionales: [
+          '2383824819',
+          '2383829648'
+        ],
+        contactoTitulos: {
+          whatsapp: 'Celular y Mensaje WhatsApp',
+          adicionales: ['Hospital', 'Hospital']
+        }
       }
     ]
   },
