@@ -1,14 +1,12 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Search } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { getAllEspecialidades } from '@/data/especialidades';
+import { especialidades } from '@/data/especialidades';
 
 const EspecialidadesCompletas = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const especialidades = getAllEspecialidades();
 
   const filteredEspecialidades = especialidades.filter(especialidad =>
     especialidad.titulo.toLowerCase().includes(searchTerm.toLowerCase())

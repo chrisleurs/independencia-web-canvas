@@ -1,11 +1,27 @@
-import { StaticImageData } from 'next/image';
+import { 
+  Heart, 
+  Stethoscope, 
+  Brain, 
+  Baby, 
+  Eye, 
+  Bone, 
+  Activity, 
+  UserCheck, 
+  Scissors, 
+  AlertTriangle,
+  LucideIcon
+} from 'lucide-react';
 
 export interface Especialidad {
   id: string;
   nombre: string;
+  titulo: string;
   descripcion: string;
-  imagen: StaticImageData;
+  descripcionDetallada: string;
   slug: string;
+  icon: LucideIcon;
+  servicios: string[];
+  doctores: Doctor[];
 }
 
 export interface Doctor {
@@ -35,90 +51,6 @@ export interface Doctor {
   };
   hasDetailedProfile: boolean;
 }
-
-import cardiologiaImage from '@/public/images/especialidades/cardiologia.webp';
-import cirugiaGeneralImage from '@/public/images/especialidades/cirugia-general.webp';
-import dermatologiaImage from '@/public/images/especialidades/dermatologia.webp';
-import ginecologiaImage from '@/public/images/especialidades/ginecologia.webp';
-import medicinaGeneralImage from '@/public/images/especialidades/medicina-general.webp';
-import pediatriaImage from '@/public/images/especialidades/pediatria.webp';
-import traumatologiaImage from '@/public/images/especialidades/traumatologia.webp';
-import urologiaImage from '@/public/images/especialidades/urologia.webp';
-import cirugiaPlasticaImage from '@/public/images/especialidades/cirugia-plastica.webp';
-import urgenciologiaImage from '@/public/images/especialidades/urgenciologia.webp';
-
-export const especialidades: Especialidad[] = [
-  {
-    id: 'medicina-general',
-    nombre: 'Medicina General',
-    descripcion: 'Atención integral para toda la familia. Diagnóstico y tratamiento de enfermedades comunes.',
-    imagen: medicinaGeneralImage,
-    slug: 'medicina-general'
-  },
-  {
-    id: 'cardiologia',
-    nombre: 'Cardiología',
-    descripcion: 'Cuidado especializado del corazón y el sistema circulatorio. Prevención y tratamiento de enfermedades cardíacas.',
-    imagen: cardiologiaImage,
-    slug: 'cardiologia'
-  },
-  {
-    id: 'dermatologia',
-    nombre: 'Dermatología',
-    descripcion: 'Diagnóstico y tratamiento de enfermedades de la piel, cabello y uñas. Cuidado estético de la piel.',
-    imagen: dermatologiaImage,
-    slug: 'dermatologia'
-  },
-  {
-    id: 'ginecologia',
-    nombre: 'Ginecología',
-    descripcion: 'Atención integral de la salud femenina. Control prenatal, menopausia y planificación familiar.',
-    imagen: ginecologiaImage,
-    slug: 'ginecologia'
-  },
-  {
-    id: 'pediatria',
-    nombre: 'Pediatría',
-    descripcion: 'Cuidado de la salud de niños y adolescentes. Vacunación, control de crecimiento y desarrollo.',
-    imagen: pediatriaImage,
-    slug: 'pediatria'
-  },
-  {
-    id: 'traumatologia',
-    nombre: 'Traumatología',
-    descripcion: 'Diagnóstico y tratamiento de lesiones musculoesqueléticas. Fracturas, esguinces y luxaciones.',
-    imagen: traumatologiaImage,
-    slug: 'traumatologia'
-  },
-  {
-    id: 'urologia',
-    nombre: 'Urología',
-    descripcion: 'Atención de enfermedades del sistema urinario y reproductor masculino. Infecciones, cálculos y cáncer.',
-    imagen: urologiaImage,
-    slug: 'urologia'
-  },
-  {
-    id: 'cirugia-general-especializada',
-    nombre: 'Cirugía General',
-    descripcion: 'Procedimientos quirúrgicos para tratar diversas enfermedades y condiciones. Apéndice, hernias y vesícula biliar.',
-    imagen: cirugiaGeneralImage,
-    slug: 'cirugia-general-especializada'
-  },
-  {
-    id: 'cirugia-plastica',
-    nombre: 'Cirugía Plástica',
-    descripcion: 'Procedimientos quirúrgicos para reconstruir o mejorar la apariencia física. Reconstrucción mamaria, rinoplastia y liposucción.',
-    imagen: cirugiaPlasticaImage,
-    slug: 'cirugia-plastica'
-  },
-  {
-    id: 'urgenciologia',
-    nombre: 'Medicina de Urgencias',
-    descripcion: 'Atención médica inmediata para pacientes con enfermedades o lesiones agudas. Accidentes, infartos y derrames cerebrales.',
-    imagen: urgenciologiaImage,
-    slug: 'urgenciologia'
-  },
-];
 
 export const doctores: Doctor[] = [
   {
@@ -534,6 +466,209 @@ export const doctores: Doctor[] = [
     hasDetailedProfile: true
   }
 ];
+
+const especialidadesData: Especialidad[] = [
+  {
+    id: 'medicina-general',
+    nombre: 'Medicina General',
+    titulo: 'Medicina General',
+    descripcion: 'Atención integral para toda la familia. Diagnóstico y tratamiento de enfermedades comunes.',
+    descripcionDetallada: 'Brindamos atención médica integral para toda la familia, con diagnóstico y tratamiento de enfermedades comunes, medicina preventiva y seguimiento de pacientes crónicos.',
+    slug: 'medicina-general',
+    icon: Stethoscope,
+    servicios: [
+      'Consulta médica general',
+      'Medicina preventiva',
+      'Control de enfermedades crónicas',
+      'Diagnóstico temprano',
+      'Seguimiento de pacientes',
+      'Certificados médicos'
+    ],
+    doctores: []
+  },
+  {
+    id: 'cardiologia',
+    nombre: 'Cardiología',
+    titulo: 'Cardiología',
+    descripcion: 'Cuidado especializado del corazón y el sistema circulatorio. Prevención y tratamiento de enfermedades cardíacas.',
+    descripcionDetallada: 'Especialistas en el diagnóstico, tratamiento y prevención de enfermedades cardiovasculares, ofreciendo atención integral del corazón y sistema circulatorio.',
+    slug: 'cardiologia',
+    icon: Heart,
+    servicios: [
+      'Electrocardiograma',
+      'Ecocardiograma',
+      'Holter de ritmo',
+      'Pruebas de esfuerzo',
+      'Control de hipertensión',
+      'Tratamiento de arritmias'
+    ],
+    doctores: []
+  },
+  {
+    id: 'dermatologia',
+    nombre: 'Dermatología',
+    titulo: 'Dermatología',
+    descripcion: 'Diagnóstico y tratamiento de enfermedades de la piel, cabello y uñas. Cuidado estético de la piel.',
+    descripcionDetallada: 'Atención especializada en enfermedades de la piel, cabello y uñas, incluyendo tratamientos médicos y estéticos para el cuidado integral de la piel.',
+    slug: 'dermatologia',
+    icon: Eye,
+    servicios: [
+      'Eliminación de lunares',
+      'Eliminación de verrugas',
+      'Tratamiento de manchas',
+      'Tratamiento antiacné',
+      'Medicina estética',
+      'Depilación láser'
+    ],
+    doctores: []
+  },
+  {
+    id: 'ginecologia',
+    nombre: 'Ginecología',
+    titulo: 'Ginecología y Obstetricia',
+    descripcion: 'Atención integral de la salud femenina. Control prenatal, menopausia y planificación familiar.',
+    descripcionDetallada: 'Cuidado integral de la salud femenina en todas las etapas de la vida, desde la adolescencia hasta la menopausia, incluyendo atención obstétrica.',
+    slug: 'ginecologia',
+    icon: Baby,
+    servicios: [
+      'Control prenatal',
+      'Planificación familiar',
+      'Papanicolaou',
+      'Colposcopía',
+      'Ultrasonido ginecológico',
+      'Atención del parto'
+    ],
+    doctores: []
+  },
+  {
+    id: 'pediatria',
+    nombre: 'Pediatría',
+    titulo: 'Pediatría',
+    descripcion: 'Cuidado de la salud de niños y adolescentes. Vacunación, control de crecimiento y desarrollo.',
+    descripcionDetallada: 'Atención médica especializada para niños y adolescentes, incluyendo medicina preventiva, vacunación y seguimiento del crecimiento y desarrollo.',
+    slug: 'pediatria',
+    icon: Baby,
+    servicios: [
+      'Control del niño sano',
+      'Vacunación',
+      'Seguimiento del crecimiento',
+      'Tratamiento de infecciones',
+      'Medicina preventiva',
+      'Urgencias pediátricas'
+    ],
+    doctores: []
+  },
+  {
+    id: 'traumatologia',
+    nombre: 'Traumatología',
+    titulo: 'Traumatología y Ortopedia',
+    descripcion: 'Diagnóstico y tratamiento de lesiones musculoesqueléticas. Fracturas, esguinces y luxaciones.',
+    descripcionDetallada: 'Especialistas en el diagnóstico y tratamiento de lesiones del sistema musculoesquelético, incluyendo fracturas, esguinces, luxaciones y cirugía ortopédica.',
+    slug: 'traumatologia',
+    icon: Bone,
+    servicios: [
+      'Tratamiento de fracturas',
+      'Cirugía ortopédica',
+      'Tratamiento de esguinces',
+      'Cirugía de columna',
+      'Prótesis articulares',
+      'Medicina del deporte'
+    ],
+    doctores: []
+  },
+  {
+    id: 'urologia',
+    nombre: 'Urología',
+    titulo: 'Urología',
+    descripcion: 'Atención de enfermedades del sistema urinario y reproductor masculino. Infecciones, cálculos y cáncer.',
+    descripcionDetallada: 'Diagnóstico y tratamiento de enfermedades del sistema urogenital masculino y urinario femenino, incluyendo cálculos, infecciones y cáncer urológico.',
+    slug: 'urologia',
+    icon: Activity,
+    servicios: [
+      'Tratamiento de cálculos renales',
+      'Cirugía de próstata',
+      'Tratamiento de incontinencia',
+      'Disfunción eréctil',
+      'Vasectomía',
+      'Cáncer urológico'
+    ],
+    doctores: []
+  },
+  {
+    id: 'cirugia-general-especializada',
+    nombre: 'Cirugía General',
+    titulo: 'Cirugía General',
+    descripcion: 'Procedimientos quirúrgicos para tratar diversas enfermedades y condiciones. Apéndice, hernias y vesícula biliar.',
+    descripcionDetallada: 'Cirugía especializada para el tratamiento de diversas condiciones que requieren intervención quirúrgica, desde procedimientos ambulatorios hasta cirugías complejas.',
+    slug: 'cirugia-general-especializada',
+    icon: Scissors,
+    servicios: [
+      'Cirugía de vesícula',
+      'Cirugía de hernias',
+      'Apendicectomía',
+      'Cirugía laparoscópica',
+      'Cirugía de tiroides',
+      'Cirugía oncológica'
+    ],
+    doctores: []
+  },
+  {
+    id: 'cirugia-plastica',
+    nombre: 'Cirugía Plástica',
+    titulo: 'Cirugía Plástica y Reconstructiva',
+    descripcion: 'Procedimientos quirúrgicos para reconstruir o mejorar la apariencia física. Reconstrucción mamaria, rinoplastia y liposucción.',
+    descripcionDetallada: 'Cirugía plástica reconstructiva y estética para mejorar la apariencia física y reconstruir defectos congénitos o adquiridos.',
+    slug: 'cirugia-plastica',
+    icon: Scissors,
+    servicios: [
+      'Reconstrucción mamaria',
+      'Rinoplastia',
+      'Liposucción',
+      'Cirugía facial',
+      'Reconstrucción de defectos',
+      'Cirugía estética'
+    ],
+    doctores: []
+  },
+  {
+    id: 'urgenciologia',
+    nombre: 'Medicina de Urgencias',
+    titulo: 'Medicina de Urgencias',
+    descripcion: 'Atención médica inmediata para pacientes con enfermedades o lesiones agudas. Accidentes, infartos y derrames cerebrales.',
+    descripcionDetallada: 'Atención médica especializada de emergencia para pacientes con condiciones críticas que requieren intervención inmediata.',
+    slug: 'urgenciologia',
+    icon: AlertTriangle,
+    servicios: [
+      'Atención de emergencias',
+      'Trauma',
+      'Reanimación cardiopulmonar',
+      'Medicina crítica',
+      'Estabilización de pacientes',
+      'Triage médico'
+    ],
+    doctores: []
+  }
+];
+
+// Map doctors to their respective specialties
+especialidadesData.forEach(especialidad => {
+  especialidad.doctores = doctores.filter(doctor => 
+    doctor.especialidades.some(esp => 
+      esp.toLowerCase().includes(especialidad.nombre.toLowerCase()) ||
+      especialidad.nombre.toLowerCase().includes(esp.toLowerCase())
+    )
+  );
+});
+
+export const especialidades = especialidadesData;
+
+export const getAllEspecialidades = () => {
+  return especialidades;
+};
+
+export const getEspecialidadBySlug = (slug: string) => {
+  return especialidades.find((especialidad) => especialidad.slug === slug);
+};
 
 export const getAllDoctors = () => {
   return doctores;

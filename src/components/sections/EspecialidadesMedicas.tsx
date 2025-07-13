@@ -1,11 +1,10 @@
-
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
-import { getAllEspecialidades } from '@/data/especialidades';
+import { especialidades } from '@/data/especialidades';
 
 const EspecialidadesMedicas = () => {
-  const especialidades = getAllEspecialidades();
+  const especialidadesList = especialidades;
 
   return (
     <section className="section-padding bg-white">
@@ -23,7 +22,7 @@ const EspecialidadesMedicas = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {especialidades.slice(0, 12).map((especialidad) => {
+          {especialidadesList.slice(0, 12).map((especialidad) => {
             const Icon = especialidad.icon;
             return (
               <Link
