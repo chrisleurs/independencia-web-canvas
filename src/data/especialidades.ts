@@ -272,7 +272,7 @@ export const especialidadesData: Especialidad[] = [
         id: 'dr_hector_pena_carrillo',
         nombre: 'Dr. Héctor Peña Carrillo',
         titulo: 'Cardioneumólogo / Medicina Crítica / Anestesiólogo',
-        experiencia: '15 años de experiencia',
+        experiencia: '16 años de experiencia',
         certificaciones: ['UPAEP', 'UAA', 'UNAM', 'Universidad Católica de Chile'],
         whatsapp: '2381119392',
         hasDetailedProfile: true,
@@ -517,6 +517,29 @@ export const especialidadesData: Especialidad[] = [
           whatsapp: 'Celular y Mensaje WhatsApp',
           adicionales: ['Hospital', 'Hospital']
         }
+      },
+      {
+        id: 'dr_omar_marroquin_herrera',
+        nombre: 'Dr. Omar Marroquín Herrera',
+        titulo: 'Ortopedista, Traumatólogo y Cirujano de Columna',
+        experiencia: '22 años de experiencia',
+        certificaciones: ['Benemérita Universidad Autónoma de Puebla', 'Universidad Autónoma de Querétaro', 'Hospital Universitario Fundación Santa Fé de Bogotá'],
+        whatsapp: '2381104740',
+        hasDetailedProfile: true,
+        formacion: 'Benemérita Universidad Autónoma de Puebla (Médico general), Universidad Autónoma de Querétaro (Especialidad en Traumatología y Ortopedia)',
+        especialidades: ['Traumatología', 'Ortopedia', 'Cirugía de Columna'],
+        slug: 'dr-omar-marroquin-herrera',
+        mision: 'Especialista en Cirugía de Ortopedia y Traumatología con Subespecialidad en Cirugía de Columna vertebral de adultos y niños. Cuenta con adiestramiento especial en cirugía de mínima invasión endoscópica de Columna con estudios realizados en Colombia y Argentina.',
+        reconocimientos: [
+          'Hospital Universitario Fundación Santa Fé de Bogotá (Sub especialidad Cirugía de columna en adultos)',
+          'Instituto Roosevelt (Subespecialidad Cirugía de columna pediátrica)',
+          'Clínica Porto Azul, Barranquilla. (Cirugía endoscópica y mínima invasión de columna vertebral)',
+          'Hospital Español de Mendoza, Argentina (Cirugía de mínima invasión de columna vertebral)',
+          'Universidad Caxias Do Sul, Brasil ( Patologías de la columna vertebral: Prevención, Manejo y Diagnóstico )'
+        ],
+        contactoTitulos: {
+          whatsapp: 'Agendar una cita con su asistente la Srita. Magda'
+        }
       }
     ]
   },
@@ -759,8 +782,30 @@ export const especialidadesData: Especialidad[] = [
         nombre: 'Dr. Virgilio Marroquín Jiménez',
         titulo: 'Gastroenterólogo',
         experiencia: '13 años de experiencia',
-        certificaciones: ['Gastroenterología', 'Endoscopia'],
-        telefonoHospital: '2381234567'
+        certificaciones: ['Hospital de Especialidades, Centro Medico Nacional La Raza de la CDMX'],
+        whatsapp: '2381122126',
+        hasDetailedProfile: true,
+        formacion: 'Egresado del Hospital de Especialidades, Centro Medico Nacional La Raza de la CDMX',
+        especialidades: ['Gastroenterología', 'Endoscopia'],
+        slug: 'dr-virgilio-marroquin-jimenez',
+        horarios: 'Lunes a viernes de 11 a 14 hrs y 16 a 19 hrs',
+        mision: 'Proporcionar una atención médica especializada en el diagnóstico y tratamiento oportuno de enfermedades digestivas. Con enfoque en la excelencia clínica y la compasión hacia mis pacientes, me comprometo a brindar soluciones efectivas y personalizadas para mejorar la salud digestiva y el bienestar general.',
+        reconocimientos: [
+          'Miembro de la Asociación Mexicana de Gastroenterología',
+          'Miembro de la Asociación Mexicana de Endoscopia Gastrointestinal'
+        ],
+        areasAtencion: [
+          'Enfermedades del esófago, estómago, hígado, páncreas, vesícula e intestinos'
+        ],
+        telefonosAdicionales: [
+          '2383824819',
+          '2383829648',
+          '2383825027'
+        ],
+        contactoTitulos: {
+          whatsapp: 'Celular y Mensaje WhatsApp',
+          adicionales: ['Hospital', 'Hospital', 'Celular']
+        }
       }
     ]
   },
@@ -782,10 +827,38 @@ export const especialidadesData: Especialidad[] = [
       {
         id: 'dra_yadira_tehuacanero_tecua',
         nombre: 'Dra. Yadira Tehuacanero Tecua',
-        titulo: 'Nefróloga',
+        titulo: 'Nefrología y Trasplante Renal',
         experiencia: '11 años de experiencia',
-        certificaciones: ['Nefrología', 'Diálisis'],
-        telefonoHospital: '2381234567'
+        certificaciones: ['Nefrología', 'Trasplante Renal'],
+        whatsapp: '2361005844',
+        hasDetailedProfile: true,
+        formacion: 'Especialista en Nefrología',
+        especialidades: ['Nefrología', 'Trasplante Renal'],
+        slug: 'dra-yadira-tehuacanero-tecua',
+        mision: 'Nefróloga especialista en enfermedades renales y vías urinarias. Con la visión de dar un manejo integral de las enfermedades de los riñones y las vías urinarias nace este proyecto. Recuerda que solo un especialista bien preparado y certificado te va a dar el tratamiento adecuado.',
+        areasAtencion: [
+          'HTA y daño vascular',
+          'Hematuria (sangre en la orina), proteinuria (proteínas en la orina)',
+          'Infecciones de orina',
+          'Enfermedades que producen cálculos en el riñón',
+          'Enfermedades que producen inflamación en el riñón (Nefritis)',
+          'Enfermedades en otros órganos, en la inmunidad y tratamientos que afectan a los riñones',
+          'Tratamiento de las consecuencias de la función renal alterada: anemia, falta de bicarbonato, aumento del fósforo',
+          'Seguimiento de la Insuficiencia Renal Crónica en consulta (ERCA)',
+          'Tratamiento de diálisis: Hemodiálisis y Diálisis peritoneal',
+          'Atención previa, inmediata y posterior del Trasplante renal',
+          'Biopsia Renal para el diagnóstico de las enfermedades renales',
+          'Realización de accesos en venas para realizar hemodiálisis (catéteres)',
+          'Técnicas especiales de depuración de la sangre: plasmaféresis, granuloaféresis, leucocitaféresis, LDL aféresis etc.'
+        ],
+        telefonosAdicionales: [
+          '2383824819',
+          '2383829648'
+        ],
+        contactoTitulos: {
+          whatsapp: 'Celular y Mensaje WhatsApp',
+          adicionales: ['Hospital', 'Hospital']
+        }
       }
     ]
   },
@@ -807,10 +880,29 @@ export const especialidadesData: Especialidad[] = [
       {
         id: 'dr_benito_vargas_abrego',
         nombre: 'Dr. Benito Vargas Ábrego',
-        titulo: 'Neumólogo',
+        titulo: 'Cirujano Cardiovascular y Torácico',
         experiencia: '17 años de experiencia',
-        certificaciones: ['Neumología', 'Medicina Respiratoria'],
-        telefonoHospital: '2381234567'
+        certificaciones: ['Cirugía Torácica No Cardiaca', 'Consejo Nacional de Cirugía del Tórax'],
+        whatsapp: '5519485538',
+        hasDetailedProfile: true,
+        formacion: 'Médico General, Cirujano Cardiotorácico (Cirugía Torácica No Cardiaca en Adultos)',
+        especialidades: ['Neumología', 'Cirugía Torácica', 'Cirugía Cardiovascular'],
+        slug: 'dr-benito-vargas-abrego',
+        mision: 'Médico Especialista Certificado en Cirugia de Enfermedades Pleuro-Pulmonares, Endoscopista Torácico (Broncoscopia intervencionista y Toracoscopia Avanzada VATS y Uniportal) Cirugía Torácica No Cardiaca. Mi misión es ofrecer diagnóstico, tratamiento y paliación a pacientes que sufren de enfermedades respiratorias que requieren Cirugía.',
+        reconocimientos: [
+          'Certificado por en Consejo Nacional de Cirugía del Tórax',
+          'Ex Jefe de la División de Cirugía de Tórax de la Sociedad Mexicana de Neumología y Cirugía de Tórax',
+          'Actual Tesorero de la Sociedad Mexicana de Cirujanos Torácicos Generales',
+          'Jefe de Cirugía de Tórax del Hospital General de México Dr. Eduardo Liceaga'
+        ],
+        telefonosAdicionales: [
+          '2383824819',
+          '2383829648'
+        ],
+        contactoTitulos: {
+          whatsapp: 'Celular y Mensaje WhatsApp',
+          adicionales: ['Hospital', 'Hospital']
+        }
       }
     ]
   },
@@ -830,7 +922,7 @@ export const especialidadesData: Especialidad[] = [
     ],
     doctores: [
       {
-        id: 'dr_omar_marroquin_herrera',
+        id: 'dr_omar_marroquin_herrera_cirugia',
         nombre: 'Dr. Omar Marroquín Herrera',
         titulo: 'Cirujano General',
         experiencia: '22 años de experiencia',
@@ -842,24 +934,106 @@ export const especialidadesData: Especialidad[] = [
         nombre: 'Dr. José Luis Hernández Aguilar',
         titulo: 'Cirujano General',
         experiencia: '18 años de experiencia',
-        certificaciones: ['Cirugía General'],
-        telefonoHospital: '2381234567'
+        certificaciones: ['Egresado de la BUAP como médico general', 'Especialidad en cirugía General CMN MAC IMSS Puebla'],
+        whatsapp: '2381106342',
+        hasDetailedProfile: true,
+        formacion: 'Egresado de la BUAP como médico general, Especialidad en cirugía General CMN MAC IMSS Puebla',
+        especialidades: ['Cirugía General'],
+        slug: 'dr-jose-luis-hernandez-aguilar',
+        mision: 'Brindar atención médica excepcional a mis pacientes, especializándome en el tratamiento y resolución de enfermedades que requieren procedimientos quirúrgicos. Mi compromiso es ofrecer cuidados de alta calidad, utilizando técnicas avanzadas y un enfoque humano, para mejorar la salud y el bienestar de cada paciente que confía en mi experiencia médica.',
+        reconocimientos: [
+          'Cómo participantes de cirugías extramuros IMSS Oaxaca y de cirugías extramuros del sector salud Puebla'
+        ],
+        areasAtencion: [
+          'Hernias',
+          'Cálculos vesiculares',
+          'Apéndice',
+          'Tumores de partes blandas',
+          'Tumores del tubo digestivo',
+          'Lesiones por trauma en tórax y abdomen'
+        ],
+        telefonosAdicionales: [
+          '2383824819',
+          '2383829648',
+          '2381278192'
+        ],
+        contactoTitulos: {
+          whatsapp: 'Celular y Mensaje WhatsApp',
+          adicionales: ['Hospital', 'Hospital', 'Celular']
+        }
       },
       {
         id: 'dr_miguel_parra_flores',
         nombre: 'Dr. Miguel Parra Flores',
         titulo: 'Cirujano General',
         experiencia: '20 años de experiencia',
-        certificaciones: ['Cirugía General'],
-        telefonoHospital: '2381234567'
+        certificaciones: ['Egresado de la UNAM', 'Aprobado por el consejo de Cirugía'],
+        whatsapp: '2225360991',
+        hasDetailedProfile: true,
+        formacion: 'Egresado de la UNAM',
+        especialidades: ['Cirugía General'],
+        slug: 'dr-miguel-parra-flores',
+        mision: 'Proporcionar una atención médica especializada y compasiva a mis pacientes, enfocándome en el tratamiento y resolución de problemas que requieren cirugía, como pie diabético, varices, hernias, apéndice, vesícula y condiciones del sistema digestivo. Mi objetivo es mejorar la calidad de vida de mis pacientes mediante procedimientos quirúrgicos seguros y efectivos, brindando un cuidado integral y personalizado que promueva la recuperación y bienestar general.',
+        reconocimientos: [
+          'Aprobado por el consejo de Cirugía'
+        ],
+        telefonosAdicionales: [
+          '2383824819',
+          '2383829648'
+        ],
+        contactoTitulos: {
+          whatsapp: 'Celular y Mensaje WhatsApp',
+          adicionales: ['Hospital', 'Hospital']
+        }
       },
       {
         id: 'dr_quintin_gonzalez_contreras',
         nombre: 'Dr. Quintín Héctor González Contreras',
-        titulo: 'Cirujano General',
+        titulo: 'Especialista en Cirugía General, Cirugía gastrointestinal y Coloproctología',
         experiencia: '25 años de experiencia',
-        certificaciones: ['Cirugía General'],
-        telefonoHospital: '2381234567'
+        certificaciones: ['Universidad Autónoma del Estado de México (UAEM)', 'Instituto Nacional de Ciencias Médicas y Nutrición Salvador Zubirán'],
+        whatsapp: '2381680976',
+        hasDetailedProfile: true,
+        formacion: 'Egresó como Médico Cirujano de la Universidad Autónoma del Estado de México (UAEM) para posteriormente realizar la Especialidad en Cirugía General en el Instituto Nacional de Ciencias Médicas y Nutrición Salvador Zubirán',
+        especialidades: ['Cirugía General', 'Cirugía Gastrointestinal', 'Coloproctología'],
+        slug: 'dr-quintin-gonzalez-contreras',
+        mision: 'Especialista en Cirugía General, Cirugía gastrointestinal y Coloproctología posicionado como uno de los mejores Cirujanos en la Ciudad de México.',
+        reconocimientos: [
+          'Miembro. Sociedad Médica del Instituto Nacional de Nutrición y Ciencias Médicas "Salvador Zubirán"',
+          'Miembro. Phi Beta Delta International Honor Society for Scholar Nu Chapter',
+          'Socio Activo y Fundador. Colegio Mexicano de Especialista en Coloproctología',
+          'Miembro. International Society of University Colon and Rectal Surgeons',
+          'Miembro. American Society of Colon and Rectal Surgeons',
+          'Socio. Sociedad Médica del Hospital Ángeles del Pedregal',
+          'Socio. Asociación Mexicana de Cirugía Endoscópica AC',
+          'Socio Activo. Asociación Mexicana de Cirugía General',
+          'Socio Adscrito. Sociedad Mexicana de Coloproctología',
+          'Miembro. Asociación Mexicana de Gastroenterología',
+          'Miembro. Sociedad Médica del Hospital ABC',
+          'Miembro. Academia Nacional de Medicina',
+          'Miembro. Academia Mexicana de Cirugía',
+          'Socio Activo. Sociedad Médica de Medica Sur',
+          'Miembro. Comité Científico. Asociación Mexicana de Cirugía Endoscópica',
+          'Miembro. Sociedad Médica HMG',
+          'Miembro. Sociedad Mexicana de Cirugía del Aparato Digestivo',
+          'Miembro. Fellow American College of Surgeons'
+        ],
+        areasAtencion: [
+          'Hemorroides',
+          'Cirugía del Cáncer de Colon y Recto',
+          'Cirugía de la Hernia Inguinal',
+          'Cirugía de la Hernia Umbilical',
+          'Cirugía Laparoscópica',
+          'Cirugía Hemorroides'
+        ],
+        telefonosAdicionales: [
+          '2383824819',
+          '2383829648'
+        ],
+        contactoTitulos: {
+          whatsapp: 'Celular y Mensaje WhatsApp',
+          adicionales: ['Hospital', 'Hospital']
+        }
       },
       {
         id: 'dr_jaime_romero_salas',
