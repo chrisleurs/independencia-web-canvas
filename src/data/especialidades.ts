@@ -124,22 +124,30 @@ export const especialidadesData: Especialidad[] = [
       {
         id: 'dr_javier_carrasco_gonzalez',
         nombre: 'Dr. Javier Carrasco González',
-        titulo: 'Médico Cirujano y Partero',
+        titulo: 'Médico General',
         experiencia: '18 años de experiencia',
         certificaciones: ['Licenciado en Médico Cirujano y Partero'],
         whatsapp: '2381902659',
-        telefonoHospital: '2381234567',
         hasDetailedProfile: true,
-        formacion: 'Médico Cirujano y Partero',
-        especialidades: ['Medicina General', 'Cirugía Menor'],
+        formacion: 'Licenciatura en Médico Cirujano y Partero',
+        especialidades: ['Medicina General', 'Enfermedades Crónico Degenerativas'],
         slug: 'dr-javier-carrasco-gonzalez',
-        horarios: 'Lunes a Viernes: 8:00 AM - 5:00 PM, Sábados: 8:00 AM - 1:00 PM',
-        mision: 'Dedicado a proporcionar atención médica integral y cirugía menor con experiencia y dedicación, comprometido con la salud y bienestar de mis pacientes.',
+        mision: 'Brindar una atención médica integral de calidad con humanismo y profesionalismo para mejorar la salud de las personas que lo necesiten.',
         reconocimientos: [
-          'Médico Cirujano y Partero certificado',
-          '18 años de experiencia en medicina general',
-          'Especialista en cirugía menor'
-        ]
+          'Actualizaciones en medicina de urgencias'
+        ],
+        areasAtencion: [
+          'Enfermedades generales',
+          'Enfermedades crónico degenerativas'
+        ],
+        telefonosAdicionales: [
+          '2383824819',
+          '2383829648'
+        ],
+        contactoTitulos: {
+          whatsapp: 'Celular y Mensaje WhatsApp',
+          hospital: 'Hospital'
+        }
       },
       {
         id: 'dr_gerardo_valderrama_lopez',
@@ -148,7 +156,6 @@ export const especialidadesData: Especialidad[] = [
         experiencia: '22 años de experiencia con maestría en administración de instituciones de salud',
         certificaciones: ['BUAP', 'Maestría en Administración de Instituciones de Salud', 'Especialista en Urgencias'],
         whatsapp: '2381117877',
-        telefonoHospital: '2383824819',
         hasDetailedProfile: true,
         formacion: 'Licenciatura en Médico Cirujano y Partero BUAP, Maestría en Administración de Instituciones de Salud',
         especialidades: ['Medicina General', 'Medicina de Urgencias', 'Medicina Familiar', 'Enfermedades Crónico-degenerativas'],
@@ -167,35 +174,42 @@ export const especialidadesData: Especialidad[] = [
           'Enfermedades Crónico-degenerativas'
         ],
         telefonosAdicionales: [
-          '2383829648',
-          '2382493811'
+          '2383824819',
+          '2383829648'
         ],
         contactoTitulos: {
           whatsapp: 'Celular y Mensaje WhatsApp',
-          hospital: 'Hospital',
-          adicionales: ['Contacto Adicional 1', 'Contacto Adicional 2']
+          hospital: 'Hospital'
         }
       },
       {
         id: 'dr_raymundo_romero_ventura',
         nombre: 'Dr. Raymundo Romero Ventura',
         titulo: 'Médico General',
-        experiencia: '35+ años de experiencia',
-        certificaciones: ['Egresado 1984', 'Medicina General'],
+        experiencia: 'Más de 35 años de experiencia',
+        certificaciones: ['Médico Cirujano y Partero egresado en 1984 por la BUAP'],
         whatsapp: '2381300097',
-        telefonoHospital: '2381234567',
         hasDetailedProfile: true,
-        formacion: 'Egresado en 1984',
-        especialidades: ['Medicina General', 'Medicina Familiar'],
+        formacion: 'Médico Cirujano y Partero egresado en 1984 por la Benemérita Universidad Autónoma del Estado de Puebla',
+        especialidades: ['Medicina General', 'Atención Primaria', 'Medicina Familiar'],
         slug: 'dr-raymundo-romero-ventura',
-        horarios: 'Lunes a Viernes: 7:00 AM - 4:00 PM, Sábados: 7:00 AM - 12:00 PM',
-        mision: 'Con más de 35 años de experiencia, me dedico a brindar atención médica familiar con calidez y profesionalismo, siendo un pilar en la salud de la comunidad.',
+        horarios: 'Lunes a Sábado de 10:00 – 14:00 y 16:00 – 20:00',
+        mision: 'Médico general con desarrollo profesional y académico en atención primaria con más de 35 años de experiencia laborando en la Ciudad de Ajalpan, Puebla. Capacitado para resolver los principales problemas concernientes a la promoción, recuperación y rehabilitación de la salud, tanto individual como familiar.',
         reconocimientos: [
-          'Más de 35 años de experiencia médica',
-          'Médico de cabecera de múltiples familias',
-          'Especialista en medicina familiar',
-          'Egresado generación 1984'
-        ]
+          'Recertificación en 2020 por el Colegio de Médicos Cirujanos del Estado de Puebla A.C.',
+          'COMECEP y del Colegio Médico de México A.C. FENACOME',
+          'Miembro activo de la Asociación Médica de Ajalpan y su Región A.C.',
+          'Miembro del Colegio de Médicos Cirujanos del Estado de Puebla A.C.',
+          'Más de 35 años de experiencia en medicina general'
+        ],
+        telefonosAdicionales: [
+          '2383824819',
+          '2383829648'
+        ],
+        contactoTitulos: {
+          whatsapp: 'Celular y Mensaje WhatsApp',
+          hospital: 'Hospital'
+        }
       },
       {
         id: 'dr_hipolito_coyotl_cruz',
@@ -256,18 +270,79 @@ export const especialidadesData: Especialidad[] = [
       {
         id: 'dr_hector_pena_carrillo',
         nombre: 'Dr. Héctor Peña Carrillo',
-        titulo: 'Especialista en Medicina Crítica / Cardioneumólogo / Anestesiólogo',
+        titulo: 'Cardioneumólogo / Medicina Crítica / Anestesiólogo',
         experiencia: '15 años de experiencia',
-        certificaciones: ['Medicina Crítica', 'Cardiología', 'Neumología', 'Anestesiología'],
-        telefonoHospital: '2381234567'
+        certificaciones: ['UPAEP', 'UAA', 'UNAM', 'Universidad Católica de Chile'],
+        whatsapp: '2381119392',
+        hasDetailedProfile: true,
+        formacion: 'UPAEP - UAA - UNAM - Universidad Católica de Chile',
+        especialidades: ['Medicina Crítica', 'Terapia Intensiva', 'Cardiología', 'Neumología', 'Anestesiología', 'Medicina Interna'],
+        slug: 'dr-hector-pena-carrillo',
+        mision: 'Atención y manejo de pacientes muy graves con especialización en medicina crítica, cardiología y neumología.',
+        reconocimientos: [
+          'Fellow of American Collage of Chest',
+          'Fellow of American Association for Bronchology',
+          'Sociedad Mexicana de Medicina Critica',
+          'Colegio Mexicano de Anestesiología',
+          'Sociedad Mexicana de Neumología y Cirugía de Tórax',
+          'Sociedad de Circulación e Hipertensión Arterial Pulmonar AC',
+          'Más de 40 Publicaciones Nacionales e Internacionales'
+        ],
+        areasAtencion: [
+          'Pacientes muy graves',
+          'Neumonías',
+          'Diabéticos Descompensados',
+          'Hipertensión Arterial Descompensada',
+          'Hipertensión Pulmonar',
+          'Tromboembolia Pulmonar',
+          'Enfermedad Pulmonar Obstructiva Crónica (EPOC)',
+          'Infecciones Severas',
+          'Cuidados Anestésicos y Post Quirúrgicos Avanzados',
+          'Broncoscopia'
+        ],
+        telefonosAdicionales: [
+          '2383824819',
+          '2383829648'
+        ],
+        contactoTitulos: {
+          whatsapp: 'Celular y Mensaje WhatsApp',
+          hospital: 'Hospital'
+        }
       },
       {
         id: 'dr_hazael_sanchez_rosales',
         nombre: 'Dr. Hazael Sánchez Rosales',
-        titulo: 'Especialista en Medicina Crítica',
+        titulo: 'Medicina Crítica / Terapia Intensiva',
         experiencia: '12 años de experiencia',
-        certificaciones: ['Medicina Crítica', 'Terapia Intensiva'],
-        telefonoHospital: '2381234567'
+        certificaciones: ['Especialista en Medicina de Urgencias IPN', 'Especialista en Medicina Critica UNAM'],
+        whatsapp: '2381367962',
+        hasDetailedProfile: true,
+        formacion: 'Especialista en Medicina de Urgencias IPN, Especialista en Medicina Critica UNAM',
+        especialidades: ['Medicina Crítica', 'Terapia Intensiva', 'Medicina de Urgencias'],
+        slug: 'dr-hazael-sanchez-rosales',
+        mision: 'Tratar a pacientes graves con complicaciones derivadas de descompensaciones metabólicas o complicaciones post-quirúrgicas así como vigilancia de estados patológicos crónicos.',
+        reconocimientos: [
+          'Mérito académico UNAM',
+          'Reconocimiento Labor COVID UNAM'
+        ],
+        areasAtencion: [
+          'Infarto de corazón',
+          'Infarto y hemorragia cerebral',
+          'Complicaciones agudas de diabetes mellitus',
+          'Tromboembolia pulmonar',
+          'Trombosis venosa profunda',
+          'Pacientes con ventilación artificial',
+          'Complicaciones de insuficiencia renal crónica',
+          'Traumatismo craneoencefálico'
+        ],
+        telefonosAdicionales: [
+          '2383824819',
+          '2383829648'
+        ],
+        contactoTitulos: {
+          whatsapp: 'Celular y Mensaje WhatsApp',
+          hospital: 'Hospital'
+        }
       }
     ]
   },
