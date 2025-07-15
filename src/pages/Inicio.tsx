@@ -3,6 +3,7 @@ import React from 'react';
 import Layout from '@/components/Layout';
 import HeroSection from '@/components/sections/HeroSection';
 import EspecialidadesMedicas from '@/components/sections/EspecialidadesMedicas';
+import FotografiasIntermedia from '@/components/sections/FotografiasIntermedia';
 import ServiciosMedicos from '@/components/sections/ServiciosMedicos';
 import SobreHospitalResumen from '@/components/sections/SobreHospitalResumen';
 import Galeria from '@/components/sections/Galeria';
@@ -13,6 +14,7 @@ const Inicio = () => {
     <Layout>
       <HeroSection />
       <EspecialidadesMedicas />
+      <FotografiasIntermedia />
       <ServiciosMedicos />
       <SobreHospitalResumen />
       <Galeria />
