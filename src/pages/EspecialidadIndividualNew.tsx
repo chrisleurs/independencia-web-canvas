@@ -13,11 +13,46 @@ import {
   BreadcrumbPage, 
   BreadcrumbSeparator 
 } from '@/components/ui/breadcrumb';
-import { ArrowLeft, Phone, Calendar, CheckCircle, User, MessageCircle, ExternalLink, Stethoscope } from 'lucide-react';
+import { 
+  ArrowLeft, 
+  Phone, 
+  Calendar, 
+  CheckCircle, 
+  User, 
+  MessageCircle, 
+  ExternalLink, 
+  Stethoscope,
+  Heart,
+  Brain,
+  Eye,
+  Bone,
+  Activity,
+  Baby,
+  Zap,
+  Users,
+  Microscope,
+  Pill
+} from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useEspecialidades } from '@/hooks/useEspecialidades';
 import { useDoctoresByEspecialidad } from '@/hooks/useDoctores';
-import * as LucideIcons from 'lucide-react';
+
+// Type-safe icon mapping with direct imports
+const iconMapping = {
+  Heart,
+  Brain,
+  Eye,
+  Bone,
+  Activity,
+  Baby,
+  Zap,
+  Users,
+  Microscope,
+  Pill,
+  Stethoscope,
+} as const;
+
+type IconName = keyof typeof iconMapping;
 
 const EspecialidadIndividualNew = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -51,21 +86,18 @@ const EspecialidadIndividualNew = () => {
     return <Navigate to="/especialidades" replace />;
   }
 
-  // Get the icon dynamically with proper type checking
+  // Get the icon component with proper type safety
   const getIconComponent = (iconName: string) => {
-    const iconKey = iconName as keyof typeof LucideIcons;
-    const IconComponent = LucideIcons[iconKey];
-    
-    // Return the component if it exists and is a valid React component, otherwise return Stethoscope
-    if (IconComponent && typeof IconComponent === 'function') {
-      return IconComponent;
+    // Check if the icon exists in our mapping
+    if (iconName in iconMapping) {
+      return iconMapping[iconName as IconName];
     }
+    // Return default icon if not found
     return Stethoscope;
   };
 
   const IconComponent = getIconComponent(especialidad.icon_name);
 
-  // Breadcrumb con padding reducido
   return (
     <Layout>
       <div className="min-h-screen bg-white">
@@ -108,7 +140,7 @@ const EspecialidadIndividualNew = () => {
               <div>
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center">
-                    {React.createElement(IconComponent, { className: "w-12 h-12 text-white" })}
+                    <IconComponent className="w-12 h-12 text-white" />
                   </div>
                   <div>
                     <h1 className="text-4xl md:text-5xl font-bold text-white">
@@ -139,7 +171,7 @@ const EspecialidadIndividualNew = () => {
 
               <div className="relative">
                 <div className="aspect-square bg-white/10 rounded-2xl flex items-center justify-center backdrop-blur-sm">
-                  {React.createElement(IconComponent, { className: "w-32 h-32 text-white/30" })}
+                  <IconComponent className="w-32 h-32 text-white/30" />
                 </div>
                 <div className="absolute -top-4 -right-4 w-24 h-24 bg-white/10 rounded-full"></div>
                 <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-white/20 rounded-full"></div>
