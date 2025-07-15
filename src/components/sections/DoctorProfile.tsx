@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -60,7 +59,7 @@ const DoctorProfile = ({ doctor }: DoctorProfileProps) => {
   return (
     <div className="min-h-screen bg-white">
       {/* Breadcrumb */}
-      <section className="bg-hospital-light py-4">
+      <section className="bg-hospital-light py-2">
         <div className="container-custom">
           <Breadcrumb>
             <BreadcrumbList>

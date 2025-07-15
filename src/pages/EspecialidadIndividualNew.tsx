@@ -1,10 +1,7 @@
-
 import React from 'react';
 import { useParams, Navigate } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 import Layout from '@/components/Layout';
-import { useEspecialidadBySlug } from '@/hooks/useEspecialidades';
-import { useDoctoresByEspecialidad } from '@/hooks/useDoctores';
-import { getIconComponent } from '@/utils/iconMapping';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { 
@@ -17,45 +14,30 @@ import {
 } from '@/components/ui/breadcrumb';
 import { ArrowLeft, Phone, Calendar, CheckCircle, User, MessageCircle, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { Skeleton } from '@/components/ui/skeleton';
+import { useEspecialidades } from '@/hooks/useEspecialidades';
+import { useDoctores } from '@/hooks/useDoctores';
+import { getIcon } from '@/utils/iconMapping';
 
 const EspecialidadIndividualNew = () => {
   const { slug } = useParams<{ slug: string }>();
   
-  const { data: especialidad, isLoading, error } = useEspecialidadBySlug(slug || '');
-  const { data: doctores, isLoading: loadingDoctores } = useDoctoresByEspecialidad(especialidad?.id || '');
-
   if (!slug) {
     return <Navigate to="/especialidades" replace />;
   }
 
-  if (error) {
-    return <Navigate to="/especialidades" replace />;
-  }
+  const { data: especialidades = [], isLoading: loadingEspecialidades } = useEspecialidades();
+  const { data: doctores = [], isLoading: loadingDoctores } = useDoctores();
 
-  if (isLoading) {
+  const especialidad = especialidades.find(esp => esp.slug === slug);
+
+  if (loadingEspecialidades || loadingDoctores) {
     return (
       <Layout>
-        <div className="pt-16 md:pt-20">
-          <section className="bg-hospital-light py-4">
-            <div className="container-custom">
-              <Skeleton className="h-6 w-64" />
-            </div>
-          </section>
-          <section className="section-padding bg-gradient-to-br from-hospital-primary to-hospital-secondary text-white">
-            <div className="container-custom">
-              <div className="grid lg:grid-cols-2 gap-12 items-center">
-                <div>
-                  <Skeleton className="h-16 w-80 mb-6 bg-white/20" />
-                  <Skeleton className="h-24 w-full mb-8 bg-white/20" />
-                  <div className="flex gap-4">
-                    <Skeleton className="h-12 w-40 bg-white/20" />
-                    <Skeleton className="h-12 w-40 bg-white/20" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+        <div className="min-h-screen bg-white flex items-center justify-center">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-hospital-primary mx-auto mb-4"></div>
+            <p className="text-hospital-gray">Cargando especialidad...</p>
+          </div>
         </div>
       </Layout>
     );
@@ -65,21 +47,13 @@ const EspecialidadIndividualNew = () => {
     return <Navigate to="/especialidades" replace />;
   }
 
-  const Icon = getIconComponent(especialidad.icon_name);
+  const Icon = getIcon(especialidad.icon_name);
 
-  const handleWhatsAppBooking = (doctor: any) => {
-    const phoneNumber = doctor.whatsapp ? `52${doctor.whatsapp}` : '522381234567';
-    const doctorName = doctor.nombre;
-    const message = encodeURIComponent(`Hola, me gustaría agendar una cita con ${doctorName} en ${especialidad.titulo}. ¿Podrían ayudarme con la disponibilidad?`);
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
-    window.open(whatsappUrl, '_blank');
-  };
-
+  // Breadcrumb con padding reducido
   return (
     <Layout>
-      <div className="pt-16 md:pt-20">
-        {/* Breadcrumb */}
-        <section className="bg-hospital-light py-4">
+      <div className="min-h-screen bg-white">
+        <section className="bg-hospital-light py-2">
           <div className="container-custom">
             <Breadcrumb>
               <BreadcrumbList>
@@ -128,7 +102,7 @@ const EspecialidadIndividualNew = () => {
                 </div>
                 
                 <p className="text-xl text-white/90 mb-8">
-                  {especialidad.descripcion_detallada || especialidad.descripcion}
+                  {especialidad.descripcionDetallada}
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4">
@@ -159,36 +133,34 @@ const EspecialidadIndividualNew = () => {
         </section>
 
         {/* Servicios */}
-        {especialidad.servicios && especialidad.servicios.length > 0 && (
-          <section className="section-padding bg-white">
-            <div className="container-custom">
-              <div className="text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold text-hospital-primary mb-4">
-                  Servicios que Ofrecemos
-                </h2>
-                <p className="text-lg text-hospital-gray max-w-2xl mx-auto">
-                  Conoce todos los servicios disponibles en nuestra especialidad de {especialidad.titulo.toLowerCase()}
-                </p>
-              </div>
-
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {especialidad.servicios.map((servicio, index) => (
-                  <div
-                    key={index}
-                    className="flex items-start gap-3 p-4 bg-hospital-light rounded-xl hover:shadow-md transition-shadow duration-300"
-                  >
-                    <CheckCircle className="w-6 h-6 text-hospital-accent flex-shrink-0 mt-1" />
-                    <div>
-                      <h3 className="font-semibold text-hospital-primary mb-1">
-                        {servicio}
-                      </h3>
-                    </div>
-                  </div>
-                ))}
-              </div>
+        <section className="section-padding bg-white">
+          <div className="container-custom">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-hospital-primary mb-4">
+                Servicios que Ofrecemos
+              </h2>
+              <p className="text-lg text-hospital-gray max-w-2xl mx-auto">
+                Conoce todos los servicios disponibles en nuestra especialidad de {especialidad.titulo.toLowerCase()}
+              </p>
             </div>
-          </section>
-        )}
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {especialidad.servicios && especialidad.servicios.map((servicio, index) => (
+                <div
+                  key={index}
+                  className="flex items-start gap-3 p-4 bg-hospital-light rounded-xl hover:shadow-md transition-shadow duration-300"
+                >
+                  <CheckCircle className="w-6 h-6 text-hospital-accent flex-shrink-0 mt-1" />
+                  <div>
+                    <h3 className="font-semibold text-hospital-primary mb-1">
+                      {servicio}
+                    </h3>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
         {/* Doctores */}
         <section className="section-padding bg-slate-50">
@@ -202,35 +174,33 @@ const EspecialidadIndividualNew = () => {
               </p>
             </div>
 
-            {loadingDoctores ? (
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {[...Array(6)].map((_, i) => (
-                  <Card key={i}>
-                    <CardHeader className="text-center pb-4">
-                      <Skeleton className="w-24 h-24 rounded-full mx-auto mb-4" />
-                      <Skeleton className="h-6 w-32 mx-auto mb-2" />
-                      <Skeleton className="h-4 w-40 mx-auto" />
-                    </CardHeader>
-                    <CardContent>
-                      <Skeleton className="h-16 w-full mb-4" />
-                      <Skeleton className="h-10 w-full" />
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            ) : doctores && doctores.length > 0 ? (
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {doctores.map((doctor) => (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {especialidad.doctores && especialidad.doctores.map((doctor) => {
+                const doctorData = doctores.find(doc => doc.id === doctor.id);
+
+                if (!doctorData) {
+                  return null;
+                }
+
+                const handleWhatsAppBooking = () => {
+                  const phoneNumber = doctorData.whatsapp ? `52${doctorData.whatsapp}` : '522381234567';
+                  const doctorName = doctorData.nombre;
+                  const message = encodeURIComponent(`Hola, me gustaría agendar una cita con ${doctorName} en ${especialidad.titulo}. ¿Podrían ayudarme con la disponibilidad?`);
+                  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+                  window.open(whatsappUrl, '_blank');
+                };
+
+                return (
                   <Card 
-                    key={doctor.id} 
+                    key={doctorData.id} 
                     className="group transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                   >
                     <CardHeader className="text-center pb-4">
                       <div className="w-24 h-24 mx-auto mb-4 bg-hospital-primary/10 rounded-full flex items-center justify-center group-hover:bg-hospital-primary group-hover:scale-110 transition-all duration-300 overflow-hidden">
-                        {doctor.foto ? (
+                        {doctorData.foto ? (
                           <img 
-                            src={doctor.foto} 
-                            alt={doctor.nombre}
+                            src={doctorData.foto} 
+                            alt={doctorData.nombre}
                             className="w-full h-full object-cover rounded-full"
                           />
                         ) : (
@@ -238,23 +208,23 @@ const EspecialidadIndividualNew = () => {
                         )}
                       </div>
                       <CardTitle className="text-xl text-hospital-primary flex items-center justify-center gap-2">
-                        {doctor.nombre}
-                        {doctor.has_detailed_profile && <ExternalLink className="w-4 h-4 opacity-60" />}
+                        {doctorData.nombre}
+                        {doctorData.hasDetailedProfile && <ExternalLink className="w-4 h-4 opacity-60" />}
                       </CardTitle>
-                      <p className="text-hospital-secondary font-medium">{doctor.titulo}</p>
+                      <p className="text-hospital-secondary font-medium">{doctorData.titulo}</p>
                     </CardHeader>
                     <CardContent className="pt-0">
                       <div className="space-y-3">
                         <div className="flex items-center gap-2 text-sm text-hospital-gray">
                           <CheckCircle className="w-4 h-4 text-hospital-accent" />
-                          {doctor.experiencia}
+                          {doctorData.experiencia}
                         </div>
                         
-                        {doctor.certificaciones && doctor.certificaciones.length > 0 && (
+                        {doctorData.certificaciones && doctorData.certificaciones.length > 0 && (
                           <div className="space-y-2">
                             <p className="text-sm font-medium text-hospital-primary">Certificaciones:</p>
                             <div className="space-y-1">
-                              {doctor.certificaciones.slice(0, 2).map((cert, index) => (
+                              {doctorData.certificaciones.slice(0, 2).map((cert, index) => (
                                 <div key={index} className="flex items-center gap-2 text-sm text-hospital-gray">
                                   <CheckCircle className="w-3 h-3 text-hospital-accent" />
                                   {cert}
@@ -265,8 +235,8 @@ const EspecialidadIndividualNew = () => {
                         )}
 
                         <div className="flex flex-col gap-2 mt-4">
-                          {doctor.has_detailed_profile && (
-                            <Link to={`/doctores/${doctor.slug}`}>
+                          {doctorData.hasDetailedProfile && (
+                            <Link to={`/doctores/${doctorData.slug}`}>
                               <Button 
                                 className="w-full bg-hospital-primary hover:bg-hospital-primary/90 text-white" 
                                 size="sm"
@@ -283,7 +253,7 @@ const EspecialidadIndividualNew = () => {
                             onClick={(e) => {
                               e.preventDefault();
                               e.stopPropagation();
-                              handleWhatsAppBooking(doctor);
+                              handleWhatsAppBooking();
                             }}
                           >
                             <MessageCircle className="w-4 h-4 mr-2" />
@@ -293,13 +263,9 @@ const EspecialidadIndividualNew = () => {
                       </div>
                     </CardContent>
                   </Card>
-                ))}
-              </div>
-            ) : (
-              <div className="text-center py-12">
-                <p className="text-hospital-gray">No hay doctores disponibles para esta especialidad</p>
-              </div>
-            )}
+                );
+              })}
+            </div>
           </div>
         </section>
 

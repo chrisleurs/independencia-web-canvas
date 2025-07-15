@@ -64,7 +64,7 @@ const DoctorProfileEnhanced = ({ doctor }: DoctorProfileEnhancedProps) => {
   return (
     <div className="min-h-screen bg-white">
       {/* Breadcrumb */}
-      <section className="bg-hospital-light py-4">
+      <section className="bg-hospital-light py-2">
         <div className="container-custom">
           <Breadcrumb>
             <BreadcrumbList>
