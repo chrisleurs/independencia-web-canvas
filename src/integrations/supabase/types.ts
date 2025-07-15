@@ -14,7 +14,222 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      doctor_especialidades: {
+        Row: {
+          created_at: string | null
+          doctor_id: string | null
+          especialidad_id: string | null
+          id: string
+        }
+        Insert: {
+          created_at?: string | null
+          doctor_id?: string | null
+          especialidad_id?: string | null
+          id?: string
+        }
+        Update: {
+          created_at?: string | null
+          doctor_id?: string | null
+          especialidad_id?: string | null
+          id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "doctor_especialidades_doctor_id_fkey"
+            columns: ["doctor_id"]
+            isOneToOne: false
+            referencedRelation: "doctores"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "doctor_especialidades_especialidad_id_fkey"
+            columns: ["especialidad_id"]
+            isOneToOne: false
+            referencedRelation: "especialidades"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      doctor_servicios: {
+        Row: {
+          created_at: string | null
+          doctor_id: string | null
+          id: string
+          servicio_id: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          doctor_id?: string | null
+          id?: string
+          servicio_id?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          doctor_id?: string | null
+          id?: string
+          servicio_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "doctor_servicios_doctor_id_fkey"
+            columns: ["doctor_id"]
+            isOneToOne: false
+            referencedRelation: "doctores"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "doctor_servicios_servicio_id_fkey"
+            columns: ["servicio_id"]
+            isOneToOne: false
+            referencedRelation: "servicios"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      doctores: {
+        Row: {
+          biografia: string | null
+          certificaciones: string[] | null
+          created_at: string | null
+          educacion: string[] | null
+          experiencia: string | null
+          foto: string | null
+          has_detailed_profile: boolean | null
+          horarios_atencion: string | null
+          id: string
+          logros: string[] | null
+          nombre: string
+          slug: string
+          titulo: string
+          ubicacion_consultorio: string | null
+          updated_at: string | null
+          whatsapp: string | null
+        }
+        Insert: {
+          biografia?: string | null
+          certificaciones?: string[] | null
+          created_at?: string | null
+          educacion?: string[] | null
+          experiencia?: string | null
+          foto?: string | null
+          has_detailed_profile?: boolean | null
+          horarios_atencion?: string | null
+          id?: string
+          logros?: string[] | null
+          nombre: string
+          slug: string
+          titulo: string
+          ubicacion_consultorio?: string | null
+          updated_at?: string | null
+          whatsapp?: string | null
+        }
+        Update: {
+          biografia?: string | null
+          certificaciones?: string[] | null
+          created_at?: string | null
+          educacion?: string[] | null
+          experiencia?: string | null
+          foto?: string | null
+          has_detailed_profile?: boolean | null
+          horarios_atencion?: string | null
+          id?: string
+          logros?: string[] | null
+          nombre?: string
+          slug?: string
+          titulo?: string
+          ubicacion_consultorio?: string | null
+          updated_at?: string | null
+          whatsapp?: string | null
+        }
+        Relationships: []
+      }
+      especialidades: {
+        Row: {
+          created_at: string | null
+          descripcion: string
+          descripcion_detallada: string | null
+          icon_name: string
+          id: string
+          servicios: string[] | null
+          slug: string
+          titulo: string
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          descripcion: string
+          descripcion_detallada?: string | null
+          icon_name: string
+          id?: string
+          servicios?: string[] | null
+          slug: string
+          titulo: string
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          descripcion?: string
+          descripcion_detallada?: string | null
+          icon_name?: string
+          id?: string
+          servicios?: string[] | null
+          slug?: string
+          titulo?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      servicios: {
+        Row: {
+          beneficios: string[] | null
+          created_at: string | null
+          descripcion_completa: string
+          descripcion_corta: string
+          horarios: string
+          icon_name: string
+          id: string
+          imagen: string | null
+          incluye: string[] | null
+          requisitos: string[] | null
+          slug: string
+          tecnologia: string[] | null
+          titulo: string
+          updated_at: string | null
+        }
+        Insert: {
+          beneficios?: string[] | null
+          created_at?: string | null
+          descripcion_completa: string
+          descripcion_corta: string
+          horarios: string
+          icon_name: string
+          id?: string
+          imagen?: string | null
+          incluye?: string[] | null
+          requisitos?: string[] | null
+          slug: string
+          tecnologia?: string[] | null
+          titulo: string
+          updated_at?: string | null
+        }
+        Update: {
+          beneficios?: string[] | null
+          created_at?: string | null
+          descripcion_completa?: string
+          descripcion_corta?: string
+          horarios?: string
+          icon_name?: string
+          id?: string
+          imagen?: string | null
+          incluye?: string[] | null
+          requisitos?: string[] | null
+          slug?: string
+          tecnologia?: string[] | null
+          titulo?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
