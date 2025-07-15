@@ -13,7 +13,7 @@ import {
   BreadcrumbPage, 
   BreadcrumbSeparator 
 } from '@/components/ui/breadcrumb';
-import { ArrowLeft, Phone, Calendar, CheckCircle, User, MessageCircle, ExternalLink } from 'lucide-react';
+import { ArrowLeft, Phone, Calendar, CheckCircle, User, MessageCircle, ExternalLink, Stethoscope } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useEspecialidades } from '@/hooks/useEspecialidades';
 import { useDoctoresByEspecialidad } from '@/hooks/useDoctores';
@@ -51,14 +51,19 @@ const EspecialidadIndividualNew = () => {
     return <Navigate to="/especialidades" replace />;
   }
 
-  // Get the icon dynamically
-  const getIcon = (iconName: string) => {
+  // Get the icon dynamically with proper type checking
+  const getIconComponent = (iconName: string) => {
     const iconKey = iconName as keyof typeof LucideIcons;
     const IconComponent = LucideIcons[iconKey];
-    return IconComponent || LucideIcons.Stethoscope;
+    
+    // Return the component if it exists and is a valid React component, otherwise return Stethoscope
+    if (IconComponent && typeof IconComponent === 'function') {
+      return IconComponent;
+    }
+    return Stethoscope;
   };
 
-  const Icon = getIcon(especialidad.icon_name);
+  const IconComponent = getIconComponent(especialidad.icon_name);
 
   // Breadcrumb con padding reducido
   return (
@@ -103,7 +108,7 @@ const EspecialidadIndividualNew = () => {
               <div>
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center">
-                    <Icon className="w-12 h-12 text-white" />
+                    <IconComponent className="w-12 h-12 text-white" />
                   </div>
                   <div>
                     <h1 className="text-4xl md:text-5xl font-bold text-white">
@@ -134,7 +139,7 @@ const EspecialidadIndividualNew = () => {
 
               <div className="relative">
                 <div className="aspect-square bg-white/10 rounded-2xl flex items-center justify-center backdrop-blur-sm">
-                  <Icon className="w-32 h-32 text-white/30" />
+                  <IconComponent className="w-32 h-32 text-white/30" />
                 </div>
                 <div className="absolute -top-4 -right-4 w-24 h-24 bg-white/10 rounded-full"></div>
                 <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-white/20 rounded-full"></div>
