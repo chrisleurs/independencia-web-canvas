@@ -6,6 +6,7 @@ import EspecialidadesMedicas from '@/components/sections/EspecialidadesMedicas';
 import FotografiasIntermedia from '@/components/sections/FotografiasIntermedia';
 import ServiciosMedicos from '@/components/sections/ServiciosMedicos';
 import SobreHospitalResumen from '@/components/sections/SobreHospitalResumen';
+import EquipoEnfermeria from '@/components/sections/EquipoEnfermeria';
 import Galeria from '@/components/sections/Galeria';
 import ContactoHomepage from '@/components/sections/ContactoHomepage';
 
@@ -17,6 +18,7 @@ const Inicio = () => {
       <FotografiasIntermedia />
       <ServiciosMedicos />
       <SobreHospitalResumen />
+      <EquipoEnfermeria />
       <Galeria />
       <ContactoHomepage />
     </Layout>
