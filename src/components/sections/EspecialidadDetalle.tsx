@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -123,7 +124,7 @@ const EspecialidadDetalle = ({ especialidad }: EspecialidadDetalleProps) => {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {especialidad.servicios.map((servicio, index) => (
+            {especialidad.servicios && especialidad.servicios.map((servicio, index) => (
               <div
                 key={index}
                 className="flex items-start gap-3 p-4 bg-hospital-light rounded-xl hover:shadow-md transition-shadow duration-300"
@@ -153,7 +154,7 @@ const EspecialidadDetalle = ({ especialidad }: EspecialidadDetalleProps) => {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {especialidad.doctores.map((doctor) => (
+            {especialidad.doctores && especialidad.doctores.map((doctor) => (
               <Card 
                 key={doctor.id} 
                 className="group transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
@@ -183,17 +184,19 @@ const EspecialidadDetalle = ({ especialidad }: EspecialidadDetalleProps) => {
                       {doctor.experiencia}
                     </div>
                     
-                    <div className="space-y-2">
-                      <p className="text-sm font-medium text-hospital-primary">Certificaciones:</p>
-                      <div className="space-y-1">
-                        {doctor.certificaciones.slice(0, 2).map((cert, index) => (
-                          <div key={index} className="flex items-center gap-2 text-sm text-hospital-gray">
-                            <CheckCircle className="w-3 h-3 text-hospital-accent" />
-                            {cert}
-                          </div>
-                        ))}
+                    {doctor.certificaciones && doctor.certificaciones.length > 0 && (
+                      <div className="space-y-2">
+                        <p className="text-sm font-medium text-hospital-primary">Certificaciones:</p>
+                        <div className="space-y-1">
+                          {doctor.certificaciones.slice(0, 2).map((cert, index) => (
+                            <div key={index} className="flex items-center gap-2 text-sm text-hospital-gray">
+                              <CheckCircle className="w-3 h-3 text-hospital-accent" />
+                              {cert}
+                            </div>
+                          ))}
+                        </div>
                       </div>
-                    </div>
+                    )}
 
                     <div className="flex flex-col gap-2 mt-4">
                       {doctor.hasDetailedProfile && (
