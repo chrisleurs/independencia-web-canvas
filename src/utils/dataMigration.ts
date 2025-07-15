@@ -1,7 +1,6 @@
-
 import { supabase } from '@/integrations/supabase/client';
-import { especialidades, doctores, servicios } from '@/data/especialidades';
-import { servicios as serviciosData } from '@/data/servicios';
+import { especialidades, doctores } from '@/data/especialidades';
+import { servicios } from '@/data/servicios';
 
 export const migrateEspecialidades = async () => {
   console.log('Migrando especialidades...');
@@ -62,7 +61,7 @@ export const migrateDoctores = async () => {
 export const migrateServicios = async () => {
   console.log('Migrando servicios...');
   
-  for (const servicio of serviciosData) {
+  for (const servicio of servicios) {
     const { error } = await supabase
       .from('servicios')
       .upsert({
