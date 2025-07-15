@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
@@ -15,8 +16,8 @@ import {
 import { ArrowLeft, Phone, Calendar, CheckCircle, User, MessageCircle, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useEspecialidades } from '@/hooks/useEspecialidades';
-import { useDoctores } from '@/hooks/useDoctores';
-import { getIcon } from '@/utils/iconMapping';
+import { useDoctoresByEspecialidad } from '@/hooks/useDoctores';
+import * as LucideIcons from 'lucide-react';
 
 const EspecialidadIndividualNew = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -26,9 +27,12 @@ const EspecialidadIndividualNew = () => {
   }
 
   const { data: especialidades = [], isLoading: loadingEspecialidades } = useEspecialidades();
-  const { data: doctores = [], isLoading: loadingDoctores } = useDoctores();
-
+  
   const especialidad = especialidades.find(esp => esp.slug === slug);
+  
+  const { data: doctores = [], isLoading: loadingDoctores } = useDoctoresByEspecialidad(
+    especialidad?.id || ''
+  );
 
   if (loadingEspecialidades || loadingDoctores) {
     return (
@@ -46,6 +50,13 @@ const EspecialidadIndividualNew = () => {
   if (!especialidad) {
     return <Navigate to="/especialidades" replace />;
   }
+
+  // Get the icon dynamically
+  const getIcon = (iconName: string) => {
+    const iconKey = iconName as keyof typeof LucideIcons;
+    const IconComponent = LucideIcons[iconKey];
+    return IconComponent || LucideIcons.Stethoscope;
+  };
 
   const Icon = getIcon(especialidad.icon_name);
 
@@ -102,7 +113,7 @@ const EspecialidadIndividualNew = () => {
                 </div>
                 
                 <p className="text-xl text-white/90 mb-8">
-                  {especialidad.descripcionDetallada}
+                  {especialidad.descripcion_detallada || especialidad.descripcion}
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4">
@@ -175,16 +186,10 @@ const EspecialidadIndividualNew = () => {
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {especialidad.doctores && especialidad.doctores.map((doctor) => {
-                const doctorData = doctores.find(doc => doc.id === doctor.id);
-
-                if (!doctorData) {
-                  return null;
-                }
-
+              {doctores.map((doctor) => {
                 const handleWhatsAppBooking = () => {
-                  const phoneNumber = doctorData.whatsapp ? `52${doctorData.whatsapp}` : '522381234567';
-                  const doctorName = doctorData.nombre;
+                  const phoneNumber = doctor.whatsapp ? `52${doctor.whatsapp}` : '522381234567';
+                  const doctorName = doctor.nombre;
                   const message = encodeURIComponent(`Hola, me gustaría agendar una cita con ${doctorName} en ${especialidad.titulo}. ¿Podrían ayudarme con la disponibilidad?`);
                   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
                   window.open(whatsappUrl, '_blank');
@@ -192,15 +197,15 @@ const EspecialidadIndividualNew = () => {
 
                 return (
                   <Card 
-                    key={doctorData.id} 
+                    key={doctor.id} 
                     className="group transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                   >
                     <CardHeader className="text-center pb-4">
                       <div className="w-24 h-24 mx-auto mb-4 bg-hospital-primary/10 rounded-full flex items-center justify-center group-hover:bg-hospital-primary group-hover:scale-110 transition-all duration-300 overflow-hidden">
-                        {doctorData.foto ? (
+                        {doctor.foto ? (
                           <img 
-                            src={doctorData.foto} 
-                            alt={doctorData.nombre}
+                            src={doctor.foto} 
+                            alt={doctor.nombre}
                             className="w-full h-full object-cover rounded-full"
                           />
                         ) : (
@@ -208,23 +213,23 @@ const EspecialidadIndividualNew = () => {
                         )}
                       </div>
                       <CardTitle className="text-xl text-hospital-primary flex items-center justify-center gap-2">
-                        {doctorData.nombre}
-                        {doctorData.hasDetailedProfile && <ExternalLink className="w-4 h-4 opacity-60" />}
+                        {doctor.nombre}
+                        {doctor.has_detailed_profile && <ExternalLink className="w-4 h-4 opacity-60" />}
                       </CardTitle>
-                      <p className="text-hospital-secondary font-medium">{doctorData.titulo}</p>
+                      <p className="text-hospital-secondary font-medium">{doctor.titulo}</p>
                     </CardHeader>
                     <CardContent className="pt-0">
                       <div className="space-y-3">
                         <div className="flex items-center gap-2 text-sm text-hospital-gray">
                           <CheckCircle className="w-4 h-4 text-hospital-accent" />
-                          {doctorData.experiencia}
+                          {doctor.experiencia}
                         </div>
                         
-                        {doctorData.certificaciones && doctorData.certificaciones.length > 0 && (
+                        {doctor.certificaciones && doctor.certificaciones.length > 0 && (
                           <div className="space-y-2">
                             <p className="text-sm font-medium text-hospital-primary">Certificaciones:</p>
                             <div className="space-y-1">
-                              {doctorData.certificaciones.slice(0, 2).map((cert, index) => (
+                              {doctor.certificaciones.slice(0, 2).map((cert, index) => (
                                 <div key={index} className="flex items-center gap-2 text-sm text-hospital-gray">
                                   <CheckCircle className="w-3 h-3 text-hospital-accent" />
                                   {cert}
@@ -235,8 +240,8 @@ const EspecialidadIndividualNew = () => {
                         )}
 
                         <div className="flex flex-col gap-2 mt-4">
-                          {doctorData.hasDetailedProfile && (
-                            <Link to={`/doctores/${doctorData.slug}`}>
+                          {doctor.has_detailed_profile && (
+                            <Link to={`/doctores/${doctor.slug}`}>
                               <Button 
                                 className="w-full bg-hospital-primary hover:bg-hospital-primary/90 text-white" 
                                 size="sm"
