@@ -108,7 +108,7 @@ const EspecialidadIndividualNew = () => {
               <div>
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center">
-                    <IconComponent className="w-12 h-12 text-white" />
+                    {React.createElement(IconComponent, { className: "w-12 h-12 text-white" })}
                   </div>
                   <div>
                     <h1 className="text-4xl md:text-5xl font-bold text-white">
@@ -139,7 +139,7 @@ const EspecialidadIndividualNew = () => {
 
               <div className="relative">
                 <div className="aspect-square bg-white/10 rounded-2xl flex items-center justify-center backdrop-blur-sm">
-                  <IconComponent className="w-32 h-32 text-white/30" />
+                  {React.createElement(IconComponent, { className: "w-32 h-32 text-white/30" })}
                 </div>
                 <div className="absolute -top-4 -right-4 w-24 h-24 bg-white/10 rounded-full"></div>
                 <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-white/20 rounded-full"></div>
