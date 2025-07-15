@@ -11,8 +11,8 @@ const HeroSection = () => {
     window.open(whatsappUrl, '_blank');
   };
 
-  const handleCallClick = () => {
-    window.open('tel:+522381234567', '_self');
+  const handleMapClick = () => {
+    window.open('https://maps.app.goo.gl/hTAwPFdqpNrfHyoQA', '_blank');
   };
 
   return (
@@ -91,13 +91,13 @@ const HeroSection = () => {
               </Button>
               
               <Button 
-                onClick={handleCallClick}
+                onClick={handleMapClick}
                 size="lg" 
                 variant="outline" 
                 className="border-2 border-white text-white hover:bg-white hover:text-hospital-primary font-semibold text-base sm:text-lg px-8 sm:px-10 py-4 sm:py-6 transition-all duration-300 hover:-translate-y-1 min-h-[56px] w-full sm:w-auto"
               >
-                <Phone className="w-5 h-5 mr-3" />
-                Llamar Ahora
+                <MapPin className="w-5 h-5 mr-3" />
+                Ver en Mapa
               </Button>
             </div>
 

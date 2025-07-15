@@ -19,6 +19,10 @@ const ContactoHomepage = () => {
     window.open(whatsappUrl, '_blank');
   };
 
+  const handleMapClick = () => {
+    window.open('https://maps.app.goo.gl/hTAwPFdqpNrfHyoQA', '_blank');
+  };
+
   return (
     <section className="section-padding bg-slate-50">
       <div className="container-custom">
@@ -106,8 +110,8 @@ const ContactoHomepage = () => {
                   <MapPin className="w-12 h-12 mx-auto mb-4" />
                   <p className="font-semibold text-lg mb-2">Hospital Independencia</p>
                   <p className="text-sm text-muted-foreground">
-                    Av. Independencia 1234<br />
-                    Centro, Tehuacán, Puebla
+                    Blvd. Revolución Mexicana 1604<br />
+                    Col. San Lorenzo Teotipilco, Tehuacán, Puebla
                   </p>
                 </div>
               </div>
@@ -118,7 +122,8 @@ const ContactoHomepage = () => {
                   <div>
                     <p className="font-semibold text-hospital-primary mb-1">Dirección</p>
                     <p className="text-muted-foreground text-sm">
-                      Av. Independencia 1234, Centro<br />
+                      Boulevard Revolución Mexicana 1604<br />
+                      Col. San Lorenzo Teotipilco<br />
                       Tehuacán, Puebla, México
                     </p>
                   </div>
@@ -130,7 +135,7 @@ const ContactoHomepage = () => {
             <div className="bg-white rounded-2xl p-6 shadow-lg">
               <h3 className="font-semibold text-hospital-primary mb-4">Contacto directo</h3>
               <p className="text-muted-foreground mb-6">
-                También puedes contactarnos por WhatsApp o llamada directa para atención inmediata.
+                También puedes contactarnos por WhatsApp o ver nuestra ubicación en el mapa para visitarnos.
               </p>
               
               <div className="space-y-4">
@@ -144,13 +149,13 @@ const ContactoHomepage = () => {
                 </Button>
                 
                 <Button
-                  onClick={() => window.open('tel:+522381234567', '_self')}
+                  onClick={handleMapClick}
                   variant="outline"
                   className="w-full border-hospital-primary text-hospital-primary hover:bg-hospital-primary hover:text-white"
                   size="lg"
                 >
-                  <Phone className="w-5 h-5 mr-2" />
-                  Llamar ahora
+                  <MapPin className="w-5 h-5 mr-2" />
+                  Ver en Mapa
                 </Button>
               </div>
             </div>

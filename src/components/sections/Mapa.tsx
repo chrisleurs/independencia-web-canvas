@@ -5,6 +5,10 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 
 const Mapa = () => {
+  const handleMapClick = () => {
+    window.open('https://maps.app.goo.gl/hTAwPFdqpNrfHyoQA', '_blank');
+  };
+
   return (
     <section id="ubicacion" className="section-padding bg-slate-50">
       <div className="container-custom">
@@ -24,7 +28,7 @@ const Mapa = () => {
               <div className="text-center text-muted-foreground">
                 <MapPin className="w-16 h-16 mx-auto mb-4 text-primary" />
                 <p className="text-lg font-medium">Mapa Interactivo</p>
-                <p className="text-sm">Integración con Google Maps</p>
+                <p className="text-sm">Hospital Independencia</p>
               </div>
             </div>
             
@@ -54,8 +58,9 @@ const Mapa = () => {
                   <div>
                     <h4 className="font-semibold mb-1">Dirección</h4>
                     <p className="text-muted-foreground text-sm">
-                      Av. Principal 123, Colonia Centro<br />
-                      Ciudad, Estado, CP 12345
+                      Boulevard Revolución Mexicana 1604<br />
+                      Col. San Lorenzo Teotipilco<br />
+                      Tehuacán, Puebla, México
                     </p>
                   </div>
                 </CardContent>
@@ -69,8 +74,8 @@ const Mapa = () => {
                   <div>
                     <h4 className="font-semibold mb-1">Teléfonos</h4>
                     <p className="text-muted-foreground text-sm">
-                      Recepción: (55) 1234-5678<br />
-                      Urgencias: (55) 8765-4321
+                      Recepción: (238) 123-4567<br />
+                      Urgencias: (238) 123-4567
                     </p>
                   </div>
                 </CardContent>
@@ -112,9 +117,13 @@ const Mapa = () => {
                 <Phone className="w-4 h-4 mr-2" />
                 Llamar Ahora
               </Button>
-              <Button variant="outline" className="flex-1">
+              <Button 
+                variant="outline" 
+                className="flex-1"
+                onClick={handleMapClick}
+              >
                 <MapPin className="w-4 h-4 mr-2" />
-                Cómo Llegar
+                Ver en Mapa
               </Button>
             </div>
           </div>
