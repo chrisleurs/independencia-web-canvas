@@ -31,24 +31,30 @@ const EspecialidadDetalle = ({ especialidad }: EspecialidadDetalleProps) => {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Breadcrumb */}
-      <section className="bg-hospital-light py-2">
+      {/* Breadcrumb - Fixed alignment */}
+      <section className="bg-hospital-light py-4">
         <div className="container-custom">
           <Breadcrumb>
-            <BreadcrumbList>
+            <BreadcrumbList className="flex items-center gap-2 text-sm">
               <BreadcrumbItem>
                 <BreadcrumbLink asChild>
-                  <Link to="/">Inicio</Link>
+                  <Link to="/" className="text-hospital-gray hover:text-hospital-primary transition-colors">
+                    Inicio
+                  </Link>
                 </BreadcrumbLink>
               </BreadcrumbItem>
-              <BreadcrumbSeparator />
+              <BreadcrumbSeparator className="text-hospital-gray/50" />
               <BreadcrumbItem>
                 <BreadcrumbLink asChild>
-                  <Link to="/especialidades">Especialidades</Link>
+                  <Link to="/especialidades" className="text-hospital-gray hover:text-hospital-primary transition-colors">
+                    Especialidades
+                  </Link>
                 </BreadcrumbLink>
               </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbPage>{especialidad.titulo}</BreadcrumbPage>
+              <BreadcrumbSeparator className="text-hospital-gray/50" />
+              <BreadcrumbPage className="text-hospital-primary font-medium">
+                {especialidad.titulo}
+              </BreadcrumbPage>
             </BreadcrumbList>
           </Breadcrumb>
         </div>

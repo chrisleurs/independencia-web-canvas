@@ -161,6 +161,14 @@
     color: hsl(var(--hospital-title-light));
   }
 
+  .text-hospital-gray {
+    color: hsl(var(--hospital-gray));
+  }
+
+  .bg-hospital-light {
+    background-color: hsl(var(--hospital-light));
+  }
+
   /* New professional blue utilities */
   .bg-hospital-blue-light {
     background-color: hsl(var(--hospital-blue-light));
@@ -251,6 +259,25 @@
 
 .animate-float {
   animation: float 4s ease-in-out infinite;
+}
+
+/* Breadcrumb specific alignment fixes */
+.breadcrumb-container {
+  @apply flex items-center justify-start;
+}
+
+.breadcrumb-list {
+  @apply flex items-center gap-2 flex-wrap;
+  line-height: 1.5;
+}
+
+.breadcrumb-item {
+  @apply flex items-center;
+}
+
+.breadcrumb-separator {
+  @apply flex items-center justify-center;
+  margin: 0 0.25rem;
 }
 
 /* Touch-friendly improvements for mobile */
