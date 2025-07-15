@@ -9,13 +9,18 @@ interface LayoutProps {
 }
 
 const Layout = ({ children }: LayoutProps) => {
-  // Scroll to top when component mounts (page navigation)
+  // Ensure page always starts from top immediately
   useEffect(() => {
-    window.scrollTo(0, 0);
+    // Scroll to top immediately when component mounts
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    
+    // Also set document and body scroll position to ensure consistency
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
   }, []);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white" style={{ scrollBehavior: 'auto' }}>
       <Navigation />
       <main className="pt-16 md:pt-18 lg:pt-20">
         {children}
