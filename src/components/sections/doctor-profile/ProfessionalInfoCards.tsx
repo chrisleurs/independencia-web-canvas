@@ -125,12 +125,14 @@ const ProfessionalInfoCards = ({ doctor, getEspecialidadSlug }: ProfessionalInfo
               <span className="text-hospital-gray">{doctor.formacion}</span>
             </div>
           )}
-          {doctor.certificaciones.map((cert, index) => (
-            <div key={index} className="flex items-start gap-3">
-              <CheckCircle className="w-5 h-5 text-hospital-accent flex-shrink-0 mt-1" />
-              <span className="text-hospital-gray">{cert}</span>
-            </div>
-          ))}
+          {doctor.certificaciones && doctor.certificaciones.length > 0 && (
+            doctor.certificaciones.map((cert, index) => (
+              <div key={index} className="flex items-start gap-3">
+                <CheckCircle className="w-5 h-5 text-hospital-accent flex-shrink-0 mt-1" />
+                <span className="text-hospital-gray">{cert}</span>
+              </div>
+            ))
+          )}
         </CardContent>
       </Card>
 
@@ -215,7 +217,7 @@ const ProfessionalInfoCards = ({ doctor, getEspecialidadSlug }: ProfessionalInfo
                 </div>
               </div>
             )}
-            {doctor.telefonosAdicionales && doctor.telefonosAdicionales.map((telefono, index) => (
+            {doctor.telefonosAdicionales && doctor.telefonosAdicionales.length > 0 && doctor.telefonosAdicionales.map((telefono, index) => (
               <div key={index} className="flex items-start gap-3">
                 <CheckCircle className="w-5 h-5 text-hospital-accent flex-shrink-0 mt-1" />
                 <div className="flex flex-col">
