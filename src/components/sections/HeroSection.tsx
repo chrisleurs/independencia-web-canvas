@@ -93,24 +93,23 @@ const HeroSection = () => {
               <Button 
                 onClick={handleMapClick}
                 size="lg" 
-                variant="outline" 
-                className="border-2 border-white text-white hover:bg-white hover:text-hospital-primary font-semibold text-base sm:text-lg px-8 sm:px-10 py-4 sm:py-6 transition-all duration-300 hover:-translate-y-1 min-h-[56px] w-full sm:w-auto"
+                className="bg-hospital-secondary text-white hover:bg-hospital-secondary/90 font-semibold text-base sm:text-lg px-8 sm:px-10 py-4 sm:py-6 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 min-h-[56px] w-full sm:w-auto"
               >
                 <MapPin className="w-5 h-5 mr-3" />
                 Ver en Mapa
               </Button>
             </div>
 
-            {/* Contact Info */}
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 pt-6 text-white/80 justify-center lg:justify-start">
-              <span className="flex items-center text-sm justify-center lg:justify-start">
+            {/* Contact Info - Improved layout */}
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 pt-6 text-white/90 justify-center lg:justify-start">
+              <div className="flex items-center justify-center lg:justify-start bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
                 <Phone className="w-4 h-4 mr-3" />
-                (238) 123-4567
-              </span>
-              <span className="flex items-center text-sm justify-center lg:justify-start">
+                <span className="text-sm font-medium">(238) 123-4567</span>
+              </div>
+              <div className="flex items-center justify-center lg:justify-start bg-green-500/20 backdrop-blur-sm rounded-full px-4 py-2">
                 <div className="w-2 h-2 bg-green-400 rounded-full mr-3 animate-pulse"></div>
-                Urgencias 24/7
-              </span>
+                <span className="text-sm font-medium">Urgencias 24/7</span>
+              </div>
             </div>
           </div>
 
