@@ -44,33 +44,33 @@ const Galeria = () => {
   ];
 
   return (
-    <section className="section-padding bg-gray-50">
-      <div className="container-custom">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-hospital-primary mb-4">
+    <section className="py-16 sm:py-20 lg:py-28 bg-gray-50">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-hospital-primary mb-4">
             Galería
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto px-4">
             Conoce nuestras modernas instalaciones y el ambiente profesional que caracteriza al Hospital Independencia
           </p>
         </div>
 
-        {/* Mobile Carousel */}
-        <div className="md:hidden">
+        {/* Mobile and Tablet Carousel */}
+        <div className="lg:hidden">
           <Carousel className="w-full">
-            <CarouselContent>
+            <CarouselContent className="-ml-2 md:-ml-4">
               {imagenes.map((imagen, index) => (
-                <CarouselItem key={index}>
+                <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2">
                   <Card className="overflow-hidden border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
                     <div className="relative group">
                       <img
                         src={imagen.imagen}
                         alt={imagen.titulo}
-                        className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
+                        className="w-full h-56 sm:h-64 object-cover transition-transform duration-300 group-hover:scale-105"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-                          <h3 className="font-semibold text-lg mb-1">{imagen.titulo}</h3>
+                          <h3 className="font-semibold text-base sm:text-lg mb-1">{imagen.titulo}</h3>
                           <p className="text-sm opacity-90">{imagen.descripcion}</p>
                         </div>
                       </div>
@@ -79,25 +79,25 @@ const Galeria = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="left-2" />
-            <CarouselNext className="right-2" />
+            <CarouselPrevious className="left-2 h-12 w-12 bg-white/90 hover:bg-white shadow-lg" />
+            <CarouselNext className="right-2 h-12 w-12 bg-white/90 hover:bg-white shadow-lg" />
           </Carousel>
         </div>
 
         {/* Desktop Grid */}
-        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="hidden lg:grid lg:grid-cols-2 xl:grid-cols-3 gap-6 xl:gap-8">
           {imagenes.map((imagen, index) => (
             <Card key={index} className="overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 card-hover">
               <div className="relative group">
                 <img
                   src={imagen.imagen}
                   alt={imagen.titulo}
-                  className="w-full h-56 lg:h-64 object-cover transition-transform duration-300 group-hover:scale-105"
+                  className="w-full h-64 xl:h-72 object-cover transition-transform duration-300 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-                    <h3 className="font-semibold text-lg mb-1">{imagen.titulo}</h3>
-                    <p className="text-sm opacity-90">{imagen.descripcion}</p>
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <h3 className="font-semibold text-lg mb-2 text-white">{imagen.titulo}</h3>
+                    <p className="text-sm text-white/90">{imagen.descripcion}</p>
                   </div>
                 </div>
               </div>

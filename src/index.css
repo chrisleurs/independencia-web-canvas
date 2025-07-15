@@ -101,25 +101,26 @@
     color: hsl(var(--hospital-title-light));
   }
 
+  /* Mobile-first responsive typography */
   h1 {
-    @apply text-4xl md:text-5xl lg:text-6xl;
+    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl;
   }
 
   h2 {
-    @apply text-3xl md:text-4xl;
+    @apply text-2xl sm:text-3xl md:text-4xl;
   }
 
   h3 {
-    @apply text-xl md:text-2xl;
+    @apply text-lg sm:text-xl md:text-2xl;
   }
 
-  /* Enhanced Layout Utilities with More Whitespace */
+  /* Enhanced Layout Utilities with Mobile-first Approach */
   .section-padding {
-    @apply py-20 md:py-28;
+    @apply py-16 sm:py-20 lg:py-28;
   }
 
   .container-custom {
-    @apply container mx-auto px-8 sm:px-12 lg:px-16 max-w-7xl;
+    @apply container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl;
   }
 
   /* Professional Blue Color Classes */
@@ -214,12 +215,22 @@ html {
 /* WhatsApp button - keep green for brand recognition */
 .whatsapp-float {
   position: fixed;
-  bottom: 32px;
-  right: 32px;
+  bottom: 20px;
+  right: 20px;
   z-index: 1000;
   border-radius: 50%;
   box-shadow: 0 8px 32px rgba(37, 211, 102, 0.3);
   transition: all 0.3s ease;
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 640px) {
+  .whatsapp-float {
+    bottom: 24px;
+    right: 16px;
+    width: 56px;
+    height: 56px;
+  }
 }
 
 .whatsapp-float:hover {
@@ -227,7 +238,7 @@ html {
   box-shadow: 0 12px 40px rgba(37, 211, 102, 0.4);
 }
 
-/* Enhanced focus states */
+/* Enhanced focus states for accessibility */
 .focus-visible {
   @apply outline-2 outline-hospital-primary outline-offset-2;
 }
@@ -240,4 +251,28 @@ html {
 
 .animate-float {
   animation: float 4s ease-in-out infinite;
+}
+
+/* Touch-friendly improvements for mobile */
+@media (max-width: 768px) {
+  .card-hover:hover {
+    transform: none; /* Disable hover transforms on touch devices */
+  }
+  
+  /* Ensure proper touch targets */
+  button, a, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Improved text readability on mobile */
+@media (max-width: 640px) {
+  body {
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+  
+  p {
+    line-height: 1.6;
+  }
 }

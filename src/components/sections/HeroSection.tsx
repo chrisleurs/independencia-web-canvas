@@ -25,65 +25,65 @@ const HeroSection = () => {
         <div className="absolute top-80 right-1/3 w-20 h-20 border border-white/8 rounded-full"></div>
       </div>
 
-      <div className="container-custom relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Content */}
-          <div className="text-white space-y-12">
-            <div className="space-y-8">
-              <div className="inline-flex items-center bg-white/8 backdrop-blur-sm rounded-full px-6 py-3 text-sm font-medium border border-white/10">
-                <MapPin className="w-4 h-4 mr-3" />
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+          {/* Content - Mobile-first approach */}
+          <div className="text-white space-y-8 lg:space-y-12 text-center lg:text-left">
+            <div className="space-y-6 lg:space-y-8">
+              <div className="inline-flex items-center bg-white/8 backdrop-blur-sm rounded-full px-4 py-2 sm:px-6 sm:py-3 text-sm font-medium border border-white/10">
+                <MapPin className="w-4 h-4 mr-2 sm:mr-3" />
                 Tehuacán, Puebla
               </div>
               
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-heading leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-heading leading-tight">
                 Hospital
                 <span className="block text-hospital-secondary">Independencia</span>
               </h1>
               
-              <p className="text-xl md:text-2xl text-white/90 max-w-2xl leading-relaxed">
+              <p className="text-lg sm:text-xl md:text-2xl text-white/90 max-w-2xl leading-relaxed mx-auto lg:mx-0">
                 Más de 25 años brindando atención médica de calidad con tecnología de vanguardia y el compromiso humano que tu familia merece
               </p>
             </div>
 
-            {/* Stats - Enhanced Spacing */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 py-12">
-              <div className="flex items-center space-x-6 bg-white/8 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
-                <div className="w-14 h-14 bg-white/10 rounded-xl flex items-center justify-center">
-                  <Shield className="w-7 h-7 text-white" />
+            {/* Stats - Mobile optimized */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 py-8 lg:py-12">
+              <div className="flex items-center space-x-4 sm:space-x-6 bg-white/8 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border border-white/10">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 bg-white/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <Shield className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
                 </div>
                 <div>
-                  <div className="text-2xl font-bold font-heading">25+</div>
-                  <div className="text-white/80 text-sm">Años de experiencia</div>
+                  <div className="text-xl sm:text-2xl font-bold font-heading">25+</div>
+                  <div className="text-white/80 text-xs sm:text-sm">Años de experiencia</div>
                 </div>
               </div>
               
-              <div className="flex items-center space-x-6 bg-white/8 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
-                <div className="w-14 h-14 bg-white/10 rounded-xl flex items-center justify-center">
-                  <Heart className="w-7 h-7 text-white" />
+              <div className="flex items-center space-x-4 sm:space-x-6 bg-white/8 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border border-white/10">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 bg-white/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <Heart className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
                 </div>
                 <div>
-                  <div className="text-2xl font-bold font-heading">30+</div>
-                  <div className="text-white/80 text-sm">Especialidades</div>
+                  <div className="text-xl sm:text-2xl font-bold font-heading">30+</div>
+                  <div className="text-white/80 text-xs sm:text-sm">Especialidades</div>
                 </div>
               </div>
               
-              <div className="flex items-center space-x-6 bg-white/8 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
-                <div className="w-14 h-14 bg-white/10 rounded-xl flex items-center justify-center">
-                  <Users className="w-7 h-7 text-white" />
+              <div className="flex items-center space-x-4 sm:space-x-6 bg-white/8 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border border-white/10 sm:col-span-1 col-span-1">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 bg-white/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <Users className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
                 </div>
                 <div>
-                  <div className="text-2xl font-bold font-heading">50K+</div>
-                  <div className="text-white/80 text-sm">Pacientes atendidos</div>
+                  <div className="text-xl sm:text-2xl font-bold font-heading">50K+</div>
+                  <div className="text-white/80 text-xs sm:text-sm">Pacientes atendidos</div>
                 </div>
               </div>
             </div>
 
-            {/* CTA Buttons - Professional Blue Focus */}
-            <div className="flex flex-col sm:flex-row gap-6">
+            {/* CTA Buttons - Mobile optimized */}
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
               <Button 
                 onClick={handleWhatsAppClick}
                 size="lg" 
-                className="bg-white text-hospital-primary hover:bg-white/95 font-semibold text-lg px-10 py-6 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+                className="bg-white text-hospital-primary hover:bg-white/95 font-semibold text-base sm:text-lg px-8 sm:px-10 py-4 sm:py-6 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 min-h-[56px] w-full sm:w-auto"
               >
                 <MessageCircle className="w-5 h-5 mr-3" />
                 Agendar por WhatsApp
@@ -94,7 +94,7 @@ const HeroSection = () => {
                 onClick={handleCallClick}
                 size="lg" 
                 variant="outline" 
-                className="border-2 border-white text-white hover:bg-white hover:text-hospital-primary font-semibold text-lg px-10 py-6 transition-all duration-300 hover:-translate-y-1"
+                className="border-2 border-white text-white hover:bg-white hover:text-hospital-primary font-semibold text-base sm:text-lg px-8 sm:px-10 py-4 sm:py-6 transition-all duration-300 hover:-translate-y-1 min-h-[56px] w-full sm:w-auto"
               >
                 <Phone className="w-5 h-5 mr-3" />
                 Llamar Ahora
@@ -102,19 +102,19 @@ const HeroSection = () => {
             </div>
 
             {/* Contact Info */}
-            <div className="flex flex-col sm:flex-row gap-6 pt-6 text-white/80">
-              <span className="flex items-center text-sm">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 pt-6 text-white/80 justify-center lg:justify-start">
+              <span className="flex items-center text-sm justify-center lg:justify-start">
                 <Phone className="w-4 h-4 mr-3" />
                 (238) 123-4567
               </span>
-              <span className="flex items-center text-sm">
+              <span className="flex items-center text-sm justify-center lg:justify-start">
                 <div className="w-2 h-2 bg-green-400 rounded-full mr-3 animate-pulse"></div>
                 Urgencias 24/7
               </span>
             </div>
           </div>
 
-          {/* Hero Image Placeholder - Enhanced */}
+          {/* Hero Image Placeholder - Hidden on mobile, visible on lg+ */}
           <div className="hidden lg:block">
             <div className="relative">
               <div className="w-full h-[500px] bg-white/5 rounded-3xl backdrop-blur-sm border border-white/10 flex items-center justify-center">
