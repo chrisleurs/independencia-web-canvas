@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -261,23 +260,35 @@
   animation: float 4s ease-in-out infinite;
 }
 
-/* Breadcrumb specific alignment fixes */
+/* Breadcrumb specific alignment fixes - Enhanced */
 .breadcrumb-container {
   @apply flex items-center justify-start;
 }
 
-.breadcrumb-list {
+/* Force all breadcrumb elements to align properly */
+nav[aria-label="breadcrumb"] ol {
   @apply flex items-center gap-2 flex-wrap;
-  line-height: 1.5;
+  line-height: 1.2 !important;
+  align-items: center !important;
 }
 
-.breadcrumb-item {
+nav[aria-label="breadcrumb"] li {
   @apply flex items-center;
+  line-height: 1.2 !important;
+  align-items: center !important;
 }
 
-.breadcrumb-separator {
-  @apply flex items-center justify-center;
-  margin: 0 0.25rem;
+nav[aria-label="breadcrumb"] a,
+nav[aria-label="breadcrumb"] span {
+  @apply inline-flex items-center;
+  line-height: 1.2 !important;
+  vertical-align: middle;
+}
+
+nav[aria-label="breadcrumb"] svg {
+  vertical-align: middle;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
 }
 
 /* Touch-friendly improvements for mobile */
