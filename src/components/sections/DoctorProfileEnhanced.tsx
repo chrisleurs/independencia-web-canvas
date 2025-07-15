@@ -67,20 +67,20 @@ const DoctorProfileEnhanced = ({ doctor }: DoctorProfileEnhancedProps) => {
       <section className="bg-hospital-light py-2">
         <div className="container-custom">
           <Breadcrumb>
-            <BreadcrumbList>
+            <BreadcrumbList className="items-center">
               <BreadcrumbItem>
                 <BreadcrumbLink asChild>
-                  <Link to="/">Inicio</Link>
+                  <Link to="/" className="flex items-center">Inicio</Link>
                 </BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
                 <BreadcrumbLink asChild>
-                  <Link to="/doctores">Doctores</Link>
+                  <Link to="/doctores" className="flex items-center">Doctores</Link>
                 </BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
-              <BreadcrumbPage>{doctor.nombre}</BreadcrumbPage>
+              <BreadcrumbPage className="flex items-center">{doctor.nombre}</BreadcrumbPage>
             </BreadcrumbList>
           </Breadcrumb>
         </div>
