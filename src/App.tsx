@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Inicio from "./pages/Inicio";
 import Especialidades from "./pages/Especialidades";
 import EspecialidadIndividual from "./pages/EspecialidadIndividual";
@@ -12,7 +12,9 @@ import Servicios from "./pages/Servicios";
 import ServicioIndividual from "./pages/ServicioIndividual";
 import Nosotros from "./pages/Nosotros";
 import Contacto from "./pages/Contacto";
-import Doctores from "./pages/Doctores";
+import Equipo from "./pages/Equipo";
+import EquipoDoctores from "./pages/EquipoDoctores";
+import EquipoEnfermeria from "./pages/EquipoEnfermeria";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -31,9 +33,18 @@ const App = () => (
           <Route path="/servicios/:slug" element={<ServicioIndividual />} />
           <Route path="/nosotros" element={<Nosotros />} />
           <Route path="/contacto" element={<Contacto />} />
-          <Route path="/doctores" element={<Doctores />} />
+          
+          {/* Nuevas rutas de Equipo */}
+          <Route path="/equipo" element={<Equipo />} />
+          <Route path="/equipo/doctores" element={<EquipoDoctores />} />
+          <Route path="/equipo/enfermeria" element={<EquipoEnfermeria />} />
+          
+          {/* Redirección de compatibilidad */}
+          <Route path="/doctores" element={<Navigate to="/equipo/doctores" replace />} />
+          
           {/* Rutas dinámicas para perfiles individuales de doctores */}
           <Route path="/doctores/:slug" element={<DoctorIndividual />} />
+          
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

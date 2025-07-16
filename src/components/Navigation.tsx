@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -28,7 +27,7 @@ const Navigation = () => {
     { label: 'Especialidades', href: '/especialidades' },
     { label: 'Servicios', href: '/servicios' },
     { label: 'Nosotros', href: '/nosotros' },
-    { label: 'Doctores', href: '/doctores' },
+    { label: 'Equipo', href: '/equipo' },
     { label: 'Contacto', href: '/contacto' },
   ];
 
