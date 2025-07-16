@@ -1,3 +1,4 @@
+
 import { 
   Heart, 
   Stethoscope, 
@@ -9,7 +10,12 @@ import {
   UserCheck, 
   Scissors, 
   AlertTriangle,
-  LucideIcon
+  LucideIcon,
+  Zap,
+  Apple,
+  Microscope,
+  Lungs,
+  Kidney
 } from 'lucide-react';
 
 export interface Especialidad {
@@ -53,45 +59,297 @@ export interface Doctor {
 }
 
 export const doctores: Doctor[] = [
+  // Medicina General
   {
-    id: 'dr-juan-perez',
-    slug: 'dr-juan-perez',
-    nombre: 'Dr. Juan Pérez',
-    titulo: 'Médico General',
-    foto: '/images/doctores/dr-juan-perez.webp',
+    id: 'dra-karina-pena-tello',
+    slug: 'dra-karina-pena-tello',
+    nombre: 'Dra. Karina Peña Tello',
+    titulo: 'Medicina General',
     especialidades: ['Medicina General'],
-    experiencia: 'Más de 10 años de experiencia en medicina general',
+    experiencia: 'Especialista en medicina general con amplia experiencia en atención primaria',
+    hasDetailedProfile: false
+  },
+  {
+    id: 'dr-hipolito-coyotl-cruz',
+    slug: 'dr-hipolito-coyotl-cruz',
+    nombre: 'Dr. Hipólito Coyotl Cruz',
+    titulo: 'Medicina General',
+    experiencia: 'Médico general formado por la Universidad Autónoma de Puebla',
+    especialidades: ['Medicina General'],
+    formacion: 'Egresado por la Universidad Autónoma de Puebla como Médico, Cirujano y Partero.',
+    areasAtencion: [
+      'Consulta general para atender a pacientes con calidad'
+    ],
+    whatsapp: '236 1024599',
+    contactoTitulos: {
+      whatsapp: 'WhatsApp'
+    },
+    telefonosAdicionales: ['236 3812945'],
     hasDetailedProfile: true
   },
   {
-    id: 'dra-maria-gonzalez',
-    slug: 'dra-maria-gonzalez',
-    nombre: 'Dra. María González',
-    titulo: 'Cardióloga',
-    foto: '/images/doctores/dra-maria-gonzalez.webp',
-    especialidades: ['Cardiología'],
-    experiencia: 'Especialista en cardiología intervencionista',
+    id: 'dr-emilio-montoro-hidalgo',
+    slug: 'dr-emilio-montoro-hidalgo',
+    nombre: 'Dr. Emilio Gerardo Montoro Hidalgo',
+    titulo: 'Medicina General',
+    especialidades: ['Medicina General'],
+    experiencia: 'Médico general con experiencia en atención integral de pacientes',
+    hasDetailedProfile: false
+  },
+  {
+    id: 'dr-bernardo-velasco-olalde',
+    slug: 'dr-bernardo-velasco-olalde',
+    nombre: 'Dr. Bernardo Velasco Olalde',
+    titulo: 'Medicina General',
+    experiencia: 'Médico general con atención humanista, especializado en enfermedades crónicas',
+    mision: 'Soy el Dr. Velasco mi misión es tener una atención médica de primer contacto con trato humanista para mis pacientes.',
+    especialidades: ['Medicina General', 'Diabetes Mellitus', 'Hipertensión Arterial', 'Medicina de la Obesidad'],
+    areasAtencion: [
+      'Diabetes Mellitus',
+      'Hipertensión Arterial',
+      'Mujeres embarazadas',
+      'Infecciones respiratorias en niños y adultos'
+    ],
+    formacion: 'Egresado de la B.U.A.P.',
+    reconocimientos: [
+      'Miembro de la Academia Mexicana para el estudio de la obesidad'
+    ],
+    horarios: '09:00 a 21:00 hrs',
+    telefonoHospital: '238 382 4819',
+    whatsapp: '2381022504',
+    contactoTitulos: {
+      hospital: 'Hospital',
+      whatsapp: 'Celular y Mensaje WhatsApp'
+    },
+    telefonosAdicionales: ['2383829648'],
     hasDetailedProfile: true
   },
   {
-    id: 'dr-roberto-ramirez',
-    slug: 'dr-roberto-ramirez',
-    nombre: 'Dr. Roberto Ramírez',
-    titulo: 'Dermatólogo',
-    foto: '/images/doctores/dr-roberto-ramirez.webp',
-    especialidades: ['Dermatología'],
-    experiencia: 'Amplia experiencia en dermatología clínica y estética',
-    hasDetailedProfile: true
+    id: 'dr-javier-carrasco-gonzalez',
+    slug: 'dr-javier-carrasco-gonzalez',
+    nombre: 'Dr. Javier Carrasco González',
+    titulo: 'Medicina General',
+    especialidades: ['Medicina General'],
+    experiencia: 'Médico general con experiencia en medicina familiar',
+    hasDetailedProfile: false
   },
   {
-    id: 'dra-laura-martinez',
-    slug: 'dra-laura-martinez',
-    nombre: 'Dra. Laura Martínez',
-    titulo: 'Ginecóloga',
-    foto: '/images/doctores/dra-laura-martinez.webp',
-    especialidades: ['Ginecología'],
-    experiencia: 'Especialista en salud femenina y obstetricia',
-    hasDetailedProfile: true
+    id: 'dr-gerardo-valderrama-lopez',
+    slug: 'dr-gerardo-valderrama-lopez',
+    nombre: 'Dr. Gerardo Antonio Valderrama López',
+    titulo: 'Medicina General',
+    especialidades: ['Medicina General'],
+    experiencia: 'Especialista en medicina general y medicina familiar',
+    hasDetailedProfile: false
+  },
+  {
+    id: 'dr-hector-lopez-aparicio',
+    slug: 'dr-hector-lopez-aparicio',
+    nombre: 'Dr. Héctor López Aparicio',
+    titulo: 'Medicina General',
+    especialidades: ['Medicina General'],
+    experiencia: 'Médico general con amplia experiencia en atención primaria',
+    hasDetailedProfile: false
+  },
+  {
+    id: 'dr-raymundo-romero-ventura',
+    slug: 'dr-raymundo-romero-ventura',
+    nombre: 'Dr. Raymundo Romero Ventura',
+    titulo: 'Medicina General',
+    especialidades: ['Medicina General'],
+    experiencia: 'Especialista en medicina general con enfoque en medicina preventiva',
+    hasDetailedProfile: false
+  },
+
+  // Medicina Crítica / Terapia Intensiva
+  {
+    id: 'dr-hector-pena-carrillo',
+    slug: 'dr-hector-pena-carrillo',
+    nombre: 'Dr. Héctor Peña Carrillo',
+    titulo: 'Medicina Crítica, Cardioneumología y Anestesiología',
+    especialidades: ['Medicina Crítica', 'Cardioneumología', 'Anestesiología'],
+    experiencia: 'Especialista en medicina crítica, cardioneumología y anestesiología',
+    hasDetailedProfile: false
+  },
+  {
+    id: 'dr-hazael-sanchez-rosales',
+    slug: 'dr-hazael-sanchez-rosales',
+    nombre: 'Dr. Hazael Sánchez Rosales',
+    titulo: 'Medicina Crítica / Terapia Intensiva',
+    especialidades: ['Medicina Crítica', 'Terapia Intensiva'],
+    experiencia: 'Especialista en medicina crítica y cuidados intensivos',
+    hasDetailedProfile: false
+  },
+
+  // Pediatría / Neonatología
+  {
+    id: 'dr-abraham-tellez-barragan',
+    slug: 'dr-abraham-tellez-barragan',
+    nombre: 'Dr. Abraham Téllez Barragán',
+    titulo: 'Pediatría / Neonatología',
+    especialidades: ['Pediatría', 'Neonatología'],
+    experiencia: 'Especialista en pediatría y neonatología',
+    hasDetailedProfile: false
+  },
+  {
+    id: 'dr-irvin-romero-ponce',
+    slug: 'dr-irvin-romero-ponce',
+    nombre: 'Dr. Irvin Omar Romero Ponce',
+    titulo: 'Pediatría / Neonatología',
+    especialidades: ['Pediatría', 'Neonatología'],
+    experiencia: 'Pediatra especialista en neonatología',
+    hasDetailedProfile: false
+  },
+  {
+    id: 'dra-eltzy-rocha-rivera',
+    slug: 'dra-eltzy-rocha-rivera',
+    nombre: 'Dra. Eltzy Rubí Rocha Rivera',
+    titulo: 'Pediatría / Neonatología',
+    especialidades: ['Pediatría', 'Neonatología'],
+    experiencia: 'Especialista en pediatría y cuidados neonatales',
+    hasDetailedProfile: false
+  },
+  {
+    id: 'dr-alberto-delgado-sandoval',
+    slug: 'dr-alberto-delgado-sandoval',
+    nombre: 'Dr. Alberto Delgado Sandoval',
+    titulo: 'Pediatría / Neonatología',
+    especialidades: ['Pediatría', 'Neonatología'],
+    experiencia: 'Pediatra con especialización en neonatología',
+    hasDetailedProfile: false
+  },
+
+  // Traumatología y Ortopedia
+  {
+    id: 'dr-cesar-gonzalez-martinez',
+    slug: 'dr-cesar-gonzalez-martinez',
+    nombre: 'Dr. Cesar González Martínez',
+    titulo: 'Traumatología y Ortopedia',
+    especialidades: ['Traumatología', 'Ortopedia'],
+    experiencia: 'Especialista en traumatología y ortopedia',
+    hasDetailedProfile: false
+  },
+  {
+    id: 'dr-arturo-dominguez-millan',
+    slug: 'dr-arturo-dominguez-millan',
+    nombre: 'Dr. Arturo Domínguez Millan',
+    titulo: 'Traumatología y Ortopedia',
+    especialidades: ['Traumatología', 'Ortopedia'],
+    experiencia: 'Traumatólogo ortopedista con amplia experiencia',
+    hasDetailedProfile: false
+  },
+
+  // Urgenciología
+  {
+    id: 'dra-silvia-huerta-damian',
+    slug: 'dra-silvia-huerta-damian',
+    nombre: 'Dra. Silvia Huerta Damian',
+    titulo: 'Urgenciología',
+    especialidades: ['Urgenciología', 'Medicina de Urgencias'],
+    experiencia: 'Especialista en medicina de urgencias',
+    hasDetailedProfile: false
+  },
+  {
+    id: 'dr-porfirio-apam-cruz',
+    slug: 'dr-porfirio-apam-cruz',
+    nombre: 'Dr. Porfirio Apam Cruz',
+    titulo: 'Urgenciología',
+    especialidades: ['Urgenciología', 'Medicina de Urgencias'],
+    experiencia: 'Especialista en urgencias médicas',
+    hasDetailedProfile: false
+  },
+
+  // Neurología
+  {
+    id: 'dr-jorge-almanza-islas',
+    slug: 'dr-jorge-almanza-islas',
+    nombre: 'Dr. Jorge Alberto Almanza Islas',
+    titulo: 'Neurología',
+    especialidades: ['Neurología'],
+    experiencia: 'Especialista en neurología',
+    hasDetailedProfile: false
+  },
+
+  // Nutrición
+  {
+    id: 'lnc-carlos-escobar-olivier',
+    slug: 'lnc-carlos-escobar-olivier',
+    nombre: 'L.N.C. Carlos Escobar Olivier',
+    titulo: 'Nutrición',
+    especialidades: ['Nutrición'],
+    experiencia: 'Licenciado en Nutrición Clínica',
+    hasDetailedProfile: false
+  },
+
+  // Gastroenterología
+  {
+    id: 'dr-virgilio-marroquin-jimenez',
+    slug: 'dr-virgilio-marroquin-jimenez',
+    nombre: 'Dr. Virgilio Marroquín Jiménez',
+    titulo: 'Gastroenterología',
+    especialidades: ['Gastroenterología'],
+    experiencia: 'Especialista en gastroenterología',
+    hasDetailedProfile: false
+  },
+
+  // Nefrología
+  {
+    id: 'dra-yadira-tehuacanero-tecua',
+    slug: 'dra-yadira-tehuacanero-tecua',
+    nombre: 'Dra. Yadira Tehuacanero Tecua',
+    titulo: 'Nefrología',
+    especialidades: ['Nefrología'],
+    experiencia: 'Especialista en nefrología',
+    hasDetailedProfile: false
+  },
+
+  // Neumología
+  {
+    id: 'dr-benito-vargas-abrego',
+    slug: 'dr-benito-vargas-abrego',
+    nombre: 'Dr. Benito Vargas Ábrego',
+    titulo: 'Neumología',
+    especialidades: ['Neumología'],
+    experiencia: 'Especialista en neumología',
+    hasDetailedProfile: false
+  },
+
+  // Cirugía General y Especializada
+  {
+    id: 'dr-omar-marroquin-herrera',
+    slug: 'dr-omar-marroquin-herrera',
+    nombre: 'Dr. Omar Marroquín Herrera',
+    titulo: 'Cirugía General',
+    especialidades: ['Cirugía General'],
+    experiencia: 'Especialista en cirugía general',
+    hasDetailedProfile: false
+  },
+  {
+    id: 'dr-jose-luis-hernandez-aguilar',
+    slug: 'dr-jose-luis-hernandez-aguilar',
+    nombre: 'Dr. José Luis Hernández Aguilar',
+    titulo: 'Cirugía General',
+    especialidades: ['Cirugía General'],
+    experiencia: 'Cirujano general con amplia experiencia',
+    hasDetailedProfile: false
+  },
+  {
+    id: 'dr-miguel-parra-flores',
+    slug: 'dr-miguel-parra-flores',
+    nombre: 'Dr. Miguel Parra Flores',
+    titulo: 'Cirugía General',
+    especialidades: ['Cirugía General'],
+    experiencia: 'Especialista en cirugía general',
+    hasDetailedProfile: false
+  },
+  {
+    id: 'dr-quintin-gonzalez-contreras',
+    slug: 'dr-quintin-gonzalez-contreras',
+    nombre: 'Dr. Quintín Héctor González Contreras',
+    titulo: 'Cirugía General',
+    especialidades: ['Cirugía General'],
+    experiencia: 'Cirujano general especializado',
+    hasDetailedProfile: false
   },
   {
     id: 'dr-jaime-oscar-romero-salas',
@@ -136,7 +394,7 @@ export const doctores: Doctor[] = [
     hasDetailedProfile: true
   },
 
-  // Dr. Tedd Ochoa Vázquez - Urología
+  // Urología
   {
     id: 'dr-tedd-ochoa-vazquez',
     slug: 'dr-tedd-ochoa-vazquez',
@@ -176,7 +434,7 @@ export const doctores: Doctor[] = [
     hasDetailedProfile: true
   },
 
-  // Dra. Irma Villanueva Cortes - Dermatología
+  // Dermatología
   {
     id: 'dra-irma-villanueva-cortes',
     slug: 'dra-irma-villanueva-cortes',
@@ -207,7 +465,7 @@ export const doctores: Doctor[] = [
     hasDetailedProfile: true
   },
 
-  // Dra. Edith Jazmín Calvo Santana - Ginecología y Obstetricia
+  // Ginecología y Obstetricia
   {
     id: 'dra-edith-calvo-santana',
     slug: 'dra-edith-calvo-santana',
@@ -225,8 +483,6 @@ export const doctores: Doctor[] = [
     },
     hasDetailedProfile: true
   },
-
-  // Dra. Nayeli del Rayo Sánchez Garibay - Ginecología y Obstetricia
   {
     id: 'dra-nayeli-sanchez-garibay',
     slug: 'dra-nayeli-sanchez-garibay',
@@ -251,8 +507,15 @@ export const doctores: Doctor[] = [
     telefonosAdicionales: ['2383829648', '2381186688'],
     hasDetailedProfile: true
   },
-
-  // Dr. Moisés Héctor Sánchez Pérez - Ginecología y Obstetricia
+  {
+    id: 'dr-ruben-nacer',
+    slug: 'dr-ruben-nacer',
+    nombre: 'Dr. Rubén Julián Nacer',
+    titulo: 'Ginecología y Obstetricia',
+    especialidades: ['Ginecología', 'Obstetricia'],
+    experiencia: 'Especialista en ginecología y obstetricia',
+    hasDetailedProfile: false
+  },
   {
     id: 'dr-moises-sanchez-perez',
     slug: 'dr-moises-sanchez-perez',
@@ -280,8 +543,6 @@ export const doctores: Doctor[] = [
     telefonosAdicionales: ['2383829648', '2381037216'],
     hasDetailedProfile: true
   },
-
-  // Dra. Luz María Gil Sandoval - Ginecología y Obstetricia
   {
     id: 'dra-luz-gil-sandoval',
     slug: 'dra-luz-gil-sandoval',
@@ -311,7 +572,7 @@ export const doctores: Doctor[] = [
     hasDetailedProfile: true
   },
 
-  // Dra. Marianela Orellan Gorocica - Anestesiología
+  // Anestesiología
   {
     id: 'dra-marianela-orellan-gorocica',
     slug: 'dra-marianela-orellan-gorocica',
@@ -341,8 +602,6 @@ export const doctores: Doctor[] = [
     telefonosAdicionales: ['2383829648'],
     hasDetailedProfile: true
   },
-
-  // Dr. Christian Misael Galicia Castelán - Anestesiología
   {
     id: 'dr-christian-galicia-castelan',
     slug: 'dr-christian-galicia-castelan',
@@ -362,8 +621,6 @@ export const doctores: Doctor[] = [
     },
     hasDetailedProfile: true
   },
-
-  // Dra. María Teresa Carrera Balderas - Anestesiología
   {
     id: 'dra-maria-carrera-balderas',
     slug: 'dra-maria-carrera-balderas',
@@ -389,7 +646,7 @@ export const doctores: Doctor[] = [
     hasDetailedProfile: true
   },
 
-  // Dr. Eugenio García Cano - Cirugía Plástica
+  // Cirugía Plástica, Estética y Reconstructiva
   {
     id: 'dr-eugenio-garcia-cano',
     slug: 'dr-eugenio-garcia-cano',
@@ -415,55 +672,45 @@ export const doctores: Doctor[] = [
     telefonosAdicionales: ['2383829648'],
     hasDetailedProfile: true
   },
-
-  // Dr. Hipólito Coyotl Cruz - Medicina General
   {
-    id: 'dr-hipolito-coyotl-cruz',
-    slug: 'dr-hipolito-coyotl-cruz',
-    nombre: 'Dr. Hipólito Coyotl Cruz',
-    titulo: 'Medicina General',
-    experiencia: 'Médico general formado por la Universidad Autónoma de Puebla',
-    especialidades: ['Medicina General'],
-    formacion: 'Egresado por la Universidad Autónoma de Puebla como Médico, Cirujano y Partero.',
-    areasAtencion: [
-      'Consulta general para atender a pacientes con calidad'
-    ],
-    whatsapp: '236 1024599',
-    contactoTitulos: {
-      whatsapp: 'WhatsApp'
-    },
-    telefonosAdicionales: ['236 3812945'],
-    hasDetailedProfile: true
+    id: 'dr-jaime-araoz-arroyo',
+    slug: 'dr-jaime-araoz-arroyo',
+    nombre: 'Dr. Jaime Araoz Arroyo',
+    titulo: 'Cirugía Plástica, Estética y Reconstructiva',
+    especialidades: ['Cirugía Plástica', 'Cirugía Estética', 'Cirugía Reconstructiva'],
+    experiencia: 'Especialista en cirugía plástica, estética y reconstructiva',
+    hasDetailedProfile: false
+  },
+  {
+    id: 'dra-samaria-mejia-rivera',
+    slug: 'dra-samaria-mejia-rivera',
+    nombre: 'Dra. Samaria Estefanía Mejia Rivera',
+    titulo: 'Cirugía Plástica, Estética y Reconstructiva',
+    especialidades: ['Cirugía Plástica', 'Cirugía Estética', 'Cirugía Reconstructiva'],
+    experiencia: 'Especialista en cirugía plástica y estética',
+    hasDetailedProfile: false
   },
 
-  // Dr. Bernardo Velasco Olalde - Medicina General
+  // Neurocirugía
   {
-    id: 'dr-bernardo-velasco-olalde',
-    slug: 'dr-bernardo-velasco-olalde',
-    nombre: 'Dr. Bernardo Velasco Olalde',
-    titulo: 'Medicina General',
-    experiencia: 'Médico general con atención humanista, especializado en enfermedades crónicas',
-    mision: 'Soy el Dr. Velasco mi misión es tener una atención médica de primer contacto con trato humanista para mis pacientes.',
-    especialidades: ['Medicina General', 'Diabetes Mellitus', 'Hipertensión Arterial', 'Medicina de la Obesidad'],
-    areasAtencion: [
-      'Diabetes Mellitus',
-      'Hipertensión Arterial',
-      'Mujeres embarazadas',
-      'Infecciones respiratorias en niños y adultos'
-    ],
-    formacion: 'Egresado de la B.U.A.P.',
-    reconocimientos: [
-      'Miembro de la Academia Mexicana para el estudio de la obesidad'
-    ],
-    horarios: '09:00 a 21:00 hrs',
-    telefonoHospital: '238 382 4819',
-    whatsapp: '2381022504',
-    contactoTitulos: {
-      hospital: 'Hospital',
-      whatsapp: 'Celular y Mensaje WhatsApp'
-    },
-    telefonosAdicionales: ['2383829648'],
-    hasDetailedProfile: true
+    id: 'dr-jorge-hernandez-garcia',
+    slug: 'dr-jorge-hernandez-garcia',
+    nombre: 'Dr. Jorge Luis Hernández García',
+    titulo: 'Neurocirugía',
+    especialidades: ['Neurocirugía'],
+    experiencia: 'Especialista en neurocirugía',
+    hasDetailedProfile: false
+  },
+
+  // Oftalmología Pediátrica
+  {
+    id: 'dra-lidia-suarez-reynoso',
+    slug: 'dra-lidia-suarez-reynoso',
+    nombre: 'Dra. Lidia Suárez Reynoso',
+    titulo: 'Oftalmología Pediátrica',
+    especialidades: ['Oftalmología', 'Oftalmología Pediátrica'],
+    experiencia: 'Especialista en oftalmología pediátrica',
+    hasDetailedProfile: false
   }
 ];
 
@@ -487,20 +734,218 @@ const especialidadesData: Especialidad[] = [
     doctores: []
   },
   {
-    id: 'cardiologia',
-    nombre: 'Cardiología',
-    titulo: 'Cardiología',
-    descripcion: 'Cuidado especializado del corazón y el sistema circulatorio. Prevención y tratamiento de enfermedades cardíacas.',
-    descripcionDetallada: 'Especialistas en el diagnóstico, tratamiento y prevención de enfermedades cardiovasculares, ofreciendo atención integral del corazón y sistema circulatorio.',
-    slug: 'cardiologia',
+    id: 'medicina-critica',
+    nombre: 'Medicina Crítica',
+    titulo: 'Medicina Crítica / Terapia Intensiva',
+    descripcion: 'Atención especializada en cuidados intensivos y medicina crítica para pacientes en estado grave.',
+    descripcionDetallada: 'Especialistas en medicina crítica y terapia intensiva para el manejo de pacientes en estado crítico, con tecnología avanzada y atención 24/7.',
+    slug: 'medicina-critica',
+    icon: Zap,
+    servicios: [
+      'Cuidados intensivos',
+      'Medicina crítica',
+      'Monitoreo avanzado',
+      'Soporte vital',
+      'Ventilación mecánica',
+      'Atención 24/7'
+    ],
+    doctores: []
+  },
+  {
+    id: 'pediatria',
+    nombre: 'Pediatría',
+    titulo: 'Pediatría y Neonatología',
+    descripcion: 'Cuidado de la salud de niños, adolescentes y recién nacidos. Vacunación, control de crecimiento y desarrollo.',
+    descripcionDetallada: 'Atención médica especializada para niños, adolescentes y recién nacidos, incluyendo medicina preventiva, vacunación y seguimiento del crecimiento y desarrollo.',
+    slug: 'pediatria',
+    icon: Baby,
+    servicios: [
+      'Control del niño sano',
+      'Vacunación',
+      'Seguimiento del crecimiento',
+      'Tratamiento de infecciones',
+      'Medicina preventiva',
+      'Cuidados neonatales'
+    ],
+    doctores: []
+  },
+  {
+    id: 'traumatologia',
+    nombre: 'Traumatología',
+    titulo: 'Traumatología y Ortopedia',
+    descripcion: 'Diagnóstico y tratamiento de lesiones musculoesqueléticas. Fracturas, esguinces y luxaciones.',
+    descripcionDetallada: 'Especialistas en el diagnóstico y tratamiento de lesiones del sistema musculoesquelético, incluyendo fracturas, esguinces, luxaciones y cirugía ortopédica.',
+    slug: 'traumatologia',
+    icon: Bone,
+    servicios: [
+      'Tratamiento de fracturas',
+      'Cirugía ortopédica',
+      'Tratamiento de esguinces',
+      'Cirugía de columna',
+      'Prótesis articulares',
+      'Medicina del deporte'
+    ],
+    doctores: []
+  },
+  {
+    id: 'urgenciologia',
+    nombre: 'Medicina de Urgencias',
+    titulo: 'Medicina de Urgencias',
+    descripcion: 'Atención médica inmediata para pacientes con enfermedades o lesiones agudas.',
+    descripcionDetallada: 'Atención médica especializada de emergencia para pacientes con condiciones críticas que requieren intervención inmediata.',
+    slug: 'urgenciologia',
+    icon: AlertTriangle,
+    servicios: [
+      'Atención de emergencias',
+      'Trauma',
+      'Reanimación cardiopulmonar',
+      'Medicina crítica',
+      'Estabilización de pacientes',
+      'Triage médico'
+    ],
+    doctores: []
+  },
+  {
+    id: 'neurologia',
+    nombre: 'Neurología',
+    titulo: 'Neurología',
+    descripcion: 'Diagnóstico y tratamiento de enfermedades del sistema nervioso.',
+    descripcionDetallada: 'Especialistas en el diagnóstico y tratamiento de enfermedades del sistema nervioso central y periférico.',
+    slug: 'neurologia',
+    icon: Brain,
+    servicios: [
+      'Electroencefalograma',
+      'Tratamiento de epilepsia',
+      'Cefaleas y migrañas',
+      'Enfermedades neurodegenerativas',
+      'Trastornos del movimiento',
+      'Neurología vascular'
+    ],
+    doctores: []
+  },
+  {
+    id: 'nutricion',
+    nombre: 'Nutrición',
+    titulo: 'Nutrición Clínica',
+    descripcion: 'Asesoría nutricional especializada para el manejo de diversas condiciones de salud.',
+    descripcionDetallada: 'Atención nutricional especializada para el manejo dietético de enfermedades, control de peso y promoción de hábitos alimentarios saludables.',
+    slug: 'nutricion',
+    icon: Apple,
+    servicios: [
+      'Evaluación nutricional',
+      'Planes alimentarios personalizados',
+      'Nutrición clínica',
+      'Control de peso',
+      'Educación nutricional',
+      'Seguimiento dietético'
+    ],
+    doctores: []
+  },
+  {
+    id: 'cardioneumologia',
+    nombre: 'Cardioneumología',
+    titulo: 'Cardioneumología',
+    descripcion: 'Especialidad que combina el cuidado del corazón y los pulmones.',
+    descripcionDetallada: 'Atención especializada en enfermedades cardiovasculares y pulmonares, con enfoque integral en ambos sistemas.',
+    slug: 'cardioneumologia',
     icon: Heart,
     servicios: [
       'Electrocardiograma',
-      'Ecocardiograma',
-      'Holter de ritmo',
-      'Pruebas de esfuerzo',
-      'Control de hipertensión',
-      'Tratamiento de arritmias'
+      'Pruebas de función pulmonar',
+      'Tratamiento de cardiopatías',
+      'Enfermedades respiratorias',
+      'Rehabilitación cardiopulmonar',
+      'Medicina crítica'
+    ],
+    doctores: []
+  },
+  {
+    id: 'gastroenterologia',
+    nombre: 'Gastroenterología',
+    titulo: 'Gastroenterología',
+    descripcion: 'Diagnóstico y tratamiento de enfermedades del sistema digestivo.',
+    descripcionDetallada: 'Especialistas en enfermedades del aparato digestivo, desde el esófago hasta el colon, incluyendo hígado y páncreas.',
+    slug: 'gastroenterologia',
+    icon: Microscope,
+    servicios: [
+      'Endoscopia digestiva',
+      'Colonoscopia',
+      'Tratamiento de gastritis',
+      'Enfermedades hepáticas',
+      'Síndrome de intestino irritable',
+      'Úlceras pépticas'
+    ],
+    doctores: []
+  },
+  {
+    id: 'nefrologia',
+    nombre: 'Nefrología',
+    titulo: 'Nefrología',
+    descripcion: 'Especialidad médica que se ocupa del diagnóstico y tratamiento de las enfermedades renales.',
+    descripcionDetallada: 'Atención especializada en enfermedades de los riñones y las vías urinarias, incluyendo diálisis y trasplante renal.',
+    slug: 'nefrologia',
+    icon: Kidney,
+    servicios: [
+      'Diagnóstico de enfermedades renales',
+      'Tratamiento de insuficiencia renal',
+      'Diálisis',
+      'Hipertensión arterial',
+      'Enfermedades glomerulares',
+      'Seguimiento pre-trasplante'
+    ],
+    doctores: []
+  },
+  {
+    id: 'neumologia',
+    nombre: 'Neumología',
+    titulo: 'Neumología',
+    descripcion: 'Diagnóstico y tratamiento de enfermedades del aparato respiratorio.',
+    descripcionDetallada: 'Especialistas en enfermedades pulmonares y del sistema respiratorio, incluyendo asma, EPOC y otras patologías respiratorias.',
+    slug: 'neumologia',
+    icon: Lungs,
+    servicios: [
+      'Espirometría',
+      'Broncoscopia',
+      'Tratamiento de asma',
+      'EPOC',
+      'Enfermedades pulmonares intersticiales',
+      'Medicina del sueño'
+    ],
+    doctores: []
+  },
+  {
+    id: 'cirugia-general-especializada',
+    nombre: 'Cirugía General',
+    titulo: 'Cirugía General y Especializada',
+    descripcion: 'Procedimientos quirúrgicos para tratar diversas enfermedades y condiciones.',
+    descripcionDetallada: 'Cirugía especializada para el tratamiento de diversas condiciones que requieren intervención quirúrgica, desde procedimientos ambulatorios hasta cirugías complejas.',
+    slug: 'cirugia-general-especializada',
+    icon: Scissors,
+    servicios: [
+      'Cirugía de vesícula',
+      'Cirugía de hernias',
+      'Apendicectomía',
+      'Cirugía laparoscópica',
+      'Cirugía de tiroides',
+      'Cirugía oncológica'
+    ],
+    doctores: []
+  },
+  {
+    id: 'urologia',
+    nombre: 'Urología',
+    titulo: 'Urología',
+    descripcion: 'Atención de enfermedades del sistema urinario y reproductor masculino.',
+    descripcionDetallada: 'Diagnóstico y tratamiento de enfermedades del sistema urogenital masculino y urinario femenino, incluyendo cálculos, infecciones y cáncer urológico.',
+    slug: 'urologia',
+    icon: Activity,
+    servicios: [
+      'Tratamiento de cálculos renales',
+      'Cirugía de próstata',
+      'Tratamiento de incontinencia',
+      'Disfunción eréctil',
+      'Vasectomía',
+      'Cáncer urológico'
     ],
     doctores: []
   },
@@ -508,7 +953,7 @@ const especialidadesData: Especialidad[] = [
     id: 'dermatologia',
     nombre: 'Dermatología',
     titulo: 'Dermatología',
-    descripcion: 'Diagnóstico y tratamiento de enfermedades de la piel, cabello y uñas. Cuidado estético de la piel.',
+    descripcion: 'Diagnóstico y tratamiento de enfermedades de la piel, cabello y uñas.',
     descripcionDetallada: 'Atención especializada en enfermedades de la piel, cabello y uñas, incluyendo tratamientos médicos y estéticos para el cuidado integral de la piel.',
     slug: 'dermatologia',
     icon: Eye,
@@ -541,74 +986,20 @@ const especialidadesData: Especialidad[] = [
     doctores: []
   },
   {
-    id: 'pediatria',
-    nombre: 'Pediatría',
-    titulo: 'Pediatría',
-    descripcion: 'Cuidado de la salud de niños y adolescentes. Vacunación, control de crecimiento y desarrollo.',
-    descripcionDetallada: 'Atención médica especializada para niños y adolescentes, incluyendo medicina preventiva, vacunación y seguimiento del crecimiento y desarrollo.',
-    slug: 'pediatria',
-    icon: Baby,
+    id: 'anestesiologia',
+    nombre: 'Anestesiología',
+    titulo: 'Anestesiología',
+    descripcion: 'Especialidad médica dedicada al alivio del dolor y cuidado perioperatorio.',
+    descripcionDetallada: 'Especialistas en anestesiología y manejo del dolor, proporcionando atención segura durante procedimientos quirúrgicos y manejo del dolor crónico.',
+    slug: 'anestesiologia',
+    icon: UserCheck,
     servicios: [
-      'Control del niño sano',
-      'Vacunación',
-      'Seguimiento del crecimiento',
-      'Tratamiento de infecciones',
-      'Medicina preventiva',
-      'Urgencias pediátricas'
-    ],
-    doctores: []
-  },
-  {
-    id: 'traumatologia',
-    nombre: 'Traumatología',
-    titulo: 'Traumatología y Ortopedia',
-    descripcion: 'Diagnóstico y tratamiento de lesiones musculoesqueléticas. Fracturas, esguinces y luxaciones.',
-    descripcionDetallada: 'Especialistas en el diagnóstico y tratamiento de lesiones del sistema musculoesquelético, incluyendo fracturas, esguinces, luxaciones y cirugía ortopédica.',
-    slug: 'traumatologia',
-    icon: Bone,
-    servicios: [
-      'Tratamiento de fracturas',
-      'Cirugía ortopédica',
-      'Tratamiento de esguinces',
-      'Cirugía de columna',
-      'Prótesis articulares',
-      'Medicina del deporte'
-    ],
-    doctores: []
-  },
-  {
-    id: 'urologia',
-    nombre: 'Urología',
-    titulo: 'Urología',
-    descripcion: 'Atención de enfermedades del sistema urinario y reproductor masculino. Infecciones, cálculos y cáncer.',
-    descripcionDetallada: 'Diagnóstico y tratamiento de enfermedades del sistema urogenital masculino y urinario femenino, incluyendo cálculos, infecciones y cáncer urológico.',
-    slug: 'urologia',
-    icon: Activity,
-    servicios: [
-      'Tratamiento de cálculos renales',
-      'Cirugía de próstata',
-      'Tratamiento de incontinencia',
-      'Disfunción eréctil',
-      'Vasectomía',
-      'Cáncer urológico'
-    ],
-    doctores: []
-  },
-  {
-    id: 'cirugia-general-especializada',
-    nombre: 'Cirugía General',
-    titulo: 'Cirugía General',
-    descripcion: 'Procedimientos quirúrgicos para tratar diversas enfermedades y condiciones. Apéndice, hernias y vesícula biliar.',
-    descripcionDetallada: 'Cirugía especializada para el tratamiento de diversas condiciones que requieren intervención quirúrgica, desde procedimientos ambulatorios hasta cirugías complejas.',
-    slug: 'cirugia-general-especializada',
-    icon: Scissors,
-    servicios: [
-      'Cirugía de vesícula',
-      'Cirugía de hernias',
-      'Apendicectomía',
-      'Cirugía laparoscópica',
-      'Cirugía de tiroides',
-      'Cirugía oncológica'
+      'Anestesia general',
+      'Anestesia regional',
+      'Sedación',
+      'Control del dolor',
+      'Anestesia obstétrica',
+      'Cuidados perioperatorios'
     ],
     doctores: []
   },
@@ -616,7 +1007,7 @@ const especialidadesData: Especialidad[] = [
     id: 'cirugia-plastica',
     nombre: 'Cirugía Plástica',
     titulo: 'Cirugía Plástica y Reconstructiva',
-    descripcion: 'Procedimientos quirúrgicos para reconstruir o mejorar la apariencia física. Reconstrucción mamaria, rinoplastia y liposucción.',
+    descripcion: 'Procedimientos quirúrgicos para reconstruir o mejorar la apariencia física.',
     descripcionDetallada: 'Cirugía plástica reconstructiva y estética para mejorar la apariencia física y reconstruir defectos congénitos o adquiridos.',
     slug: 'cirugia-plastica',
     icon: Scissors,
@@ -631,20 +1022,38 @@ const especialidadesData: Especialidad[] = [
     doctores: []
   },
   {
-    id: 'urgenciologia',
-    nombre: 'Medicina de Urgencias',
-    titulo: 'Medicina de Urgencias',
-    descripcion: 'Atención médica inmediata para pacientes con enfermedades o lesiones agudas. Accidentes, infartos y derrames cerebrales.',
-    descripcionDetallada: 'Atención médica especializada de emergencia para pacientes con condiciones críticas que requieren intervención inmediata.',
-    slug: 'urgenciologia',
-    icon: AlertTriangle,
+    id: 'neurocirugia',
+    nombre: 'Neurocirugía',
+    titulo: 'Neurocirugía',
+    descripcion: 'Cirugía especializada del sistema nervioso central y periférico.',
+    descripcionDetallada: 'Especialistas en cirugía del cerebro, médula espinal y sistema nervioso periférico para el tratamiento de tumores, traumatismos y malformaciones.',
+    slug: 'neurocirugia',
+    icon: Brain,
     servicios: [
-      'Atención de emergencias',
-      'Trauma',
-      'Reanimación cardiopulmonar',
-      'Medicina crítica',
-      'Estabilización de pacientes',
-      'Triage médico'
+      'Cirugía de tumores cerebrales',
+      'Cirugía de columna',
+      'Tratamiento de traumatismos',
+      'Cirugía vascular cerebral',
+      'Cirugía de epilepsia',
+      'Neurocirugía pediátrica'
+    ],
+    doctores: []
+  },
+  {
+    id: 'oftalmologia',
+    nombre: 'Oftalmología',
+    titulo: 'Oftalmología Pediátrica',
+    descripcion: 'Diagnóstico y tratamiento de enfermedades oculares en niños.',
+    descripcionDetallada: 'Atención especializada en enfermedades oculares pediátricas, incluyendo estrabismo, ambliopía y otros trastornos visuales en niños.',
+    slug: 'oftalmologia',
+    icon: Eye,
+    servicios: [
+      'Examen visual pediátrico',
+      'Tratamiento de estrabismo',
+      'Corrección de ambliopía',
+      'Cirugía ocular pediátrica',
+      'Detección temprana',
+      'Seguimiento del desarrollo visual'
     ],
     doctores: []
   }
@@ -655,7 +1064,11 @@ especialidadesData.forEach(especialidad => {
   especialidad.doctores = doctores.filter(doctor => 
     doctor.especialidades.some(esp => 
       esp.toLowerCase().includes(especialidad.nombre.toLowerCase()) ||
-      especialidad.nombre.toLowerCase().includes(esp.toLowerCase())
+      especialidad.nombre.toLowerCase().includes(esp.toLowerCase()) ||
+      (especialidad.nombre === 'Medicina Crítica' && (esp.includes('Medicina Crítica') || esp.includes('Terapia Intensiva'))) ||
+      (especialidad.nombre === 'Cirugía General' && esp.includes('Cirugía')) ||
+      (especialidad.nombre === 'Cirugía Plástica' && esp.includes('Cirugía Plástica')) ||
+      (especialidad.nombre === 'Oftalmología' && esp.includes('Oftalmología'))
     )
   );
 });

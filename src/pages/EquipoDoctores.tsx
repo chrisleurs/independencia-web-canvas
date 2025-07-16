@@ -5,13 +5,31 @@ import { Button } from '@/components/ui/button';
 import { User, Phone, MessageCircle, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { getAllDoctors } from '@/data/especialidades';
+import { useDoctores } from '@/hooks/useDoctores';
 
 const EquipoDoctores = () => {
-  const doctores = getAllDoctors();
+  // Try to get doctors from Supabase first, fallback to local data
+  const { data: doctoresSupabase, isLoading, error } = useDoctores();
+  const doctoresLocal = getAllDoctors();
+  
+  // Use Supabase data if available, otherwise use local data
+  const doctores = doctoresSupabase && doctoresSupabase.length > 0 
+    ? doctoresSupabase.map(doc => ({
+        id: doc.id,
+        slug: doc.slug,
+        nombre: doc.nombre,
+        titulo: doc.titulo,
+        experiencia: doc.experiencia || '',
+        foto: doc.foto,
+        whatsapp: doc.whatsapp,
+        telefonoHospital: '238 382 4819', // Default hospital phone
+        hasDetailedProfile: doc.has_detailed_profile
+      }))
+    : doctoresLocal;
 
   const handleWhatsAppContact = (doctor: any) => {
     if (doctor.whatsapp) {
-      const phoneNumber = `52${doctor.whatsapp}`;
+      const phoneNumber = `52${doctor.whatsapp.replace(/\s/g, '')}`;
       const message = encodeURIComponent(`Hola ${doctor.nombre}, me gustaría agendar una cita. ¿Cuál es su disponibilidad?`);
       const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
       window.open(whatsappUrl, '_blank');
@@ -20,7 +38,7 @@ const EquipoDoctores = () => {
 
   const handleCallHospital = (doctor: any) => {
     if (doctor.telefonoHospital) {
-      window.open(`tel:+52${doctor.telefonoHospital}`, '_self');
+      window.open(`tel:+52${doctor.telefonoHospital.replace(/\s/g, '')}`, '_self');
     }
   };
 
@@ -33,6 +51,19 @@ const EquipoDoctores = () => {
       .toUpperCase();
   };
 
+  if (isLoading) {
+    return (
+      <Layout>
+        <div className="pt-20 min-h-screen flex items-center justify-center">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-hospital-primary mx-auto mb-4"></div>
+            <p className="text-lg">Cargando equipo médico...</p>
+          </div>
+        </div>
+      </Layout>
+    );
+  }
+
   return (
     <Layout>
       <div className="pt-20">
@@ -42,8 +73,13 @@ const EquipoDoctores = () => {
               Nuestros Doctores
             </h1>
             <p className="text-xl opacity-90 max-w-3xl mx-auto">
-              Contamos con un equipo médico altamente calificado y comprometido con brindar la mejor atención a nuestros pacientes
+              Contamos con un equipo médico de {doctores.length} especialistas altamente calificados y comprometidos con brindar la mejor atención a nuestros pacientes
             </p>
+            {doctoresSupabase && doctoresSupabase.length > 0 && (
+              <p className="text-sm opacity-75 mt-2">
+                ✅ Datos actualizados desde nuestra base de datos
+              </p>
+            )}
           </div>
         </section>
 
@@ -130,7 +166,7 @@ const EquipoDoctores = () => {
               <div className="bg-slate-50 p-8 rounded-2xl max-w-2xl mx-auto">
                 <h2 className="text-2xl font-bold mb-4">¿Buscas una especialidad específica?</h2>
                 <p className="text-muted-foreground mb-6">
-                  Contamos con más de 18 especialidades médicas. Contacta con nosotros para conocer la disponibilidad de nuestros especialistas.
+                  Contamos con más de 19 especialidades médicas distribuidas entre nuestros {doctores.length} especialistas. Contacta con nosotros para conocer la disponibilidad.
                 </p>
                 <Link to="/especialidades">
                   <Button size="lg" className="mr-4">
@@ -139,10 +175,18 @@ const EquipoDoctores = () => {
                 </Link>
                 <Button size="lg" variant="outline">
                   <Phone className="w-5 h-5 mr-2" />
-                  Contactar: (238) 123-4567
+                  Contactar: (238) 382-4819
                 </Button>
               </div>
             </div>
+
+            {error && (
+              <div className="mt-8 p-4 bg-yellow-50 border border-yellow-200 rounded-lg text-center">
+                <p className="text-yellow-800">
+                  ⚠️ Mostrando datos locales. Para ver los datos más actualizados, ejecuta la migración a Supabase.
+                </p>
+              </div>
+            )}
           </div>
         </section>
       </div>
