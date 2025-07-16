@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Layout from '@/components/Layout';
 import { Button } from '@/components/ui/button';
@@ -26,21 +25,6 @@ const EquipoDoctores = () => {
         hasDetailedProfile: doc.has_detailed_profile
       }))
     : doctoresLocal;
-
-  const handleWhatsAppContact = (doctor: any) => {
-    if (doctor.whatsapp) {
-      const phoneNumber = `52${doctor.whatsapp.replace(/\s/g, '')}`;
-      const message = encodeURIComponent(`Hola ${doctor.nombre}, me gustaría agendar una cita. ¿Cuál es su disponibilidad?`);
-      const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
-      window.open(whatsappUrl, '_blank');
-    }
-  };
-
-  const handleCallHospital = (doctor: any) => {
-    if (doctor.telefonoHospital) {
-      window.open(`tel:+52${doctor.telefonoHospital.replace(/\s/g, '')}`, '_self');
-    }
-  };
 
   const getInitials = (nombre: string) => {
     return nombre
@@ -127,35 +111,12 @@ const EquipoDoctores = () => {
                       <Link to={`/doctores/${doctor.slug}`}>
                         <Button 
                           size="sm" 
-                          className="w-full bg-hospital-primary hover:bg-hospital-primary/90 text-white mb-2"
+                          className="w-full bg-hospital-primary hover:bg-hospital-primary/90 text-white"
                         >
                           <ExternalLink className="w-4 h-4 mr-2" />
                           Ver Perfil Completo
                         </Button>
                       </Link>
-                    )}
-                    
-                    {doctor.whatsapp && (
-                      <Button 
-                        size="sm" 
-                        className="w-full bg-green-600 hover:bg-green-700 text-white"
-                        onClick={() => handleWhatsAppContact(doctor)}
-                      >
-                        <MessageCircle className="w-4 h-4 mr-2" />
-                        WhatsApp
-                      </Button>
-                    )}
-                    
-                    {doctor.telefonoHospital && (
-                      <Button 
-                        variant="outline" 
-                        size="sm" 
-                        className="w-full"
-                        onClick={() => handleCallHospital(doctor)}
-                      >
-                        <Phone className="w-4 h-4 mr-2" />
-                        Llamar Hospital
-                      </Button>
                     )}
                   </div>
                 </div>
