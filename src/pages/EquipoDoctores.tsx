@@ -22,7 +22,7 @@ const EquipoDoctores = () => {
         experiencia: doc.experiencia || '',
         foto: doc.foto,
         whatsapp: doc.whatsapp,
-        telefonoHospital: '238 382 4819', // Default hospital phone
+        telefonoHospital: doc.telefono_hospital || '238 382 4819', // Use new field
         hasDetailedProfile: doc.has_detailed_profile
       }))
     : doctoresLocal;

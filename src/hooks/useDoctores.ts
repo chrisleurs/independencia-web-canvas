@@ -17,6 +17,14 @@ export interface DoctorDB {
   logros: string[] | null;
   horarios_atencion?: string;
   ubicacion_consultorio?: string;
+  // New fields from migration
+  mision?: string;
+  telefono_hospital?: string;
+  telefonos_adicionales: string[] | null;
+  areas_atencion: string[] | null;
+  horario_detallado?: string;
+  reconocimientos: string[] | null;
+  formacion_detallada?: string;
   created_at: string;
   updated_at: string;
 }

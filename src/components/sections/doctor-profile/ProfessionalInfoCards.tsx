@@ -13,7 +13,29 @@ import {
   Heart
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { Doctor } from '@/data/especialidades';
+
+interface Doctor {
+  id: string;
+  nombre: string;
+  titulo: string;
+  especialidades?: string[];
+  servicios?: string[];
+  areasAtencion?: string[];
+  procedimientos?: string[];
+  formacion?: string;
+  certificaciones?: string[];
+  horarios?: string;
+  horarioDetallado?: string;
+  reconocimientos?: string[];
+  whatsapp?: string;
+  telefonoHospital?: string;
+  telefonosAdicionales?: string[];
+  contactoTitulos?: {
+    whatsapp?: string;
+    hospital?: string;
+    adicionales?: string[];
+  };
+}
 
 interface ProfessionalInfoCardsProps {
   doctor: Doctor;
@@ -48,37 +70,17 @@ const ProfessionalInfoCards = ({ doctor, getEspecialidadSlug }: ProfessionalInfo
         </Card>
       )}
 
-      {/* Servicios */}
-      {doctor.servicios && doctor.servicios.length > 0 && (
+      {/* Servicios/Áreas de Atención */}
+      {((doctor.servicios && doctor.servicios.length > 0) || (doctor.areasAtencion && doctor.areasAtencion.length > 0)) && (
         <Card className="hover:shadow-lg transition-shadow duration-300">
           <CardHeader>
             <CardTitle className="flex items-center gap-3 text-hospital-primary">
               <Heart className="w-6 h-6" />
-              Servicios
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-3">
-            {doctor.servicios.map((servicio, index) => (
-              <div key={index} className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-hospital-accent flex-shrink-0 mt-1" />
-                <span className="text-hospital-gray">{servicio}</span>
-              </div>
-            ))}
-          </CardContent>
-        </Card>
-      )}
-
-      {/* Áreas de Atención */}
-      {doctor.areasAtencion && doctor.areasAtencion.length > 0 && (
-        <Card className="hover:shadow-lg transition-shadow duration-300">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-3 text-hospital-primary">
-              <Activity className="w-6 h-6" />
               Áreas de Atención
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
-            {doctor.areasAtencion.map((area, index) => (
+            {(doctor.areasAtencion || doctor.servicios || []).map((area, index) => (
               <div key={index} className="flex items-start gap-3">
                 <CheckCircle className="w-5 h-5 text-hospital-accent flex-shrink-0 mt-1" />
                 <span className="text-hospital-gray">{area}</span>
