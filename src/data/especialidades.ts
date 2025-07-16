@@ -1,4 +1,3 @@
-
 import { 
   Heart, 
   Stethoscope, 
@@ -14,8 +13,8 @@ import {
   Zap,
   Apple,
   Microscope,
-  Lungs,
-  Kidney
+  Wind,
+  Droplets
 } from 'lucide-react';
 
 export interface Especialidad {
@@ -401,7 +400,7 @@ export const doctores: Doctor[] = [
     nombre: 'Dr. Tedd Ochoa Vázquez',
     titulo: 'Urología',
     experiencia: 'Urólogo certificado desde 2011 con especialización en trasplante renal',
-    mision: 'Soy el Dr. Tedd Ochoa, mi misión es ofrecer una atención integral y de vanguardia en el campo de la urología, enfocada en el diagnóstico, tratamiento y prevención para mis pacientes. Con pasión y dedicación, mi objetivo es mejorar la calidad de vida de mis pacientes, brindando tratamientos efectivas y personalizados.',
+    mision: 'Soy el Dr. Tedd Ochoa, mi misión es ofrecer una atención integral y de vanguardia en el campo de la urología, enfocada en el diagnóstico, tratamiento y prevención para mis pacientes. Con pasión y dedicación, mi objetivo es mejorar la calidad de vida de mis pacientes, brindando tratamientos efectivos y personalizados.',
     especialidades: ['Urología', 'Trasplante Renal'],
     areasAtencion: [
       'Crecimiento Prostático',
@@ -884,7 +883,7 @@ const especialidadesData: Especialidad[] = [
     descripcion: 'Especialidad médica que se ocupa del diagnóstico y tratamiento de las enfermedades renales.',
     descripcionDetallada: 'Atención especializada en enfermedades de los riñones y las vías urinarias, incluyendo diálisis y trasplante renal.',
     slug: 'nefrologia',
-    icon: Kidney,
+    icon: Droplets,
     servicios: [
       'Diagnóstico de enfermedades renales',
       'Tratamiento de insuficiencia renal',
@@ -902,7 +901,7 @@ const especialidadesData: Especialidad[] = [
     descripcion: 'Diagnóstico y tratamiento de enfermedades del aparato respiratorio.',
     descripcionDetallada: 'Especialistas en enfermedades pulmonares y del sistema respiratorio, incluyendo asma, EPOC y otras patologías respiratorias.',
     slug: 'neumologia',
-    icon: Lungs,
+    icon: Wind,
     servicios: [
       'Espirometría',
       'Broncoscopia',
