@@ -88,54 +88,75 @@ export type Database = {
       }
       doctores: {
         Row: {
+          areas_atencion: string[] | null
           biografia: string | null
           certificaciones: string[] | null
           created_at: string | null
           educacion: string[] | null
           experiencia: string | null
+          formacion_detallada: string | null
           foto: string | null
           has_detailed_profile: boolean | null
+          horario_detallado: string | null
           horarios_atencion: string | null
           id: string
           logros: string[] | null
+          mision: string | null
           nombre: string
+          reconocimientos: string[] | null
           slug: string
+          telefono_hospital: string | null
+          telefonos_adicionales: string[] | null
           titulo: string
           ubicacion_consultorio: string | null
           updated_at: string | null
           whatsapp: string | null
         }
         Insert: {
+          areas_atencion?: string[] | null
           biografia?: string | null
           certificaciones?: string[] | null
           created_at?: string | null
           educacion?: string[] | null
           experiencia?: string | null
+          formacion_detallada?: string | null
           foto?: string | null
           has_detailed_profile?: boolean | null
+          horario_detallado?: string | null
           horarios_atencion?: string | null
           id?: string
           logros?: string[] | null
+          mision?: string | null
           nombre: string
+          reconocimientos?: string[] | null
           slug: string
+          telefono_hospital?: string | null
+          telefonos_adicionales?: string[] | null
           titulo: string
           ubicacion_consultorio?: string | null
           updated_at?: string | null
           whatsapp?: string | null
         }
         Update: {
+          areas_atencion?: string[] | null
           biografia?: string | null
           certificaciones?: string[] | null
           created_at?: string | null
           educacion?: string[] | null
           experiencia?: string | null
+          formacion_detallada?: string | null
           foto?: string | null
           has_detailed_profile?: boolean | null
+          horario_detallado?: string | null
           horarios_atencion?: string | null
           id?: string
           logros?: string[] | null
+          mision?: string | null
           nombre?: string
+          reconocimientos?: string[] | null
           slug?: string
+          telefono_hospital?: string | null
+          telefonos_adicionales?: string[] | null
           titulo?: string
           ubicacion_consultorio?: string | null
           updated_at?: string | null
