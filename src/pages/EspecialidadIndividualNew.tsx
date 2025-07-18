@@ -12,7 +12,7 @@ import {
   BreadcrumbPage, 
   BreadcrumbSeparator 
 } from '@/components/ui/breadcrumb';
-import { ExternalLink, Phone, MessageCircle } from 'lucide-react';
+import { User, ExternalLink, Phone, MessageCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useEspecialidadBySlug } from '@/hooks/useEspecialidades';
 import { useDoctoresByEspecialidad } from '@/hooks/useDoctores';
