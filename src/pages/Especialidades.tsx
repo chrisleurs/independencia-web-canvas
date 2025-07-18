@@ -1,7 +1,6 @@
-
 import React from 'react';
 import Layout from '@/components/Layout';
-import EspecialidadesCompletas from '@/components/sections/EspecialidadesCompletas';
+import EspecialidadesCompletasSupabase from '@/components/sections/EspecialidadesCompletasSupabase';
 
 const Especialidades = () => {
   return (
@@ -18,7 +17,7 @@ const Especialidades = () => {
           </div>
         </section>
         
-        <EspecialidadesCompletas />
+        <EspecialidadesCompletasSupabase />
       </div>
     </Layout>
   );

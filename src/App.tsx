@@ -6,7 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Inicio from "./pages/Inicio";
 import Especialidades from "./pages/Especialidades";
-import EspecialidadIndividual from "./pages/EspecialidadIndividual";
+import EspecialidadIndividual from "./pages/EspecialidadIndividualSupabase";
 import DoctorIndividual from "./pages/DoctorIndividual";
 import Servicios from "./pages/Servicios";
 import ServicioIndividual from "./pages/ServicioIndividual";
