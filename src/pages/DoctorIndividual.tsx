@@ -37,6 +37,65 @@ const DoctorIndividual = () => {
     return <Navigate to="/doctores" replace />;
   }
 
+  // Enhanced contact titles for the new specialists
+  const getContactTitles = () => {
+    const whatsappTitle = doctor.whatsapp ? 'WhatsApp Personal' : 'WhatsApp';
+    const hospitalTitle = 'Hospital Independencia';
+    
+    const adicionalTitles = doctor.telefonos_adicionales?.map((tel, index) => {
+      // Títulos específicos para números conocidos
+      if (tel.includes('2383829648')) return 'Hospital Independencia - Urgencias';
+      if (tel.includes('2381278192')) return 'Consultorio Cirugía General';
+      if (tel.includes('2383825027')) return 'Consultorio Gastroenterología';
+      
+      // Títulos personalizados para los nuevos especialistas
+      if (doctor.titulo.includes('Ortopedista') || doctor.titulo.includes('Traumatólogo')) {
+        return 'Consulta Traumatología y Ortopedia';
+      }
+      if (doctor.titulo.includes('Cirugía General')) {
+        return 'Cirugía General - Consultorio';
+      }
+      if (doctor.titulo.includes('Cirugía Oncológica')) {
+        return 'Consulta Oncología';
+      }
+      if (doctor.titulo.includes('Coloproctología')) {
+        return 'Consulta Coloproctología';
+      }
+      if (doctor.titulo.includes('Urología')) {
+        return 'Consulta Urología';
+      }
+      if (doctor.titulo.includes('Dermatología')) {
+        return 'Consulta Dermatología';
+      }
+      if (doctor.titulo.includes('Gastroenterología')) {
+        return 'Consulta Gastroenterología';
+      }
+      if (doctor.titulo.includes('Nefrología')) {
+        return 'Consulta Nefrología';
+      }
+      if (doctor.titulo.includes('Neurólogo')) {
+        return 'Consulta Neurología';
+      }
+      if (doctor.titulo.includes('Nutriólogo')) {
+        return 'Consulta Nutricional';
+      }
+      if (doctor.titulo.includes('Urgencias')) {
+        return 'Urgencias Médicas';
+      }
+      if (doctor.titulo.includes('Cardiovascular') || doctor.titulo.includes('Torácico')) {
+        return 'Cirugía Cardiovascular';
+      }
+      
+      return `Contacto Adicional ${index + 1}`;
+    });
+
+    return {
+      whatsapp: whatsappTitle,
+      hospital: hospitalTitle,
+      adicionales: adicionalTitles
+    };
+  };
+
   // Transform Supabase doctor data to match the expected format
   const transformedDoctor = {
     id: doctor.id,
@@ -58,30 +117,13 @@ const DoctorIndividual = () => {
     horarioDetallado: doctor.horario_detallado,
     reconocimientos: doctor.reconocimientos || [],
     hasDetailedProfile: doctor.has_detailed_profile,
-    contactoTitulos: {
-      whatsapp: doctor.whatsapp ? 'WhatsApp Personal' : 'WhatsApp',
-      hospital: 'Hospital Independencia',
-      adicionales: doctor.telefonos_adicionales?.map((tel, index) => {
-        // Títulos personalizados mejorados para los nuevos doctores
-        if (tel.includes('2383829648')) return 'Hospital Independencia - Urgencias';
-        if (tel.includes('2383825027')) return 'Consultorio Gastroenterología';
-        
-        // Títulos basados en especialidad
-        if (doctor.titulo.includes('Urgencias')) return 'Urgencias Médicas';
-        if (doctor.titulo.includes('Neurólogo')) return 'Consulta Neurológica';
-        if (doctor.titulo.includes('Nutriólogo')) return 'Consulta Nutricional';
-        if (doctor.titulo.includes('Gastroenterología')) return 'Consulta Gastroenterología';
-        if (doctor.titulo.includes('Nefrología')) return 'Consulta Nefrología';
-        if (doctor.titulo.includes('Cirujano')) return 'Cirugía Especializada';
-        
-        return `Contacto Adicional ${index + 1}`;
-      })
-    }
+    contactoTitulos: getContactTitles()
   };
 
   console.log(`✅ Renderizando página individual para: ${doctor.nombre}`);
   console.log(`✅ Especialidad: ${doctor.titulo}`);
   console.log(`✅ Áreas de atención: ${doctor.areas_atencion?.length || 0}`);
+  console.log(`✅ Slug: ${doctor.slug}`);
 
   return (
     <Layout>

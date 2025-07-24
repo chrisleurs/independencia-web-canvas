@@ -48,23 +48,33 @@ export const useDoctores = () => {
       const doctoresConPerfil = data?.filter(d => d.has_detailed_profile) || [];
       console.log(`✅ Doctores con perfil detallado: ${doctoresConPerfil.length}`);
       
-      // Log específico para los 7 doctores recién actualizados
-      const doctoresEspecialistas = [
-        'Dr. Porfirio Apam Cruz',
-        'Dr. Jorge Alberto Almanza Islas',
-        'Dra. Silvia Huerta Damian',
-        'L.N.C. Carlos Escobar Olivier',
-        'Dr. Virgilio Marroquín Jiménez',
-        'Dra. Yadira Tehuacanero Tecua',
-        'Dr. Benito Vargas Ábrego'
+      // Log específico para los 7 nuevos doctores especialistas (cirujanos y especialistas avanzados)
+      const nuevosEspecialistas = [
+        'Dr. Omar Marroquín Herrera',
+        'Dr. José Luis Hernández Aguilar',
+        'Dr. Miguel Parra Flores',
+        'Dr. Quintín Héctor González Contreras',
+        'Dr. Jaime Oscar Romero Salas',
+        'Dr. Tedd Ochoa Vázquez',
+        'Dra. Irma Villanueva Cortes'
       ];
       
-      doctoresEspecialistas.forEach(nombre => {
+      console.log('🔍 VERIFICANDO NUEVOS DOCTORES ESPECIALISTAS:');
+      nuevosEspecialistas.forEach(nombre => {
         const doctor = data?.find(d => d.nombre === nombre);
         if (doctor && doctor.has_detailed_profile) {
           console.log(`✅ ${nombre} - Perfil detallado ACTIVO`);
+          console.log(`   - Especialidad: ${doctor.titulo}`);
+          console.log(`   - Slug: ${doctor.slug}`);
+          console.log(`   - WhatsApp: ${doctor.whatsapp || 'No disponible'}`);
+          console.log(`   - Áreas de atención: ${doctor.areas_atencion?.length || 0}`);
+        } else {
+          console.log(`❌ ${nombre} - Perfil no encontrado o inactivo`);
         }
       });
+      
+      // Log del total acumulado
+      console.log(`🎯 TOTAL ACUMULADO: ${doctoresConPerfil.length} doctores con páginas individuales completas`);
       
       return data as DoctorDB[];
     },

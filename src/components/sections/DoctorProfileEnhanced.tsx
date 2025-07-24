@@ -20,7 +20,7 @@ interface DoctorProfileEnhancedProps {
 
 const DoctorProfileEnhanced = ({ doctor }: DoctorProfileEnhancedProps) => {
   const handleWhatsAppBooking = () => {
-    const phoneNumber = doctor.whatsapp ? `52${doctor.whatsapp.replace(/\s/g, '')}` : '522381234567';
+    const phoneNumber = doctor.whatsapp ? `52${doctor.whatsapp.replace(/\s/g, '').replace(/[()]/g, '')}` : '522381234567';
     const doctorFirstName = doctor.nombre.split(' ').slice(0, 2).join(' ');
     const message = encodeURIComponent(`Hola ${doctorFirstName}, me gustaría agendar una consulta. ¿Cuál es su disponibilidad?`);
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
@@ -29,7 +29,7 @@ const DoctorProfileEnhanced = ({ doctor }: DoctorProfileEnhancedProps) => {
 
   const handleCallDoctor = () => {
     if (doctor.whatsapp) {
-      const cleanPhone = doctor.whatsapp.replace(/\s/g, '');
+      const cleanPhone = doctor.whatsapp.replace(/\s/g, '').replace(/[()]/g, '');
       window.open(`tel:+52${cleanPhone}`, '_self');
     }
   };
@@ -51,7 +51,9 @@ const DoctorProfileEnhanced = ({ doctor }: DoctorProfileEnhancedProps) => {
       'Diabetes Mellitus': 'medicina-general',
       'Hipertensión Arterial': 'medicina-general',
       'Cirugía Menor': 'cirugia-general-especializada',
+      'Cirugía General': 'cirugia-general-especializada',
       'Medicina de Urgencias': 'urgenciologia',
+      'Urgencias Médico Quirúrgicas': 'urgenciologia',
       'Medicina Familiar': 'medicina-general',
       'Atención Primaria': 'medicina-general',
       'Atención Materno Infantil': 'ginecologia',
@@ -67,49 +69,21 @@ const DoctorProfileEnhanced = ({ doctor }: DoctorProfileEnhancedProps) => {
       'Neonatología': 'pediatria',
       'Traumatología': 'traumatologia-ortopedia',
       'Ortopedia': 'traumatologia-ortopedia',
-      'Cirugía Articular': 'traumatologia-ortopedia'
+      'Cirugía Articular': 'traumatologia-ortopedia',
+      'Neurología': 'neurologia',
+      'Neurofisiología': 'neurologia',
+      'Nutrición': 'nutricion',
+      'Gastroenterología': 'gastroenterologia',
+      'Nefrología': 'nefrologia',
+      'Urología': 'urologia',
+      'Dermatología': 'dermatologia',
+      'Oncología': 'oncologia',
+      'Cirugía Oncológica': 'oncologia',
+      'Coloproctología': 'gastroenterologia',
+      'Cirugía Cardiovascular': 'cardiologia',
+      'Cirugía Torácica': 'neumologia'
     };
     return slugMap[especialidad] || 'medicina-general';
-  };
-
-  // Crear títulos de contacto personalizados mejorados
-  const getContactTitles = () => {
-    const whatsappTitle = doctor.whatsapp ? 'WhatsApp Personal' : 'WhatsApp';
-    const hospitalTitle = 'Hospital Independencia';
-    
-    const adicionalTitles = doctor.telefonosAdicionales?.map((tel, index) => {
-      // Títulos personalizados basados en números específicos
-      if (tel.includes('2383829648')) return 'Hospital Independencia - Urgencias';
-      if (tel.includes('236 3812945')) return 'Consultorio Privado';
-      if (tel.includes('238 249 3811')) return 'Urgencias Médicas';
-      
-      // Títulos personalizados basados en especialidad
-      if (doctor.titulo.includes('Medicina Crítica') || doctor.titulo.includes('Terapia Intensiva')) {
-        return 'Medicina Crítica - Urgencias';
-      }
-      if (doctor.titulo.includes('Pediatra') || doctor.titulo.includes('Neonatología')) {
-        return 'Pediatría - Consultorio';
-      }
-      if (doctor.titulo.includes('Traumatología') || doctor.titulo.includes('Ortopedia')) {
-        return 'Traumatología - Consultorio';
-      }
-      if (doctor.titulo.includes('Cardineumólogo') || doctor.titulo.includes('Anestesiólogo')) {
-        return 'Especialidades Médicas';
-      }
-      
-      return `Contacto Adicional ${index + 1}`;
-    });
-
-    return {
-      whatsapp: whatsappTitle,
-      hospital: hospitalTitle,
-      adicionales: adicionalTitles
-    };
-  };
-
-  const doctorWithContactTitles = {
-    ...doctor,
-    contactoTitulos: getContactTitles()
   };
 
   return (
@@ -139,7 +113,7 @@ const DoctorProfileEnhanced = ({ doctor }: DoctorProfileEnhancedProps) => {
 
       {/* Header del doctor */}
       <DoctorHeader 
-        doctor={doctorWithContactTitles}
+        doctor={doctor}
         onWhatsAppBooking={handleWhatsAppBooking}
         onCallDoctor={handleCallDoctor}
         getInitials={getInitials}
@@ -149,7 +123,7 @@ const DoctorProfileEnhanced = ({ doctor }: DoctorProfileEnhancedProps) => {
       <section className="section-padding bg-white">
         <div className="container-custom">
           <ProfessionalInfoCards 
-            doctor={doctorWithContactTitles}
+            doctor={doctor}
             getEspecialidadSlug={getEspecialidadSlug}
           />
         </div>
@@ -157,7 +131,7 @@ const DoctorProfileEnhanced = ({ doctor }: DoctorProfileEnhancedProps) => {
 
       {/* CTA Final */}
       <DoctorCTA 
-        doctor={doctorWithContactTitles}
+        doctor={doctor}
         onWhatsAppBooking={handleWhatsAppBooking}
         onCallDoctor={handleCallDoctor}
       />
