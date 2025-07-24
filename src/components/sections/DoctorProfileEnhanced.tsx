@@ -58,26 +58,58 @@ const DoctorProfileEnhanced = ({ doctor }: DoctorProfileEnhancedProps) => {
       'Cirugía Plástica': 'cirugia-plastica',
       'Cirugía Estética': 'cirugia-plastica',
       'Cirugía Reconstructiva': 'cirugia-plastica',
-      'Enfermedades Crónico-degenerativas': 'medicina-general'
+      'Enfermedades Crónico-degenerativas': 'medicina-general',
+      'Medicina Crítica': 'medicina-critica',
+      'Terapia Intensiva': 'medicina-critica',
+      'Cardineumología': 'cardiologia',
+      'Anestesiología': 'anestesiologia',
+      'Pediatría': 'pediatria',
+      'Neonatología': 'pediatria',
+      'Traumatología': 'traumatologia-ortopedia',
+      'Ortopedia': 'traumatologia-ortopedia',
+      'Cirugía Articular': 'traumatologia-ortopedia'
     };
     return slugMap[especialidad] || 'medicina-general';
   };
 
-  // Crear títulos de contacto personalizados basados en el doctor
-  const contactoTitulos = {
-    whatsapp: 'WhatsApp Personal',
-    hospital: 'Hospital Independencia',
-    adicionales: doctor.telefonosAdicionales?.map((tel, index) => {
-      // Personalizar según el número
+  // Crear títulos de contacto personalizados mejorados
+  const getContactTitles = () => {
+    const whatsappTitle = doctor.whatsapp ? 'WhatsApp Personal' : 'WhatsApp';
+    const hospitalTitle = 'Hospital Independencia';
+    
+    const adicionalTitles = doctor.telefonosAdicionales?.map((tel, index) => {
+      // Títulos personalizados basados en números específicos
+      if (tel.includes('2383829648')) return 'Hospital Independencia - Urgencias';
       if (tel.includes('236 3812945')) return 'Consultorio Privado';
       if (tel.includes('238 249 3811')) return 'Urgencias Médicas';
+      
+      // Títulos personalizados basados en especialidad
+      if (doctor.titulo.includes('Medicina Crítica') || doctor.titulo.includes('Terapia Intensiva')) {
+        return 'Medicina Crítica - Urgencias';
+      }
+      if (doctor.titulo.includes('Pediatra') || doctor.titulo.includes('Neonatología')) {
+        return 'Pediatría - Consultorio';
+      }
+      if (doctor.titulo.includes('Traumatología') || doctor.titulo.includes('Ortopedia')) {
+        return 'Traumatología - Consultorio';
+      }
+      if (doctor.titulo.includes('Cardineumólogo') || doctor.titulo.includes('Anestesiólogo')) {
+        return 'Especialidades Médicas';
+      }
+      
       return `Contacto Adicional ${index + 1}`;
-    })
+    });
+
+    return {
+      whatsapp: whatsappTitle,
+      hospital: hospitalTitle,
+      adicionales: adicionalTitles
+    };
   };
 
   const doctorWithContactTitles = {
     ...doctor,
-    contactoTitulos
+    contactoTitulos: getContactTitles()
   };
 
   return (
