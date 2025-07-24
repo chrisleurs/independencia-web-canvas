@@ -53,6 +53,11 @@ const EspecialidadIndividualNew = () => {
     return <Navigate to="/especialidades" replace />;
   }
 
+  // Log final summary
+  if (doctores && doctores.length > 0) {
+    console.log(`✅ Sistema de doctores completado - ${especialidad.titulo}: ${doctores.length} doctor(es)`);
+  }
+
   return (
     <Layout>
       <div className="pt-20">

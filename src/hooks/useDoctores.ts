@@ -33,18 +33,15 @@ export const useDoctores = () => {
   return useQuery({
     queryKey: ['doctores'],
     queryFn: async () => {
-      console.log('Fetching doctores from Supabase...');
       const { data, error } = await supabase
         .from('doctores')
         .select('*')
         .order('nombre');
       
       if (error) {
-        console.error('Error fetching doctores:', error);
         throw error;
       }
       
-      console.log(`Fetched ${data?.length || 0} doctores from Supabase`);
       return data as DoctorDB[];
     },
   });
@@ -54,7 +51,6 @@ export const useDoctorBySlug = (slug: string) => {
   return useQuery({
     queryKey: ['doctor', slug],
     queryFn: async () => {
-      console.log(`Fetching doctor with slug: ${slug}`);
       const { data, error } = await supabase
         .from('doctores')
         .select('*')
@@ -62,11 +58,9 @@ export const useDoctorBySlug = (slug: string) => {
         .single();
       
       if (error) {
-        console.error('Error fetching doctor:', error);
         throw error;
       }
       
-      console.log('Fetched doctor:', data?.nombre);
       return data as DoctorDB;
     },
     enabled: !!slug,
@@ -77,10 +71,7 @@ export const useDoctoresByEspecialidad = (especialidadId: string) => {
   return useQuery({
     queryKey: ['doctores-especialidad', especialidadId],
     queryFn: async () => {
-      console.log(`🔍 Fetching doctores for especialidad ID: ${especialidadId}`);
-      
       if (!especialidadId) {
-        console.log('❌ No especialidad ID provided');
         return [];
       }
       
@@ -118,20 +109,12 @@ export const useDoctoresByEspecialidad = (especialidadId: string) => {
         .eq('especialidad_id', especialidadId);
       
       if (error) {
-        console.error('❌ Error fetching doctores by especialidad:', error);
         throw error;
       }
-      
-      console.log(`📋 Raw data from doctor_especialidades:`, data);
       
       const doctores = data
         ?.map(item => item.doctores)
         .filter(Boolean) as DoctorDB[];
-      
-      console.log(`✅ Found ${doctores?.length || 0} doctores for especialidad ${especialidadId}`);
-      doctores?.forEach(doctor => {
-        console.log(`👨‍⚕️ ${doctor.nombre} - ${doctor.titulo}`);
-      });
       
       return doctores || [];
     },
