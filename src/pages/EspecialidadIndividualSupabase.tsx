@@ -15,6 +15,7 @@ import { User, ExternalLink, Phone, MessageCircle, CheckCircle } from 'lucide-re
 import { useEspecialidadBySlug } from '@/hooks/useEspecialidades';
 import { useDoctoresByEspecialidad } from '@/hooks/useDoctores';
 import { getIconComponent } from '@/utils/iconMapping';
+import EspecialidadDoctoresDebug from '@/components/sections/EspecialidadDoctoresDebug';
 
 const EspecialidadIndividualSupabase = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -25,6 +26,15 @@ const EspecialidadIndividualSupabase = () => {
 
   const { data: especialidad, isLoading: especialidadLoading, error: especialidadError } = useEspecialidadBySlug(slug);
   const { data: doctores, isLoading: doctoresLoading } = useDoctoresByEspecialidad(especialidad?.id || '');
+
+  // Debug logging
+  React.useEffect(() => {
+    console.log('🏥 EspecialidadIndividualSupabase - Debug Info');
+    console.log('Slug:', slug);
+    console.log('Especialidad:', especialidad);
+    console.log('Doctores:', doctores);
+    console.log('Doctores loading:', doctoresLoading);
+  }, [slug, especialidad, doctores, doctoresLoading]);
 
   const getInitials = (nombre: string) => {
     return nombre
@@ -64,6 +74,9 @@ const EspecialidadIndividualSupabase = () => {
   return (
     <Layout>
       <div className="pt-20">
+        {/* DEBUG Component - Remove this in production */}
+        <EspecialidadDoctoresDebug slug={slug} />
+        
         {/* Breadcrumb */}
         <section className="bg-hospital-light py-2">
           <div className="container-custom">
@@ -153,7 +166,7 @@ const EspecialidadIndividualSupabase = () => {
           </section>
         )}
 
-        {/* Doctores especialistas */}
+        {/* Doctores especialistas con debugging mejorado */}
         {doctoresLoading && (
           <section className="section-padding bg-hospital-light">
             <div className="container-custom text-center">
@@ -163,87 +176,112 @@ const EspecialidadIndividualSupabase = () => {
           </section>
         )}
 
-        {doctores && doctores.length > 0 && (
+        {/* Mostrar información de debugging */}
+        {!doctoresLoading && (
           <section className="section-padding bg-hospital-light">
             <div className="container-custom">
+              <div className="bg-blue-100 border border-blue-300 rounded p-4 mb-8">
+                <h3 className="font-bold text-lg mb-2">DEBUG INFO:</h3>
+                <p>Especialidad ID: {especialidad.id}</p>
+                <p>Doctores loading: {doctoresLoading.toString()}</p>
+                <p>Doctores array length: {doctores?.length || 0}</p>
+                <p>Doctores data: {JSON.stringify(doctores, null, 2)}</p>
+              </div>
+              
               <h2 className="text-3xl font-bold text-center mb-12 text-hospital-primary">
                 Nuestros Especialistas
               </h2>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {doctores.map((doctor) => (
-                  <Card key={doctor.id} className="bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-lg transition-all duration-300">
-                    <CardContent className="p-0">
-                      {/* Foto del doctor */}
-                      <div className="w-24 h-24 bg-gradient-to-br from-hospital-primary to-hospital-secondary rounded-full mx-auto mb-4 flex items-center justify-center text-white text-lg font-bold overflow-hidden">
-                        {doctor.foto ? (
-                          <img 
-                            src={doctor.foto} 
-                            alt={doctor.nombre}
-                            className="w-full h-full rounded-full object-cover"
-                          />
-                        ) : (
-                          getInitials(doctor.nombre)
-                        )}
-                      </div>
-                      
-                      <div className="text-center mb-4">
-                        <h3 className="text-lg font-bold mb-2">{doctor.nombre}</h3>
-                        <p className="text-hospital-primary font-medium mb-2">{doctor.titulo}</p>
-                        <p className="text-muted-foreground text-sm mb-3">{doctor.experiencia}</p>
-                      </div>
-                      
-                      {/* Información de contacto como texto */}
-                      <div className="space-y-2 mb-4 text-sm text-muted-foreground">
-                        {doctor.whatsapp && (
-                          <div className="flex items-center justify-center space-x-2">
-                            <MessageCircle className="w-4 h-4 text-green-600" />
-                            <span>WhatsApp: {doctor.whatsapp}</span>
-                          </div>
-                        )}
-                        {doctor.telefono_hospital && (
-                          <div className="flex items-center justify-center space-x-2">
-                            <Phone className="w-4 h-4 text-hospital-primary" />
-                            <span>Hospital: {doctor.telefono_hospital}</span>
-                          </div>
-                        )}
-                        {doctor.horario_detallado && (
-                          <div className="text-center">
-                            <span>Horarios: {doctor.horario_detallado}</span>
-                          </div>
-                        )}
-                      </div>
-                      
-                      {/* Botones de acción */}
-                      <div className="space-y-2">
-                        {/* Solo botón de perfil completo si está disponible */}
-                        {doctor.has_detailed_profile && (
-                          <Link to={`/doctores/${doctor.slug}`}>
+
+              {/* Mensaje cuando no hay doctores */}
+              {(!doctores || doctores.length === 0) && (
+                <div className="text-center py-12">
+                  <p className="text-lg text-hospital-gray mb-4">
+                    No se encontraron doctores para esta especialidad.
+                  </p>
+                  <p className="text-sm text-hospital-gray">
+                    Especialidad ID: {especialidad.id} | Slug: {slug}
+                  </p>
+                </div>
+              )}
+
+              {/* Grid de doctores */}
+              {doctores && doctores.length > 0 && (
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {doctores.map((doctor) => (
+                    <Card key={doctor.id} className="bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-lg transition-all duration-300">
+                      <CardContent className="p-0">
+                        {/* Foto del doctor */}
+                        <div className="w-24 h-24 bg-gradient-to-br from-hospital-primary to-hospital-secondary rounded-full mx-auto mb-4 flex items-center justify-center text-white text-lg font-bold overflow-hidden">
+                          {doctor.foto ? (
+                            <img 
+                              src={doctor.foto} 
+                              alt={doctor.nombre}
+                              className="w-full h-full rounded-full object-cover"
+                            />
+                          ) : (
+                            getInitials(doctor.nombre)
+                          )}
+                        </div>
+                        
+                        <div className="text-center mb-4">
+                          <h3 className="text-lg font-bold mb-2">{doctor.nombre}</h3>
+                          <p className="text-hospital-primary font-medium mb-2">{doctor.titulo}</p>
+                          <p className="text-muted-foreground text-sm mb-3">{doctor.experiencia}</p>
+                        </div>
+                        
+                        {/* Información de contacto como texto */}
+                        <div className="space-y-2 mb-4 text-sm text-muted-foreground">
+                          {doctor.whatsapp && (
+                            <div className="flex items-center justify-center space-x-2">
+                              <MessageCircle className="w-4 h-4 text-green-600" />
+                              <span>WhatsApp: {doctor.whatsapp}</span>
+                            </div>
+                          )}
+                          {doctor.telefono_hospital && (
+                            <div className="flex items-center justify-center space-x-2">
+                              <Phone className="w-4 h-4 text-hospital-primary" />
+                              <span>Hospital: {doctor.telefono_hospital}</span>
+                            </div>
+                          )}
+                          {doctor.horario_detallado && (
+                            <div className="text-center">
+                              <span>Horarios: {doctor.horario_detallado}</span>
+                            </div>
+                          )}
+                        </div>
+                        
+                        {/* Botones de acción */}
+                        <div className="space-y-2">
+                          {/* Solo botón de perfil completo si está disponible */}
+                          {doctor.has_detailed_profile && (
+                            <Link to={`/doctores/${doctor.slug}`}>
+                              <Button 
+                                size="sm" 
+                                className="w-full bg-hospital-primary hover:bg-hospital-primary/90 text-white"
+                              >
+                                <ExternalLink className="w-4 h-4 mr-2" />
+                                Ver Perfil Completo
+                              </Button>
+                            </Link>
+                          )}
+                          
+                          {/* Botón de WhatsApp siempre disponible */}
+                          {doctor.whatsapp && (
                             <Button 
                               size="sm" 
-                              className="w-full bg-hospital-primary hover:bg-hospital-primary/90 text-white"
+                              className="w-full bg-green-600 hover:bg-green-700 text-white"
+                              onClick={() => handleWhatsAppContact(doctor.whatsapp!, doctor.nombre)}
                             >
-                              <ExternalLink className="w-4 h-4 mr-2" />
-                              Ver Perfil Completo
+                              <MessageCircle className="w-4 h-4 mr-2" />
+                              Contactar por WhatsApp
                             </Button>
-                          </Link>
-                        )}
-                        
-                        {/* Botón de WhatsApp siempre disponible */}
-                        {doctor.whatsapp && (
-                          <Button 
-                            size="sm" 
-                            className="w-full bg-green-600 hover:bg-green-700 text-white"
-                            onClick={() => handleWhatsAppContact(doctor.whatsapp!, doctor.nombre)}
-                          >
-                            <MessageCircle className="w-4 h-4 mr-2" />
-                            Contactar por WhatsApp
-                          </Button>
-                        )}
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
+                          )}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              )}
             </div>
           </section>
         )}
