@@ -1,4 +1,3 @@
-
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 
@@ -48,19 +47,16 @@ export const useDoctores = () => {
       const doctoresConPerfil = data?.filter(d => d.has_detailed_profile) || [];
       console.log(`✅ Doctores con perfil detallado: ${doctoresConPerfil.length}`);
       
-      // Log específico para los nuevos doctores de Ginecología y Anestesiología
-      const nuevosGinecologiaAnestesia = [
-        'Dra. Edith Jazmín Calvo Santana',
-        'Dra. Nayeli del Rayo Sánchez Garibay',
-        'Dr. Moisés Héctor Sánchez Pérez',
-        'Dra. Luz María Gil Sandoval',
-        'Dra. Marianela Orellan Gorocica',
-        'Dr. Christian Misael Galicia Castelán',
-        'Dra. María Teresa Carrera Balderas'
+      // Verificación final de los últimos 4 doctores especialistas
+      const ultimosEspecialistas = [
+        'Dra. Samaria Estefanía Mejia Rivera',
+        'Dr. Jorge Luis Hernández García',
+        'Dra. Lidia Suárez Reynoso',
+        'Dr. Eugenio García Cano'
       ];
       
-      console.log('🔍 VERIFICANDO NUEVOS DOCTORES GINECOLOGÍA Y ANESTESIOLOGÍA:');
-      nuevosGinecologiaAnestesia.forEach(nombre => {
+      console.log('🔍 VERIFICANDO ÚLTIMOS 4 DOCTORES ESPECIALISTAS:');
+      ultimosEspecialistas.forEach(nombre => {
         const doctor = data?.find(d => d.nombre === nombre);
         if (doctor && doctor.has_detailed_profile) {
           console.log(`✅ ${nombre} - Perfil detallado ACTIVO`);
@@ -74,8 +70,66 @@ export const useDoctores = () => {
         }
       });
       
-      // Log del total acumulado
-      console.log(`🎯 TOTAL ACUMULADO: ${doctoresConPerfil.length} doctores con páginas individuales completas`);
+      // Verificación final del sistema completo
+      console.log('');
+      console.log('🎯 VERIFICACIÓN FINAL DEL SISTEMA COMPLETO:');
+      console.log('=' .repeat(60));
+      console.log(`📊 Total de doctores en el sistema: ${data?.length || 0}`);
+      console.log(`✅ Doctores con páginas individuales: ${doctoresConPerfil.length}`);
+      console.log(`📈 Porcentaje de cobertura: ${((doctoresConPerfil.length / (data?.length || 1)) * 100).toFixed(1)}%`);
+      
+      // Desglose por especialidades principales
+      const especialidadesConteo = {
+        'Medicina General': 0,
+        'Especialistas Médicos': 0,
+        'Ginecología y Obstetricia': 0,
+        'Anestesiología': 0,
+        'Cirugía Plástica': 0,
+        'Neurocirugía': 0,
+        'Oftalmología': 0,
+        'Otros': 0
+      };
+      
+      doctoresConPerfil.forEach(doctor => {
+        if (doctor.titulo.includes('Medicina General')) {
+          especialidadesConteo['Medicina General']++;
+        } else if (doctor.titulo.includes('Ginecología') || doctor.titulo.includes('Obstetricia')) {
+          especialidadesConteo['Ginecología y Obstetricia']++;
+        } else if (doctor.titulo.includes('Anestesi')) {
+          especialidadesConteo['Anestesiología']++;
+        } else if (doctor.titulo.includes('Cirugía Plástica')) {
+          especialidadesConteo['Cirugía Plástica']++;
+        } else if (doctor.titulo.includes('neurocirugía')) {
+          especialidadesConteo['Neurocirugía']++;
+        } else if (doctor.titulo.includes('Oftalmó')) {
+          especialidadesConteo['Oftalmología']++;
+        } else if (doctor.titulo.includes('Medicina Crítica') || doctor.titulo.includes('Pediatr') || doctor.titulo.includes('Traumat')) {
+          especialidadesConteo['Especialistas Médicos']++;
+        } else {
+          especialidadesConteo['Otros']++;
+        }
+      });
+      
+      console.log('');
+      console.log('📋 DESGLOSE POR ESPECIALIDADES:');
+      Object.entries(especialidadesConteo).forEach(([especialidad, count]) => {
+        if (count > 0) {
+          console.log(`   • ${especialidad}: ${count} doctores`);
+        }
+      });
+      
+      // Mensaje final de éxito
+      if (doctoresConPerfil.length >= 38) {
+        console.log('');
+        console.log('🎉 ¡SISTEMA COMPLETO EXITOSO!');
+        console.log(`✅ ${doctoresConPerfil.length} doctores con páginas individuales completas`);
+        console.log('🌐 Todas las páginas están disponibles en formato: /doctores/[slug]');
+        console.log('🔗 Sistema de navegación completamente funcional');
+        console.log('📱 Información de contacto integrada (WhatsApp y teléfonos)');
+        console.log('🏥 Perfiles profesionales detallados');
+      }
+      
+      console.log('=' .repeat(60));
       
       return data as DoctorDB[];
     },

@@ -6,8 +6,7 @@ import { User, Phone, MessageCircle, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { getAllDoctors } from '@/data/especialidades';
 import { useDoctores } from '@/hooks/useDoctores';
-import DoctorProfileVerification from '@/components/sections/DoctorProfileVerification';
-import DoctorSpecialistsVerification from '@/components/sections/DoctorSpecialistsVerification';
+import FinalSystemVerification from '@/components/sections/FinalSystemVerification';
 
 const EquipoDoctores = () => {
   // Try to get doctors from Supabase first, fallback to local data
@@ -53,8 +52,7 @@ const EquipoDoctores = () => {
 
   return (
     <Layout>
-      <DoctorProfileVerification />
-      <DoctorSpecialistsVerification />
+      <FinalSystemVerification />
       
       <div className="pt-20">
         <section className="section-padding bg-hospital-primary text-white">

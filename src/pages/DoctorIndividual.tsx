@@ -37,7 +37,7 @@ const DoctorIndividual = () => {
     return <Navigate to="/doctores" replace />;
   }
 
-  // Enhanced contact titles for all specialists including Ginecología y Anestesiología
+  // Enhanced contact titles for all specialists including the latest additions
   const getContactTitles = () => {
     const whatsappTitle = doctor.whatsapp ? 'WhatsApp Personal' : 'WhatsApp';
     const hospitalTitle = 'Hospital Independencia';
@@ -50,13 +50,23 @@ const DoctorIndividual = () => {
       if (tel.includes('2381186688')) return 'Consultorio Ginecología';
       if (tel.includes('2383692614')) return 'Consultorio Especializado';
       if (tel.includes('2381037216')) return 'Consultorio Ginecología Avanzada';
+      if (tel.includes('238 4080222')) return 'Consultorio Neurocirugía';
       
-      // Títulos personalizados para especialistas
+      // Títulos personalizados para especialistas específicos
       if (doctor.titulo.includes('Ginecología') || doctor.titulo.includes('Obstetricia')) {
         return 'Consulta Ginecológica y Obstétrica';
       }
       if (doctor.titulo.includes('Anestesiólogo') || doctor.titulo.includes('Anestesiología')) {
         return 'Servicios de Anestesiología';
+      }
+      if (doctor.titulo.includes('Cirugía Plástica') || doctor.titulo.includes('Estética')) {
+        return 'Consulta Cirugía Plástica y Estética';
+      }
+      if (doctor.titulo.includes('neurocirugía')) {
+        return 'Consulta Neurocirugía';
+      }
+      if (doctor.titulo.includes('Oftalmó')) {
+        return 'Consulta Oftalmología Pediátrica';
       }
       if (doctor.titulo.includes('Ortopedista') || doctor.titulo.includes('Traumatólogo')) {
         return 'Consulta Traumatología y Ortopedia';
