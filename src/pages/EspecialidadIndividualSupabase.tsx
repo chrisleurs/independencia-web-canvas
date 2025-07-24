@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useParams, Navigate, Link } from 'react-router-dom';
 import Layout from '@/components/Layout';
@@ -16,6 +15,7 @@ import { User, ExternalLink, Phone, MessageCircle, CheckCircle } from 'lucide-re
 import { useEspecialidadBySlug } from '@/hooks/useEspecialidades';
 import { useDoctoresByEspecialidad } from '@/hooks/useDoctores';
 import { getIconComponent } from '@/utils/iconMapping';
+import VerificacionDuplicados from '@/components/sections/VerificacionDuplicados';
 
 const EspecialidadIndividualSupabase = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -69,6 +69,7 @@ const EspecialidadIndividualSupabase = () => {
 
   return (
     <Layout>
+      <VerificacionDuplicados />
       <div className="pt-20">
         {/* Breadcrumb */}
         <section className="bg-hospital-light py-2">
