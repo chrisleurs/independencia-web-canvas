@@ -25,9 +25,14 @@ const VerificacionDuplicados = () => {
         return;
       }
 
+      if (!todosDoctores) {
+        console.error('❌ No se pudieron obtener los doctores');
+        return;
+      }
+
       // Agrupar por nombre para detectar duplicados
-      const gruposPorNombre = {};
-      todosDoctores?.forEach(doctor => {
+      const gruposPorNombre: { [key: string]: any[] } = {};
+      todosDoctores.forEach(doctor => {
         if (!gruposPorNombre[doctor.nombre]) {
           gruposPorNombre[doctor.nombre] = [];
         }
@@ -35,7 +40,7 @@ const VerificacionDuplicados = () => {
       });
 
       // Verificar duplicados
-      const duplicadosEncontrados = [];
+      const duplicadosEncontrados: { nombre: string; cantidad: number; doctores: any[] }[] = [];
       Object.entries(gruposPorNombre).forEach(([nombre, doctores]) => {
         if (doctores.length > 1) {
           duplicadosEncontrados.push({ nombre, cantidad: doctores.length, doctores });
@@ -43,7 +48,7 @@ const VerificacionDuplicados = () => {
       });
 
       console.log('📊 RESULTADOS DE VERIFICACIÓN:');
-      console.log(`✅ Total doctores en sistema: ${todosDoctores?.length || 0}`);
+      console.log(`✅ Total doctores en sistema: ${todosDoctores.length}`);
       console.log(`${duplicadosEncontrados.length === 0 ? '✅' : '❌'} Duplicados encontrados: ${duplicadosEncontrados.length}`);
 
       if (duplicadosEncontrados.length > 0) {
@@ -92,10 +97,10 @@ const VerificacionDuplicados = () => {
       console.log('=' .repeat(50));
     };
 
-    if (doctoresMedicinaGeneral && todosDoctores) {
+    if (doctoresMedicinaGeneral && especialidades) {
       verificarDuplicados();
     }
-  }, [doctoresMedicinaGeneral, medicinaGeneralId]);
+  }, [doctoresMedicinaGeneral, medicinaGeneralId, especialidades]);
 
   // Componente invisible - solo para verificación
   return null;
