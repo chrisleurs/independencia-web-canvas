@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Layout from '@/components/Layout';
 import HeroSection from '@/components/sections/HeroSection';
@@ -8,10 +7,12 @@ import SobreHospitalResumen from '@/components/sections/SobreHospitalResumen';
 import Galeria from '@/components/sections/Galeria';
 import ContactoHomepage from '@/components/sections/ContactoHomepage';
 import EspecialidadesVerificacion from '@/components/sections/EspecialidadesVerificacion';
+import DoctorEspecialidadesVerificacion from '@/components/sections/DoctorEspecialidadesVerificacion';
 
 const Inicio = () => {
   return (
     <Layout>
+      <DoctorEspecialidadesVerificacion />
       <EspecialidadesVerificacion />
       <HeroSection />
       <EspecialidadesMedicasSupabase />
