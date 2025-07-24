@@ -37,7 +37,7 @@ const DoctorIndividual = () => {
     return <Navigate to="/doctores" replace />;
   }
 
-  // Enhanced contact titles for the new specialists
+  // Enhanced contact titles for all specialists including Ginecología y Anestesiología
   const getContactTitles = () => {
     const whatsappTitle = doctor.whatsapp ? 'WhatsApp Personal' : 'WhatsApp';
     const hospitalTitle = 'Hospital Independencia';
@@ -47,8 +47,17 @@ const DoctorIndividual = () => {
       if (tel.includes('2383829648')) return 'Hospital Independencia - Urgencias';
       if (tel.includes('2381278192')) return 'Consultorio Cirugía General';
       if (tel.includes('2383825027')) return 'Consultorio Gastroenterología';
+      if (tel.includes('2381186688')) return 'Consultorio Ginecología';
+      if (tel.includes('2383692614')) return 'Consultorio Especializado';
+      if (tel.includes('2381037216')) return 'Consultorio Ginecología Avanzada';
       
-      // Títulos personalizados para los nuevos especialistas
+      // Títulos personalizados para especialistas
+      if (doctor.titulo.includes('Ginecología') || doctor.titulo.includes('Obstetricia')) {
+        return 'Consulta Ginecológica y Obstétrica';
+      }
+      if (doctor.titulo.includes('Anestesiólogo') || doctor.titulo.includes('Anestesiología')) {
+        return 'Servicios de Anestesiología';
+      }
       if (doctor.titulo.includes('Ortopedista') || doctor.titulo.includes('Traumatólogo')) {
         return 'Consulta Traumatología y Ortopedia';
       }
@@ -66,24 +75,6 @@ const DoctorIndividual = () => {
       }
       if (doctor.titulo.includes('Dermatología')) {
         return 'Consulta Dermatología';
-      }
-      if (doctor.titulo.includes('Gastroenterología')) {
-        return 'Consulta Gastroenterología';
-      }
-      if (doctor.titulo.includes('Nefrología')) {
-        return 'Consulta Nefrología';
-      }
-      if (doctor.titulo.includes('Neurólogo')) {
-        return 'Consulta Neurología';
-      }
-      if (doctor.titulo.includes('Nutriólogo')) {
-        return 'Consulta Nutricional';
-      }
-      if (doctor.titulo.includes('Urgencias')) {
-        return 'Urgencias Médicas';
-      }
-      if (doctor.titulo.includes('Cardiovascular') || doctor.titulo.includes('Torácico')) {
-        return 'Cirugía Cardiovascular';
       }
       
       return `Contacto Adicional ${index + 1}`;
@@ -124,6 +115,7 @@ const DoctorIndividual = () => {
   console.log(`✅ Especialidad: ${doctor.titulo}`);
   console.log(`✅ Áreas de atención: ${doctor.areas_atencion?.length || 0}`);
   console.log(`✅ Slug: ${doctor.slug}`);
+  console.log(`✅ Misión: ${doctor.mision ? 'Sí' : 'No'}`);
 
   return (
     <Layout>

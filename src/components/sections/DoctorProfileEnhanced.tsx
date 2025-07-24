@@ -47,7 +47,10 @@ const DoctorProfileEnhanced = ({ doctor }: DoctorProfileEnhancedProps) => {
     const slugMap: { [key: string]: string } = {
       'Medicina General': 'medicina-general',
       'Ginecología': 'ginecologia',
+      'Ginecología y Obstetricia': 'ginecologia',
       'Obstetricia': 'ginecologia',
+      'Anestesiología': 'anestesiologia',
+      'Anestesiólogo': 'anestesiologia',
       'Diabetes Mellitus': 'medicina-general',
       'Hipertensión Arterial': 'medicina-general',
       'Cirugía Menor': 'cirugia-general-especializada',
@@ -64,7 +67,6 @@ const DoctorProfileEnhanced = ({ doctor }: DoctorProfileEnhancedProps) => {
       'Medicina Crítica': 'medicina-critica',
       'Terapia Intensiva': 'medicina-critica',
       'Cardineumología': 'cardiologia',
-      'Anestesiología': 'anestesiologia',
       'Pediatría': 'pediatria',
       'Neonatología': 'pediatria',
       'Traumatología': 'traumatologia-ortopedia',

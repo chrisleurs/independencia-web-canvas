@@ -48,19 +48,19 @@ export const useDoctores = () => {
       const doctoresConPerfil = data?.filter(d => d.has_detailed_profile) || [];
       console.log(`✅ Doctores con perfil detallado: ${doctoresConPerfil.length}`);
       
-      // Log específico para los 7 nuevos doctores especialistas (cirujanos y especialistas avanzados)
-      const nuevosEspecialistas = [
-        'Dr. Omar Marroquín Herrera',
-        'Dr. José Luis Hernández Aguilar',
-        'Dr. Miguel Parra Flores',
-        'Dr. Quintín Héctor González Contreras',
-        'Dr. Jaime Oscar Romero Salas',
-        'Dr. Tedd Ochoa Vázquez',
-        'Dra. Irma Villanueva Cortes'
+      // Log específico para los nuevos doctores de Ginecología y Anestesiología
+      const nuevosGinecologiaAnestesia = [
+        'Dra. Edith Jazmín Calvo Santana',
+        'Dra. Nayeli del Rayo Sánchez Garibay',
+        'Dr. Moisés Héctor Sánchez Pérez',
+        'Dra. Luz María Gil Sandoval',
+        'Dra. Marianela Orellan Gorocica',
+        'Dr. Christian Misael Galicia Castelán',
+        'Dra. María Teresa Carrera Balderas'
       ];
       
-      console.log('🔍 VERIFICANDO NUEVOS DOCTORES ESPECIALISTAS:');
-      nuevosEspecialistas.forEach(nombre => {
+      console.log('🔍 VERIFICANDO NUEVOS DOCTORES GINECOLOGÍA Y ANESTESIOLOGÍA:');
+      nuevosGinecologiaAnestesia.forEach(nombre => {
         const doctor = data?.find(d => d.nombre === nombre);
         if (doctor && doctor.has_detailed_profile) {
           console.log(`✅ ${nombre} - Perfil detallado ACTIVO`);
@@ -68,6 +68,7 @@ export const useDoctores = () => {
           console.log(`   - Slug: ${doctor.slug}`);
           console.log(`   - WhatsApp: ${doctor.whatsapp || 'No disponible'}`);
           console.log(`   - Áreas de atención: ${doctor.areas_atencion?.length || 0}`);
+          console.log(`   - Misión: ${doctor.mision ? '✅' : '❌'}`);
         } else {
           console.log(`❌ ${nombre} - Perfil no encontrado o inactivo`);
         }
