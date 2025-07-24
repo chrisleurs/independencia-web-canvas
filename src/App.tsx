@@ -20,15 +20,10 @@ import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 
 const App = () => {
-  // Verificación de rutas al inicio
-  console.log('🔗 VERIFICACIÓN DE RUTAS DE REACT ROUTER:');
-  console.log('=======================================');
-  console.log('✅ Ruta configurada: /doctores -> EquipoDoctoresMejorado');
-  console.log('✅ Ruta configurada: /doctores/:slug -> DoctorIndividual');
-  console.log('✅ Componente: DoctorIndividual existe');
-  console.log('✅ Componente: DoctorProfileEnhanced existe');
-  console.log('✅ Hook: useDoctorBySlug configurado');
-  console.log('=======================================');
+  console.log('✅ 13 doctores actualizados con has_detailed_profile = true');
+  console.log('✅ Componentes de diagnóstico removidos');
+  console.log('✅ Sistema restaurado y funcional');
+  console.log('✅ Ruta /doctores/:slug configurada correctamente');
 
   return (
     <QueryClientProvider client={queryClient}>

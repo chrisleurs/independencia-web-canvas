@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import Layout from '@/components/Layout';
@@ -7,24 +8,13 @@ import { useDoctorBySlug } from '@/hooks/useDoctores';
 const DoctorIndividual = () => {
   const { slug } = useParams<{ slug: string }>();
   
-  console.log(`🔍 DoctorIndividual: Navegando a slug: ${slug}`);
-  
   if (!slug) {
-    console.log('❌ DoctorIndividual: No se proporcionó slug, redirigiendo...');
     return <Navigate to="/doctores" replace />;
   }
 
   const { data: doctor, isLoading, error } = useDoctorBySlug(slug);
 
-  console.log(`🔍 DoctorIndividual: Datos del doctor para ${slug}:`, {
-    doctor: doctor ? doctor.nombre : 'No encontrado',
-    isLoading,
-    error: error ? error.message : null,
-    hasDetailedProfile: doctor?.has_detailed_profile || false
-  });
-
   if (isLoading) {
-    console.log(`⏳ DoctorIndividual: Cargando doctor ${slug}...`);
     return (
       <Layout>
         <div className="pt-20 min-h-screen flex items-center justify-center">
@@ -37,25 +27,13 @@ const DoctorIndividual = () => {
     );
   }
 
-  if (error) {
-    console.log(`❌ DoctorIndividual: Error al cargar doctor ${slug}:`, error);
-    return <Navigate to="/doctores" replace />;
-  }
-
-  if (!doctor) {
-    console.log(`❌ DoctorIndividual: Doctor ${slug} no encontrado en BD`);
+  if (error || !doctor) {
     return <Navigate to="/doctores" replace />;
   }
 
   if (!doctor.has_detailed_profile) {
-    console.log(`❌ DoctorIndividual: Doctor ${slug} no tiene perfil detallado`);
-    console.log(`   🔧 SOLUCIÓN: Usar useFixDoctorProfiles() para corregir`);
     return <Navigate to="/doctores" replace />;
   }
-
-  console.log(`✅ DoctorIndividual: Mostrando perfil completo para ${doctor.nombre}`);
-  console.log(`   🔗 URL exitosa: /doctores/${doctor.slug}`);
-  console.log(`   📋 Perfil detallado: ${doctor.has_detailed_profile}`);
 
   // Transform Supabase doctor data to match the expected format
   const transformedDoctor = {
@@ -70,7 +48,7 @@ const DoctorIndividual = () => {
     telefonosAdicionales: doctor.telefonos_adicionales || [],
     mision: doctor.mision,
     formacion: doctor.formacion_detallada,
-    especialidades: [], // Will be loaded from relationships if needed
+    especialidades: [],
     servicios: doctor.areas_atencion || [],
     areasAtencion: doctor.areas_atencion || [],
     certificaciones: doctor.certificaciones || [],

@@ -42,165 +42,13 @@ export const useDoctores = () => {
         throw error;
       }
       
-      // VERIFICACIÓN DIRECTA DE DOCTORES ESPECÍFICOS
-      console.log('🔍 VERIFICACIÓN DIRECTA DE PÁGINAS INDIVIDUALES DE DOCTORES');
-      console.log('============================================================');
-      
-      const doctoresEspecificos = [
-        'Dra. Karina Peña Tello',
-        'Dr. Hipólito Coyotl Cruz',
-        'Dr. Bernardo Velasco Olalde',
-        'Dr. Javier Carrasco González',
-        'Dr. Gerardo Antonio Valderrama López',
-        'Dr. Raymundo Romero Ventura',
-        'Dr. Héctor Peña Carrillo',
-        'Dr. Hazael Sánchez Rosales',
-        'Dr. Abraham Téllez Barragán',
-        'Dr. Irvin Omar Romero Ponce',
-        'Dra. Eltzy Rubí Rocha Rivera',
-        'Dr. César González Martínez',
-        'Dr. Arturo Domínguez Millan'
-      ];
-      
-      console.log('📋 VERIFICACIÓN DE DOCTORES ESPECÍFICOS:');
-      console.log('======================================');
-      
-      const doctoresParaCorregir = [];
-      
-      doctoresEspecificos.forEach(nombreEspecifico => {
-        const doctor = data?.find(d => d.nombre === nombreEspecifico);
-        if (doctor) {
-          console.log(`🔍 ${doctor.nombre}:`);
-          console.log(`   📝 Slug: ${doctor.slug}`);
-          console.log(`   📋 has_detailed_profile: ${doctor.has_detailed_profile}`);
-          console.log(`   🎯 Misión: ${doctor.mision ? '✅ Sí' : '❌ No'}`);
-          console.log(`   🎓 Formación: ${doctor.formacion_detallada ? '✅ Sí' : '❌ No'}`);
-          console.log(`   🩺 Áreas: ${doctor.areas_atencion?.length || 0} áreas`);
-          console.log(`   📱 WhatsApp: ${doctor.whatsapp || 'No disponible'}`);
-          
-          if (doctor.has_detailed_profile) {
-            console.log(`   ✅ Perfil detallado: CORRECTO`);
-            console.log(`   🔗 URL: /doctores/${doctor.slug}`);
-          } else {
-            console.log(`   ❌ Perfil detallado: FALTA - NECESITA CORRECCIÓN`);
-            doctoresParaCorregir.push(doctor);
-          }
-          console.log('');
-        } else {
-          console.log(`❌ Doctor "${nombreEspecifico}" NO ENCONTRADO en BD`);
-          console.log('');
-        }
-      });
-      
-      // VERIFICACIÓN DE RUTAS
-      console.log('🔗 VERIFICACIÓN DE RUTAS:');
-      console.log('========================');
-      console.log('✅ Ruta configurada: /doctores/:slug -> DoctorIndividual');
-      console.log('✅ Componente: DoctorProfileEnhanced existe');
-      console.log('✅ Hook: useDoctorBySlug configurado');
-      console.log('');
-      
-      // VERIFICACIÓN DE NAVEGACIÓN
-      console.log('🧪 VERIFICACIÓN DE NAVEGACIÓN:');
-      console.log('=============================');
+      console.log('✅ Doctores cargados exitosamente');
+      console.log(`✅ Total doctores: ${data?.length || 0}`);
       
       const doctoresConPerfil = data?.filter(d => d.has_detailed_profile) || [];
-      console.log(`✅ ${doctoresConPerfil.length} doctores tienen perfil detallado confirmado`);
-      
-      doctoresConPerfil.forEach(doctor => {
-        console.log(`✅ ${doctor.nombre}: /doctores/${doctor.slug}`);
-      });
-      
-      if (doctoresParaCorregir.length > 0) {
-        console.log('');
-        console.log('⚠️  DOCTORES QUE NECESITAN CORRECCIÓN:');
-        console.log('====================================');
-        doctoresParaCorregir.forEach(doctor => {
-          console.log(`🔧 ${doctor.nombre} (${doctor.slug}) - has_detailed_profile = false`);
-        });
-      }
-      
-      console.log('');
-      console.log('📊 RESUMEN:');
-      console.log('==========');
-      console.log(`✅ Total doctores en BD: ${data?.length || 0}`);
       console.log(`✅ Doctores con perfil detallado: ${doctoresConPerfil.length}`);
-      console.log(`❌ Doctores que necesitan corrección: ${doctoresParaCorregir.length}`);
-      
-      if (doctoresParaCorregir.length === 0) {
-        console.log('✅ Todas las páginas individuales deberían funcionar correctamente');
-      } else {
-        console.log('⚠️  Se requieren correcciones - usar useFixDoctorProfiles()');
-      }
-      
-      console.log('============================================================');
       
       return data as DoctorDB[];
-    },
-  });
-};
-
-export const useFixDoctorProfiles = () => {
-  const queryClient = useQueryClient();
-  
-  return useMutation({
-    mutationFn: async (doctorNames: string[]) => {
-      console.log('🔧 INICIANDO CORRECCIÓN DE PERFILES DETALLADOS');
-      console.log('==============================================');
-      
-      const results = [];
-      
-      for (const nombre of doctorNames) {
-        try {
-          const { data, error } = await supabase
-            .from('doctores')
-            .update({ has_detailed_profile: true })
-            .eq('nombre', nombre)
-            .select()
-            .single();
-          
-          if (error) throw error;
-          
-          console.log(`✅ Corregido: ${nombre} - has_detailed_profile = true`);
-          results.push({ nombre, success: true, data });
-        } catch (error) {
-          console.error(`❌ Error al corregir ${nombre}:`, error);
-          results.push({ nombre, success: false, error });
-        }
-      }
-      
-      console.log('');
-      console.log('📋 RESUMEN DE CORRECCIONES:');
-      console.log('===========================');
-      const exitosos = results.filter(r => r.success);
-      const fallidos = results.filter(r => !r.success);
-      
-      console.log(`✅ Correcciones exitosas: ${exitosos.length}`);
-      console.log(`❌ Correcciones fallidas: ${fallidos.length}`);
-      
-      if (exitosos.length > 0) {
-        console.log('');
-        console.log('✅ DOCTORES CORREGIDOS:');
-        exitosos.forEach(r => {
-          console.log(`   - ${r.nombre}`);
-        });
-      }
-      
-      if (fallidos.length > 0) {
-        console.log('');
-        console.log('❌ DOCTORES CON ERRORES:');
-        fallidos.forEach(r => {
-          console.log(`   - ${r.nombre}: ${r.error}`);
-        });
-      }
-      
-      console.log('==============================================');
-      
-      return results;
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['doctores'] });
-      console.log('🔄 Cache de doctores actualizado');
     },
   });
 };
@@ -223,8 +71,7 @@ export const useDoctorBySlug = (slug: string) => {
       }
       
       console.log(`✅ Doctor encontrado: ${data.nombre}`);
-      console.log(`   📋 has_detailed_profile: ${data.has_detailed_profile}`);
-      console.log(`   🔗 URL: /doctores/${data.slug}`);
+      console.log(`✅ Perfil detallado: ${data.has_detailed_profile}`);
       
       return data as DoctorDB;
     },
