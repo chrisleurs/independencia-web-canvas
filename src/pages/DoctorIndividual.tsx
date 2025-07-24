@@ -28,10 +28,12 @@ const DoctorIndividual = () => {
   }
 
   if (error || !doctor) {
+    console.error('❌ Error al cargar doctor:', error);
     return <Navigate to="/doctores" replace />;
   }
 
   if (!doctor.has_detailed_profile) {
+    console.warn(`⚠️ Doctor ${doctor.nombre} no tiene perfil detallado habilitado`);
     return <Navigate to="/doctores" replace />;
   }
 
@@ -48,7 +50,7 @@ const DoctorIndividual = () => {
     telefonosAdicionales: doctor.telefonos_adicionales || [],
     mision: doctor.mision,
     formacion: doctor.formacion_detallada,
-    especialidades: [],
+    especialidades: [], // Se puede agregar lógica para obtener especialidades relacionadas
     servicios: doctor.areas_atencion || [],
     areasAtencion: doctor.areas_atencion || [],
     certificaciones: doctor.certificaciones || [],
@@ -57,13 +59,29 @@ const DoctorIndividual = () => {
     reconocimientos: doctor.reconocimientos || [],
     hasDetailedProfile: doctor.has_detailed_profile,
     contactoTitulos: {
-      whatsapp: 'WhatsApp Personal',
+      whatsapp: doctor.whatsapp ? 'WhatsApp Personal' : 'WhatsApp',
       hospital: 'Hospital Independencia',
-      adicionales: doctor.telefonos_adicionales?.map((_, index) => 
-        index === 0 ? 'Consultorio Privado' : `Contacto Adicional ${index + 1}`
-      )
+      adicionales: doctor.telefonos_adicionales?.map((tel, index) => {
+        // Títulos personalizados mejorados para los nuevos doctores
+        if (tel.includes('2383829648')) return 'Hospital Independencia - Urgencias';
+        if (tel.includes('2383825027')) return 'Consultorio Gastroenterología';
+        
+        // Títulos basados en especialidad
+        if (doctor.titulo.includes('Urgencias')) return 'Urgencias Médicas';
+        if (doctor.titulo.includes('Neurólogo')) return 'Consulta Neurológica';
+        if (doctor.titulo.includes('Nutriólogo')) return 'Consulta Nutricional';
+        if (doctor.titulo.includes('Gastroenterología')) return 'Consulta Gastroenterología';
+        if (doctor.titulo.includes('Nefrología')) return 'Consulta Nefrología';
+        if (doctor.titulo.includes('Cirujano')) return 'Cirugía Especializada';
+        
+        return `Contacto Adicional ${index + 1}`;
+      })
     }
   };
+
+  console.log(`✅ Renderizando página individual para: ${doctor.nombre}`);
+  console.log(`✅ Especialidad: ${doctor.titulo}`);
+  console.log(`✅ Áreas de atención: ${doctor.areas_atencion?.length || 0}`);
 
   return (
     <Layout>

@@ -48,6 +48,24 @@ export const useDoctores = () => {
       const doctoresConPerfil = data?.filter(d => d.has_detailed_profile) || [];
       console.log(`✅ Doctores con perfil detallado: ${doctoresConPerfil.length}`);
       
+      // Log específico para los 7 doctores recién actualizados
+      const doctoresEspecialistas = [
+        'Dr. Porfirio Apam Cruz',
+        'Dr. Jorge Alberto Almanza Islas',
+        'Dra. Silvia Huerta Damian',
+        'L.N.C. Carlos Escobar Olivier',
+        'Dr. Virgilio Marroquín Jiménez',
+        'Dra. Yadira Tehuacanero Tecua',
+        'Dr. Benito Vargas Ábrego'
+      ];
+      
+      doctoresEspecialistas.forEach(nombre => {
+        const doctor = data?.find(d => d.nombre === nombre);
+        if (doctor && doctor.has_detailed_profile) {
+          console.log(`✅ ${nombre} - Perfil detallado ACTIVO`);
+        }
+      });
+      
       return data as DoctorDB[];
     },
   });
@@ -72,6 +90,8 @@ export const useDoctorBySlug = (slug: string) => {
       
       console.log(`✅ Doctor encontrado: ${data.nombre}`);
       console.log(`✅ Perfil detallado: ${data.has_detailed_profile}`);
+      console.log(`✅ Especialidad: ${data.titulo}`);
+      console.log(`✅ Áreas de atención: ${data.areas_atencion?.length || 0}`);
       
       return data as DoctorDB;
     },
