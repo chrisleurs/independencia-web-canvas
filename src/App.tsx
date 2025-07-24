@@ -19,43 +19,35 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
-const App = () => {
-  // Log para verificar las rutas configuradas
-  console.log('🔧 App.tsx: Rutas configuradas correctamente');
-  console.log('  - /especialidades/:slug -> EspecialidadIndividual');
-  console.log('  - /doctores/:slug -> DoctorIndividual');
-  console.log('  - /equipo/doctores -> EquipoDoctores');
-
-  return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Inicio />} />
-            <Route path="/especialidades" element={<Especialidades />} />
-            <Route path="/especialidades/:slug" element={<EspecialidadIndividual />} />
-            <Route path="/servicios" element={<Servicios />} />
-            <Route path="/servicios/:slug" element={<ServicioIndividual />} />
-            <Route path="/nosotros" element={<Nosotros />} />
-            <Route path="/contacto" element={<Contacto />} />
-            
-            {/* Rutas de Equipo */}
-            <Route path="/equipo" element={<Equipo />} />
-            <Route path="/equipo/doctores" element={<EquipoDoctores />} />
-            <Route path="/equipo/enfermeria" element={<EquipoEnfermeria />} />
-            
-            {/* Rutas para perfiles individuales de doctores */}
-            <Route path="/doctores/:slug" element={<DoctorIndividual />} />
-            
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
-    </QueryClientProvider>
-  );
-};
+const App = () => (
+  <QueryClientProvider client={queryClient}>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Inicio />} />
+          <Route path="/especialidades" element={<Especialidades />} />
+          <Route path="/especialidades/:slug" element={<EspecialidadIndividual />} />
+          <Route path="/servicios" element={<Servicios />} />
+          <Route path="/servicios/:slug" element={<ServicioIndividual />} />
+          <Route path="/nosotros" element={<Nosotros />} />
+          <Route path="/contacto" element={<Contacto />} />
+          
+          {/* Rutas de Equipo */}
+          <Route path="/equipo" element={<Equipo />} />
+          <Route path="/equipo/doctores" element={<EquipoDoctores />} />
+          <Route path="/equipo/enfermeria" element={<EquipoEnfermeria />} />
+          
+          {/* Rutas para perfiles individuales de doctores */}
+          <Route path="/doctores/:slug" element={<DoctorIndividual />} />
+          
+          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </TooltipProvider>
+  </QueryClientProvider>
+);
 
 export default App;

@@ -33,19 +33,18 @@ export const useDoctores = () => {
   return useQuery({
     queryKey: ['doctores'],
     queryFn: async () => {
-      console.log('🔍 useDoctores: Fetching doctores from Supabase...');
+      console.log('Fetching doctores from Supabase...');
       const { data, error } = await supabase
         .from('doctores')
         .select('*')
         .order('nombre');
       
       if (error) {
-        console.error('❌ useDoctores: Error fetching doctores:', error);
+        console.error('Error fetching doctores:', error);
         throw error;
       }
       
-      console.log(`✅ useDoctores: Fetched ${data?.length || 0} doctores from Supabase`);
-      console.log('📊 useDoctores: Sample data:', data?.slice(0, 2));
+      console.log(`Fetched ${data?.length || 0} doctores from Supabase`);
       return data as DoctorDB[];
     },
   });
@@ -55,7 +54,7 @@ export const useDoctorBySlug = (slug: string) => {
   return useQuery({
     queryKey: ['doctor', slug],
     queryFn: async () => {
-      console.log(`🔍 useDoctorBySlug: Fetching doctor with slug: ${slug}`);
+      console.log(`Fetching doctor with slug: ${slug}`);
       const { data, error } = await supabase
         .from('doctores')
         .select('*')
@@ -63,12 +62,11 @@ export const useDoctorBySlug = (slug: string) => {
         .single();
       
       if (error) {
-        console.error('❌ useDoctorBySlug: Error fetching doctor:', error);
+        console.error('Error fetching doctor:', error);
         throw error;
       }
       
-      console.log('✅ useDoctorBySlug: Fetched doctor:', data?.nombre);
-      console.log('📊 useDoctorBySlug: Doctor data:', data);
+      console.log('Fetched doctor:', data?.nombre);
       return data as DoctorDB;
     },
     enabled: !!slug,
@@ -79,7 +77,7 @@ export const useDoctoresByEspecialidad = (especialidadId: string) => {
   return useQuery({
     queryKey: ['doctores-especialidad', especialidadId],
     queryFn: async () => {
-      console.log(`🔍 useDoctoresByEspecialidad: Fetching doctores for especialidad: ${especialidadId}`);
+      console.log(`Fetching doctores for especialidad: ${especialidadId}`);
       const { data, error } = await supabase
         .from('doctor_especialidades')
         .select(`
@@ -89,42 +87,14 @@ export const useDoctoresByEspecialidad = (especialidadId: string) => {
         .eq('especialidad_id', especialidadId);
       
       if (error) {
-        console.error('❌ useDoctoresByEspecialidad: Error fetching doctores by especialidad:', error);
+        console.error('Error fetching doctores by especialidad:', error);
         throw error;
       }
       
       const doctores = data.map(item => item.doctores).filter(Boolean) as DoctorDB[];
-      console.log(`✅ useDoctoresByEspecialidad: Found ${doctores.length} doctores for especialidad ${especialidadId}`);
-      console.log('📊 useDoctoresByEspecialidad: Doctores data:', doctores);
+      console.log(`Found ${doctores.length} doctores for especialidad ${especialidadId}`);
       return doctores;
     },
     enabled: !!especialidadId,
-  });
-};
-
-export const useEspecialidadesByDoctor = (doctorId: string) => {
-  return useQuery({
-    queryKey: ['especialidades-doctor', doctorId],
-    queryFn: async () => {
-      console.log(`🔍 useEspecialidadesByDoctor: Fetching especialidades for doctor: ${doctorId}`);
-      const { data, error } = await supabase
-        .from('doctor_especialidades')
-        .select(`
-          especialidad_id,
-          especialidades (*)
-        `)
-        .eq('doctor_id', doctorId);
-      
-      if (error) {
-        console.error('❌ useEspecialidadesByDoctor: Error fetching especialidades by doctor:', error);
-        throw error;
-      }
-      
-      const especialidades = data.map(item => item.especialidades).filter(Boolean);
-      console.log(`✅ useEspecialidadesByDoctor: Found ${especialidades.length} especialidades for doctor ${doctorId}`);
-      console.log('📊 useEspecialidadesByDoctor: Especialidades data:', especialidades);
-      return especialidades;
-    },
-    enabled: !!doctorId,
   });
 };
