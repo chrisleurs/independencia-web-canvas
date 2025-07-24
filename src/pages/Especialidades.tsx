@@ -1,6 +1,8 @@
+
 import React from 'react';
 import Layout from '@/components/Layout';
 import EspecialidadesCompletasSupabase from '@/components/sections/EspecialidadesCompletasSupabase';
+import EspecialidadesAuditoria from '@/components/sections/EspecialidadesAuditoria';
 
 const Especialidades = () => {
   return (
@@ -16,6 +18,9 @@ const Especialidades = () => {
             </p>
           </div>
         </section>
+        
+        {/* Componente de Auditoría - Temporal */}
+        <EspecialidadesAuditoria />
         
         <EspecialidadesCompletasSupabase />
       </div>
