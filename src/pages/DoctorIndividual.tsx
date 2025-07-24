@@ -8,13 +8,24 @@ import { useDoctorBySlug } from '@/hooks/useDoctores';
 const DoctorIndividual = () => {
   const { slug } = useParams<{ slug: string }>();
   
+  console.log(`🔍 DoctorIndividual: Navegando a slug: ${slug}`);
+  
   if (!slug) {
+    console.log('❌ DoctorIndividual: No se proporcionó slug, redirigiendo...');
     return <Navigate to="/doctores" replace />;
   }
 
   const { data: doctor, isLoading, error } = useDoctorBySlug(slug);
 
+  console.log(`🔍 DoctorIndividual: Datos del doctor para ${slug}:`, {
+    doctor: doctor ? doctor.nombre : 'No encontrado',
+    isLoading,
+    error: error ? error.message : null,
+    hasDetailedProfile: doctor?.has_detailed_profile || false
+  });
+
   if (isLoading) {
+    console.log(`⏳ DoctorIndividual: Cargando doctor ${slug}...`);
     return (
       <Layout>
         <div className="pt-20 min-h-screen flex items-center justify-center">
@@ -27,9 +38,22 @@ const DoctorIndividual = () => {
     );
   }
 
-  if (error || !doctor || !doctor.has_detailed_profile) {
+  if (error) {
+    console.log(`❌ DoctorIndividual: Error al cargar doctor ${slug}:`, error);
     return <Navigate to="/doctores" replace />;
   }
+
+  if (!doctor) {
+    console.log(`❌ DoctorIndividual: Doctor ${slug} no encontrado en BD`);
+    return <Navigate to="/doctores" replace />;
+  }
+
+  if (!doctor.has_detailed_profile) {
+    console.log(`❌ DoctorIndividual: Doctor ${slug} no tiene perfil detallado`);
+    return <Navigate to="/doctores" replace />;
+  }
+
+  console.log(`✅ DoctorIndividual: Mostrando perfil completo para ${doctor.nombre}`);
 
   // Transform Supabase doctor data to match the expected format
   const transformedDoctor = {

@@ -13,7 +13,7 @@ import ServicioIndividual from "./pages/ServicioIndividual";
 import Nosotros from "./pages/Nosotros";
 import Contacto from "./pages/Contacto";
 import Equipo from "./pages/Equipo";
-import EquipoDoctores from "./pages/EquipoDoctores";
+import EquipoDoctores from "./pages/EquipoDoctoresMejorado";
 import EquipoEnfermeria from "./pages/EquipoEnfermeria";
 import NotFound from "./pages/NotFound";
 
@@ -37,6 +37,7 @@ const App = () => (
           {/* Rutas de Equipo */}
           <Route path="/equipo" element={<Equipo />} />
           <Route path="/equipo/doctores" element={<EquipoDoctores />} />
+          <Route path="/doctores" element={<EquipoDoctores />} />
           <Route path="/equipo/enfermeria" element={<EquipoEnfermeria />} />
           
           {/* Rutas para perfiles individuales de doctores */}
