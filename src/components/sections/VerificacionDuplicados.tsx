@@ -11,7 +11,7 @@ const VerificacionDuplicados = () => {
 
   useEffect(() => {
     const verificarDuplicados = async () => {
-      console.log('🔍 VERIFICANDO ELIMINACIÓN DE DUPLICADOS...');
+      console.log('🔍 VERIFICACIÓN POST-ELIMINACIÓN DE DUPLICADOS');
       console.log('=' .repeat(50));
 
       // Verificar duplicados en toda la base de datos
@@ -59,6 +59,8 @@ const VerificacionDuplicados = () => {
             console.log(`    ID: ${doc.id}, Creado: ${doc.created_at}`);
           });
         });
+      } else {
+        console.log('🎉 EXCELENTE: No se encontraron duplicados en el sistema');
       }
 
       // Verificación específica para Dra. Karina Peña Tello
@@ -71,6 +73,7 @@ const VerificacionDuplicados = () => {
         console.log('✅ ÉXITO: Dra. Karina Peña Tello aparece SOLO 1 VEZ');
         console.log(`   ID: ${karinaRegistros[0].id}`);
         console.log(`   Slug: ${karinaRegistros[0].slug}`);
+        console.log(`   Creado: ${karinaRegistros[0].created_at}`);
       } else if (karinaRegistros.length > 1) {
         console.log('❌ ERROR: Dra. Karina Peña Tello TODAVÍA DUPLICADA');
         karinaRegistros.forEach((reg, index) => {
@@ -89,11 +92,29 @@ const VerificacionDuplicados = () => {
         
         if (karinaEnMedicinaGeneral.length === 1) {
           console.log('✅ PERFECTO: Dra. Karina aparece SOLO 1 VEZ en Medicina General');
+          console.log(`   ID: ${karinaEnMedicinaGeneral[0].id}`);
+          console.log(`   Slug: ${karinaEnMedicinaGeneral[0].slug}`);
+        } else if (karinaEnMedicinaGeneral.length > 1) {
+          console.log('❌ PROBLEMA: Dra. Karina TODAVÍA aparece múltiples veces en Medicina General');
+          karinaEnMedicinaGeneral.forEach((doc, index) => {
+            console.log(`   Registro ${index + 1}: ID ${doc.id}`);
+          });
+        } else {
+          console.log('⚠️ Dra. Karina NO encontrada en Medicina General');
         }
       }
 
       console.log('');
-      console.log('🎉 ELIMINACIÓN DE DUPLICADOS COMPLETADA');
+      console.log('🔄 ESTADO ACTUAL DEL SISTEMA:');
+      console.log(`📊 Total doctores únicos: ${Object.keys(gruposPorNombre).length}`);
+      console.log(`📊 Total registros en BD: ${todosDoctores.length}`);
+      console.log(`🧹 Duplicados eliminados: ${duplicadosEncontrados.length === 0 ? 'SÍ' : 'NO'}`);
+      
+      if (duplicadosEncontrados.length === 0) {
+        console.log('');
+        console.log('🎉 MISIÓN CUMPLIDA: DUPLICADOS ELIMINADOS EXITOSAMENTE');
+      }
+      
       console.log('=' .repeat(50));
     };
 
