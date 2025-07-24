@@ -20,15 +20,17 @@ interface DoctorProfileEnhancedProps {
 
 const DoctorProfileEnhanced = ({ doctor }: DoctorProfileEnhancedProps) => {
   const handleWhatsAppBooking = () => {
-    const phoneNumber = doctor.whatsapp ? `52${doctor.whatsapp}` : '522381234567';
-    const message = encodeURIComponent(`Hola Dr./Dra. ${doctor.nombre.split(' ').slice(-2).join(' ')}, me gustaría agendar una consulta. ¿Cuál es su disponibilidad?`);
+    const phoneNumber = doctor.whatsapp ? `52${doctor.whatsapp.replace(/\s/g, '')}` : '522381234567';
+    const doctorFirstName = doctor.nombre.split(' ').slice(0, 2).join(' ');
+    const message = encodeURIComponent(`Hola ${doctorFirstName}, me gustaría agendar una consulta. ¿Cuál es su disponibilidad?`);
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
     window.open(whatsappUrl, '_blank');
   };
 
   const handleCallDoctor = () => {
     if (doctor.whatsapp) {
-      window.open(`tel:+52${doctor.whatsapp}`, '_self');
+      const cleanPhone = doctor.whatsapp.replace(/\s/g, '');
+      window.open(`tel:+52${cleanPhone}`, '_self');
     }
   };
 
@@ -61,6 +63,23 @@ const DoctorProfileEnhanced = ({ doctor }: DoctorProfileEnhancedProps) => {
     return slugMap[especialidad] || 'medicina-general';
   };
 
+  // Crear títulos de contacto personalizados basados en el doctor
+  const contactoTitulos = {
+    whatsapp: 'WhatsApp Personal',
+    hospital: 'Hospital Independencia',
+    adicionales: doctor.telefonosAdicionales?.map((tel, index) => {
+      // Personalizar según el número
+      if (tel.includes('236 3812945')) return 'Consultorio Privado';
+      if (tel.includes('238 249 3811')) return 'Urgencias Médicas';
+      return `Contacto Adicional ${index + 1}`;
+    })
+  };
+
+  const doctorWithContactTitles = {
+    ...doctor,
+    contactoTitulos
+  };
+
   return (
     <div className="min-h-screen bg-white">
       {/* Breadcrumb */}
@@ -88,7 +107,7 @@ const DoctorProfileEnhanced = ({ doctor }: DoctorProfileEnhancedProps) => {
 
       {/* Header del doctor */}
       <DoctorHeader 
-        doctor={doctor}
+        doctor={doctorWithContactTitles}
         onWhatsAppBooking={handleWhatsAppBooking}
         onCallDoctor={handleCallDoctor}
         getInitials={getInitials}
@@ -98,7 +117,7 @@ const DoctorProfileEnhanced = ({ doctor }: DoctorProfileEnhancedProps) => {
       <section className="section-padding bg-white">
         <div className="container-custom">
           <ProfessionalInfoCards 
-            doctor={doctor}
+            doctor={doctorWithContactTitles}
             getEspecialidadSlug={getEspecialidadSlug}
           />
         </div>
@@ -106,7 +125,7 @@ const DoctorProfileEnhanced = ({ doctor }: DoctorProfileEnhancedProps) => {
 
       {/* CTA Final */}
       <DoctorCTA 
-        doctor={doctor}
+        doctor={doctorWithContactTitles}
         onWhatsAppBooking={handleWhatsAppBooking}
         onCallDoctor={handleCallDoctor}
       />

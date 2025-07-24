@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Layout from '@/components/Layout';
 import { Button } from '@/components/ui/button';
@@ -5,6 +6,7 @@ import { User, Phone, MessageCircle, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { getAllDoctors } from '@/data/especialidades';
 import { useDoctores } from '@/hooks/useDoctores';
+import DoctorProfileVerification from '@/components/sections/DoctorProfileVerification';
 
 const EquipoDoctores = () => {
   // Try to get doctors from Supabase first, fallback to local data
@@ -21,7 +23,7 @@ const EquipoDoctores = () => {
         experiencia: doc.experiencia || '',
         foto: doc.foto,
         whatsapp: doc.whatsapp,
-        telefonoHospital: doc.telefono_hospital || '238 382 4819', // Use new field
+        telefonoHospital: doc.telefono_hospital || '238 382 4819',
         hasDetailedProfile: doc.has_detailed_profile
       }))
     : doctoresLocal;
@@ -50,6 +52,7 @@ const EquipoDoctores = () => {
 
   return (
     <Layout>
+      <DoctorProfileVerification />
       <div className="pt-20">
         <section className="section-padding bg-hospital-primary text-white">
           <div className="container-custom text-center">
