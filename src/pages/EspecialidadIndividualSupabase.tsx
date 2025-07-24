@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useParams, Navigate, Link } from 'react-router-dom';
 import Layout from '@/components/Layout';
@@ -15,7 +16,6 @@ import { User, ExternalLink, Phone, MessageCircle, CheckCircle } from 'lucide-re
 import { useEspecialidadBySlug } from '@/hooks/useEspecialidades';
 import { useDoctoresByEspecialidad } from '@/hooks/useDoctores';
 import { getIconComponent } from '@/utils/iconMapping';
-import EspecialidadDoctoresDebug from '@/components/sections/EspecialidadDoctoresDebug';
 
 const EspecialidadIndividualSupabase = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -26,15 +26,6 @@ const EspecialidadIndividualSupabase = () => {
 
   const { data: especialidad, isLoading: especialidadLoading, error: especialidadError } = useEspecialidadBySlug(slug);
   const { data: doctores, isLoading: doctoresLoading } = useDoctoresByEspecialidad(especialidad?.id || '');
-
-  // Debug logging
-  React.useEffect(() => {
-    console.log('🏥 EspecialidadIndividualSupabase - Debug Info');
-    console.log('Slug:', slug);
-    console.log('Especialidad:', especialidad);
-    console.log('Doctores:', doctores);
-    console.log('Doctores loading:', doctoresLoading);
-  }, [slug, especialidad, doctores, doctoresLoading]);
 
   const getInitials = (nombre: string) => {
     return nombre
@@ -71,12 +62,14 @@ const EspecialidadIndividualSupabase = () => {
 
   const IconComponent = getIconComponent(especialidad.icon_name);
 
+  // Log final summary
+  if (doctores && doctores.length > 0) {
+    console.log(`✅ Sistema de doctores completado - ${especialidad.titulo}: ${doctores.length} doctor(es)`);
+  }
+
   return (
     <Layout>
       <div className="pt-20">
-        {/* DEBUG Component - Remove this in production */}
-        <EspecialidadDoctoresDebug slug={slug} />
-        
         {/* Breadcrumb */}
         <section className="bg-hospital-light py-2">
           <div className="container-custom">
@@ -166,7 +159,7 @@ const EspecialidadIndividualSupabase = () => {
           </section>
         )}
 
-        {/* Doctores especialistas con debugging mejorado */}
+        {/* Doctores especialistas */}
         {doctoresLoading && (
           <section className="section-padding bg-hospital-light">
             <div className="container-custom text-center">
@@ -176,18 +169,9 @@ const EspecialidadIndividualSupabase = () => {
           </section>
         )}
 
-        {/* Mostrar información de debugging */}
         {!doctoresLoading && (
           <section className="section-padding bg-hospital-light">
             <div className="container-custom">
-              <div className="bg-blue-100 border border-blue-300 rounded p-4 mb-8">
-                <h3 className="font-bold text-lg mb-2">DEBUG INFO:</h3>
-                <p>Especialidad ID: {especialidad.id}</p>
-                <p>Doctores loading: {doctoresLoading.toString()}</p>
-                <p>Doctores array length: {doctores?.length || 0}</p>
-                <p>Doctores data: {JSON.stringify(doctores, null, 2)}</p>
-              </div>
-              
               <h2 className="text-3xl font-bold text-center mb-12 text-hospital-primary">
                 Nuestros Especialistas
               </h2>
@@ -197,9 +181,6 @@ const EspecialidadIndividualSupabase = () => {
                 <div className="text-center py-12">
                   <p className="text-lg text-hospital-gray mb-4">
                     No se encontraron doctores para esta especialidad.
-                  </p>
-                  <p className="text-sm text-hospital-gray">
-                    Especialidad ID: {especialidad.id} | Slug: {slug}
                   </p>
                 </div>
               )}
