@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Layout from '@/components/Layout';
 import { Button } from '@/components/ui/button';
@@ -6,7 +5,7 @@ import { User, Phone, MessageCircle, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { getAllDoctors } from '@/data/especialidades';
 import { useDoctores } from '@/hooks/useDoctores';
-import DoctorDetailedProfileDiagnostic from '@/components/sections/DoctorDetailedProfileDiagnostic';
+import DoctorProfileVerificationFix from '@/components/sections/DoctorProfileVerificationFix';
 
 const EquipoDoctoresMejorado = () => {
   // Try to get doctors from Supabase first, fallback to local data
@@ -60,7 +59,7 @@ const EquipoDoctoresMejorado = () => {
 
   return (
     <Layout>
-      <DoctorDetailedProfileDiagnostic />
+      <DoctorProfileVerificationFix />
       
       <div className="pt-20">
         <section className="section-padding bg-hospital-primary text-white">

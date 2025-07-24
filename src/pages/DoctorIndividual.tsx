@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import Layout from '@/components/Layout';
@@ -50,10 +49,13 @@ const DoctorIndividual = () => {
 
   if (!doctor.has_detailed_profile) {
     console.log(`❌ DoctorIndividual: Doctor ${slug} no tiene perfil detallado`);
+    console.log(`   🔧 SOLUCIÓN: Usar useFixDoctorProfiles() para corregir`);
     return <Navigate to="/doctores" replace />;
   }
 
   console.log(`✅ DoctorIndividual: Mostrando perfil completo para ${doctor.nombre}`);
+  console.log(`   🔗 URL exitosa: /doctores/${doctor.slug}`);
+  console.log(`   📋 Perfil detallado: ${doctor.has_detailed_profile}`);
 
   // Transform Supabase doctor data to match the expected format
   const transformedDoctor = {
