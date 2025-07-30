@@ -12,7 +12,7 @@ import { useDoctores } from '@/hooks/useDoctores';
 
 const DoctoresGrid = () => {
   const { data: doctores, isLoading, error } = useDoctores();
-  const [filtroEspecialidad, setFiltroEspecialidad] = useState<string>('');
+  const [filtroEspecialidad, setFiltroEspecialidad] = useState<string>('todas');
   const [busqueda, setBusqueda] = useState('');
 
   const getInitials = (nombre: string) => {
@@ -46,7 +46,7 @@ const DoctoresGrid = () => {
     
     let filtrados = [...doctores];
 
-    if (filtroEspecialidad) {
+    if (filtroEspecialidad !== 'todas') {
       filtrados = filtrados.filter(doctor => 
         doctor.titulo.toLowerCase().includes(filtroEspecialidad.toLowerCase())
       );
@@ -124,7 +124,7 @@ const DoctoresGrid = () => {
             <SelectValue placeholder="Filtrar por especialidad" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="">Todas las especialidades</SelectItem>
+            <SelectItem value="todas">Todas las especialidades</SelectItem>
             {especialidadesUnicas.map((especialidad) => (
               <SelectItem key={especialidad} value={especialidad}>
                 {especialidad}
@@ -262,7 +262,7 @@ const DoctoresGrid = () => {
           <Button 
             onClick={() => {
               setBusqueda('');
-              setFiltroEspecialidad('');
+              setFiltroEspecialidad('todas');
             }}
           >
             Limpiar filtros
