@@ -1,0 +1,276 @@
+
+import React, { useState, useMemo } from 'react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Input } from '@/components/ui/input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Skeleton } from '@/components/ui/skeleton';
+import { MessageCircle, ExternalLink, User, Search } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { useDoctores } from '@/hooks/useDoctores';
+
+const DoctoresGrid = () => {
+  const { data: doctores, isLoading, error } = useDoctores();
+  const [filtroEspecialidad, setFiltroEspecialidad] = useState<string>('');
+  const [busqueda, setBusqueda] = useState('');
+
+  const getInitials = (nombre: string) => {
+    return nombre
+      .split(' ')
+      .map(word => word.charAt(0))
+      .join('')
+      .substring(0, 2)
+      .toUpperCase();
+  };
+
+  const handleWhatsAppContact = (whatsapp: string, nombre: string) => {
+    if (!whatsapp) return;
+    const phoneNumber = `52${whatsapp.replace(/\s/g, '').replace(/[()]/g, '').replace(/\+52/g, '')}`;
+    const doctorFirstName = nombre.split(' ').slice(0, 2).join(' ');
+    const message = encodeURIComponent(`Hola ${doctorFirstName}, me gustaría agendar una consulta. ¿Cuál es su disponibilidad?`);
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
+  const especialidadesUnicas = useMemo(() => {
+    if (!doctores) return [];
+    const especialidades = Array.from(
+      new Set(doctores.map(doctor => doctor.titulo))
+    ).sort();
+    return especialidades;
+  }, [doctores]);
+
+  const doctoresFiltrados = useMemo(() => {
+    if (!doctores) return [];
+    
+    let filtrados = [...doctores];
+
+    if (filtroEspecialidad) {
+      filtrados = filtrados.filter(doctor => 
+        doctor.titulo.toLowerCase().includes(filtroEspecialidad.toLowerCase())
+      );
+    }
+
+    if (busqueda) {
+      filtrados = filtrados.filter(doctor =>
+        doctor.nombre.toLowerCase().includes(busqueda.toLowerCase()) ||
+        doctor.titulo.toLowerCase().includes(busqueda.toLowerCase())
+      );
+    }
+
+    return filtrados.sort((a, b) => a.nombre.localeCompare(b.nombre));
+  }, [doctores, filtroEspecialidad, busqueda]);
+
+  if (isLoading) {
+    return (
+      <div className="space-y-6">
+        <div className="flex flex-col md:flex-row gap-4 mb-8">
+          <Skeleton className="h-10 w-full md:w-80" />
+          <Skeleton className="h-10 w-full md:w-60" />
+        </div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {Array.from({ length: 9 }).map((_, index) => (
+            <Card key={index} className="overflow-hidden">
+              <CardHeader className="pb-4">
+                <div className="flex items-center gap-4">
+                  <Skeleton className="w-16 h-16 rounded-full" />
+                  <div className="space-y-2">
+                    <Skeleton className="h-5 w-32" />
+                    <Skeleton className="h-4 w-40" />
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <Skeleton className="h-4 w-full" />
+                <div className="space-y-2">
+                  <Skeleton className="h-10 w-full" />
+                  <Skeleton className="h-10 w-full" />
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="text-center py-12">
+        <p className="text-red-500 mb-4">Error al cargar los doctores</p>
+        <Button onClick={() => window.location.reload()}>
+          Reintentar
+        </Button>
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-6">
+      {/* Filtros y búsqueda */}
+      <div className="flex flex-col md:flex-row gap-4 mb-8">
+        <div className="relative flex-1">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
+          <Input
+            placeholder="Buscar por nombre o especialidad..."
+            value={busqueda}
+            onChange={(e) => setBusqueda(e.target.value)}
+            className="pl-10"
+          />
+        </div>
+        <Select value={filtroEspecialidad} onValueChange={setFiltroEspecialidad}>
+          <SelectTrigger className="w-full md:w-60">
+            <SelectValue placeholder="Filtrar por especialidad" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="">Todas las especialidades</SelectItem>
+            {especialidadesUnicas.map((especialidad) => (
+              <SelectItem key={especialidad} value={especialidad}>
+                {especialidad}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+
+      {/* Contador */}
+      <div className="text-center mb-6">
+        <p className="text-muted-foreground">
+          Mostrando {doctoresFiltrados.length} de {doctores?.length || 0} doctores
+        </p>
+      </div>
+
+      {/* Grid de doctores */}
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {doctoresFiltrados.map((doctor) => (
+          <Card key={doctor.id} className="group hover:shadow-xl transition-all duration-300 overflow-hidden h-full flex flex-col">
+            <CardHeader className="pb-4">
+              <div className="flex items-center gap-4 mb-4">
+                {/* Círculo con iniciales o foto */}
+                <div className="w-16 h-16 bg-gradient-to-br from-hospital-primary to-hospital-secondary rounded-full flex items-center justify-center text-white text-lg font-bold overflow-hidden flex-shrink-0">
+                  {doctor.foto ? (
+                    <img 
+                      src={doctor.foto} 
+                      alt={doctor.nombre}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    getInitials(doctor.nombre)
+                  )}
+                </div>
+                
+                <div className="min-w-0 flex-1">
+                  <h3 className="text-lg font-bold text-hospital-primary group-hover:text-hospital-secondary transition-colors line-clamp-2">
+                    {doctor.nombre}
+                  </h3>
+                  <p className="text-hospital-gray font-medium text-sm line-clamp-2">
+                    {doctor.titulo}
+                  </p>
+                </div>
+              </div>
+            </CardHeader>
+
+            <CardContent className="flex flex-col flex-1 justify-between space-y-4">
+              {/* Descripción */}
+              <div className="flex-1">
+                <p className="text-muted-foreground text-sm line-clamp-3">
+                  {doctor.experiencia || doctor.formacion_detallada || `Especialista en ${doctor.titulo.toLowerCase()} del Hospital Independencia. Comprometido con brindar atención médica de calidad y calidez humana.`}
+                </p>
+                
+                {/* Badges */}
+                <div className="flex flex-wrap gap-2 mt-3">
+                  {doctor.has_detailed_profile && (
+                    <Badge variant="secondary" className="bg-green-100 text-green-800 text-xs">
+                      Perfil Completo
+                    </Badge>
+                  )}
+                  {doctor.whatsapp && (
+                    <Badge variant="outline" className="text-xs">
+                      <MessageCircle className="w-3 h-3 mr-1" />
+                      WhatsApp
+                    </Badge>
+                  )}
+                </div>
+              </div>
+
+              {/* Información de contacto */}
+              {doctor.whatsapp && (
+                <div className="text-center py-2 px-3 bg-gray-50 rounded-lg">
+                  <p className="text-xs text-muted-foreground">
+                    WhatsApp: {doctor.whatsapp}
+                  </p>
+                </div>
+              )}
+
+              {/* Botones */}
+              <div className="space-y-2 pt-2">
+                {/* Botón Ver Perfil / Información Próximamente */}
+                {doctor.has_detailed_profile ? (
+                  <Link to={`/doctores/${doctor.slug}`} className="block">
+                    <Button 
+                      size="sm" 
+                      className="w-full bg-hospital-primary hover:bg-hospital-primary/90 text-white"
+                    >
+                      <ExternalLink className="w-4 h-4 mr-2" />
+                      Ver Perfil Completo
+                    </Button>
+                  </Link>
+                ) : (
+                  <Button 
+                    size="sm" 
+                    className="w-full bg-gray-300 text-gray-500 cursor-not-allowed"
+                    disabled
+                  >
+                    <User className="w-4 h-4 mr-2" />
+                    Información Próximamente
+                  </Button>
+                )}
+                
+                {/* Botón WhatsApp */}
+                {doctor.whatsapp ? (
+                  <Button 
+                    size="sm" 
+                    className="w-full bg-green-600 hover:bg-green-700 text-white"
+                    onClick={() => handleWhatsAppContact(doctor.whatsapp!, doctor.nombre)}
+                  >
+                    <MessageCircle className="w-4 h-4 mr-2" />
+                    Contactar WhatsApp
+                  </Button>
+                ) : (
+                  <Button 
+                    size="sm" 
+                    className="w-full bg-gray-300 text-gray-500 cursor-not-allowed"
+                    disabled
+                  >
+                    <MessageCircle className="w-4 h-4 mr-2" />
+                    WhatsApp No Disponible
+                  </Button>
+                )}
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+
+      {/* Mensaje si no hay resultados */}
+      {doctoresFiltrados.length === 0 && (
+        <div className="text-center py-12">
+          <p className="text-muted-foreground mb-4">
+            No se encontraron doctores que coincidan con los filtros seleccionados.
+          </p>
+          <Button 
+            onClick={() => {
+              setBusqueda('');
+              setFiltroEspecialidad('');
+            }}
+          >
+            Limpiar filtros
+          </Button>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default DoctoresGrid;
