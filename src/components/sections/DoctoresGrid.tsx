@@ -2,7 +2,6 @@
 import React, { useState, useMemo } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -177,31 +176,7 @@ const DoctoresGrid = () => {
                 <p className="text-muted-foreground text-sm line-clamp-3">
                   {doctor.experiencia || doctor.formacion_detallada || `Especialista en ${doctor.titulo.toLowerCase()} del Hospital Independencia. Comprometido con brindar atención médica de calidad y calidez humana.`}
                 </p>
-                
-                {/* Badges */}
-                <div className="flex flex-wrap gap-2 mt-3">
-                  {doctor.has_detailed_profile && (
-                    <Badge variant="secondary" className="bg-green-100 text-green-800 text-xs">
-                      Perfil Completo
-                    </Badge>
-                  )}
-                  {doctor.whatsapp && (
-                    <Badge variant="outline" className="text-xs">
-                      <MessageCircle className="w-3 h-3 mr-1" />
-                      WhatsApp
-                    </Badge>
-                  )}
-                </div>
               </div>
-
-              {/* Información de contacto */}
-              {doctor.whatsapp && (
-                <div className="text-center py-2 px-3 bg-gray-50 rounded-lg">
-                  <p className="text-xs text-muted-foreground">
-                    WhatsApp: {doctor.whatsapp}
-                  </p>
-                </div>
-              )}
 
               {/* Botones */}
               <div className="space-y-2 pt-2">
