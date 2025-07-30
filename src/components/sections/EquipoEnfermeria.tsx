@@ -3,14 +3,14 @@ import React from 'react';
 
 const EquipoEnfermeria = () => {
   const equipoEnfermeria = [
-    { nombre: 'Yeeni Avendaño', foto: null },
-    { nombre: 'Ana Isabel Flores', foto: null },
-    { nombre: 'Carlos García', foto: null },
-    { nombre: 'Teresa Díaz', foto: null },
-    { nombre: 'Ana Lleli Flores', foto: null },
-    { nombre: 'Irais López', foto: null },
-    { nombre: 'Jazmín Mexicano', foto: null },
-    { nombre: 'Valeria Portela', foto: null }
+    { nombre: 'Yeeni Avendaño', foto: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158' },
+    { nombre: 'Ana Isabel Flores', foto: 'https://images.unsplash.com/photo-1581092795360-fd1ca04f0952' },
+    { nombre: 'Carlos García', foto: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e' },
+    { nombre: 'Teresa Díaz', foto: 'https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b' },
+    { nombre: 'Ana Lleli Flores', foto: 'https://images.unsplash.com/photo-1473091534298-04dcbce3278c' },
+    { nombre: 'Irais López', foto: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158' },
+    { nombre: 'Jazmín Mexicano', foto: 'https://images.unsplash.com/photo-1581092795360-fd1ca04f0952' },
+    { nombre: 'Valeria Portela', foto: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e' }
   ];
 
   const getInitials = (nombre: string) => {
