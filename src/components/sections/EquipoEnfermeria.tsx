@@ -34,12 +34,12 @@ const EquipoEnfermeria = () => {
         </p>
       </div>
 
-      {/* Grid del equipo - Cards con fotos */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 lg:gap-8">
+      {/* Grid del equipo - Cards con fotos más grandes */}
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 lg:gap-10">
         {equipoEnfermeria.map((enfermero, index) => (
           <div key={index} className="text-center">
-            {/* Foto o círculo con iniciales */}
-            <div className="w-20 h-20 rounded-full mx-auto mb-4 overflow-hidden border-2 border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-300">
+            {/* Foto o círculo con iniciales - tamaño aumentado */}
+            <div className="w-28 h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 rounded-full mx-auto mb-5 overflow-hidden border-3 border-gray-200 shadow-md hover:shadow-lg transition-shadow duration-300">
               {enfermero.foto ? (
                 <img
                   src={enfermero.foto}
@@ -47,7 +47,7 @@ const EquipoEnfermeria = () => {
                   className="w-full h-full object-cover"
                 />
               ) : (
-                <div className="w-full h-full bg-gradient-to-br from-hospital-primary to-hospital-secondary flex items-center justify-center text-white text-lg font-bold">
+                <div className="w-full h-full bg-gradient-to-br from-hospital-primary to-hospital-secondary flex items-center justify-center text-white text-xl font-bold">
                   {getInitials(enfermero.nombre)}
                 </div>
               )}
@@ -62,7 +62,7 @@ const EquipoEnfermeria = () => {
       </div>
 
       {/* Elemento decorativo */}
-      <div className="flex justify-center mt-12 lg:mt-16">
+      <div className="flex justify-center mt-16 lg:mt-20">
         <div className="w-24 h-1 bg-gradient-to-r from-transparent via-hospital-primary to-transparent rounded-full"></div>
       </div>
     </div>
