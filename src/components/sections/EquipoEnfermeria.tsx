@@ -3,14 +3,14 @@ import React from 'react';
 
 const EquipoEnfermeria = () => {
   const equipoEnfermeria = [
-    { nombre: 'Yeeni Avendaño' },
-    { nombre: 'Ana Isabel Flores' },
-    { nombre: 'Carlos García' },
-    { nombre: 'Teresa Díaz' },
-    { nombre: 'Ana Lleli Flores' },
-    { nombre: 'Irais López' },
-    { nombre: 'Jazmín Mexicano' },
-    { nombre: 'Valeria Portela' }
+    { nombre: 'Yeeni Avendaño', foto: null },
+    { nombre: 'Ana Isabel Flores', foto: null },
+    { nombre: 'Carlos García', foto: null },
+    { nombre: 'Teresa Díaz', foto: null },
+    { nombre: 'Ana Lleli Flores', foto: null },
+    { nombre: 'Irais López', foto: null },
+    { nombre: 'Jazmín Mexicano', foto: null },
+    { nombre: 'Valeria Portela', foto: null }
   ];
 
   const getInitials = (nombre: string) => {
@@ -34,13 +34,23 @@ const EquipoEnfermeria = () => {
         </p>
       </div>
 
-      {/* Grid del equipo - Cards minimalistas */}
+      {/* Grid del equipo - Cards con fotos */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 lg:gap-8">
         {equipoEnfermeria.map((enfermero, index) => (
           <div key={index} className="text-center">
-            {/* Círculo con iniciales */}
-            <div className="w-20 h-20 bg-gradient-to-br from-hospital-primary to-hospital-secondary rounded-full flex items-center justify-center text-white text-lg font-bold mx-auto mb-4">
-              {getInitials(enfermero.nombre)}
+            {/* Foto o círculo con iniciales */}
+            <div className="w-20 h-20 rounded-full mx-auto mb-4 overflow-hidden border-2 border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-300">
+              {enfermero.foto ? (
+                <img
+                  src={enfermero.foto}
+                  alt={enfermero.nombre}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <div className="w-full h-full bg-gradient-to-br from-hospital-primary to-hospital-secondary flex items-center justify-center text-white text-lg font-bold">
+                  {getInitials(enfermero.nombre)}
+                </div>
+              )}
             </div>
             
             {/* Nombre centrado */}
