@@ -98,29 +98,26 @@ const Navigation = () => {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-hospital-primary/95 backdrop-blur-md shadow-lg'
-          : 'bg-hospital-primary'
+          ? 'bg-white shadow-lg'
+          : 'bg-white shadow-md'
       }`}
     >
       <div className="container-custom">
         <div className="flex items-center justify-between h-16 sm:h-18 md:h-20">
-          {/* Logo - Updated with official Hospital Independencia logo */}
+          {/* Logo - Hospital Independencia with original colors */}
           <Link to="/" className="flex items-center space-x-2 sm:space-x-3 flex-shrink-0 max-w-[60%] sm:max-w-none">
             <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 flex items-center justify-center flex-shrink-0">
               <img 
                 src="/lovable-uploads/43efa578-f21d-46b3-95de-ee32883410c1.png" 
                 alt="Hospital Independencia Logo"
                 className="w-full h-full object-contain"
-                style={{
-                  filter: 'brightness(0) invert(1)', // Converts logo to white
-                }}
               />
             </div>
             <div className="min-w-0">
               <div className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-bold font-heading leading-tight truncate text-black">
                 Hospital Independencia
               </div>
-              <div className="text-xs sm:text-sm md:text-base opacity-90 font-light leading-tight text-gray-800">
+              <div className="text-xs sm:text-sm md:text-base opacity-90 font-light leading-tight text-gray-600">
                 Tehuacán, Puebla
               </div>
             </div>
@@ -132,8 +129,8 @@ const Navigation = () => {
               <Link
                 key={item.label}
                 to={item.href}
-                className={`text-white/90 hover:text-white hover:border-b-2 hover:border-white transition-all duration-200 font-medium py-2 text-sm xl:text-base whitespace-nowrap ${
-                  isActive(item.href) ? 'text-white border-b-2 border-white' : ''
+                className={`text-black hover:text-blue-600 hover:border-b-2 hover:border-blue-600 transition-all duration-200 font-medium py-2 text-sm xl:text-base whitespace-nowrap ${
+                  isActive(item.href) ? 'text-blue-700 border-b-2 border-blue-700' : ''
                 }`}
               >
                 {item.label}
@@ -142,7 +139,7 @@ const Navigation = () => {
             <Button 
               onClick={handleWhatsAppClick}
               size="sm"
-              className="ml-4 bg-whatsapp text-white hover:bg-green-600 font-semibold min-h-[44px] px-4 xl:px-6 text-sm whitespace-nowrap"
+              className="ml-4 bg-green-500 text-white hover:bg-green-600 font-semibold min-h-[44px] px-4 xl:px-6 text-sm whitespace-nowrap"
             >
               <WhatsAppIcon />
               <span className="ml-2">WhatsApp</span>
@@ -156,7 +153,7 @@ const Navigation = () => {
               console.log(`🔍 Menu toggle: ${!isMenuOpen ? 'opening' : 'closing'}`);
               setIsMenuOpen(!isMenuOpen);
             }}
-            className="lg:hidden p-2 text-white hover:bg-white/10 rounded-lg transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center touch-manipulation active:bg-white/20"
+            className="lg:hidden p-2 text-black hover:bg-gray-100 rounded-lg transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center touch-manipulation active:bg-gray-200"
             aria-label={isMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
             aria-expanded={isMenuOpen}
             type="button"
@@ -169,9 +166,9 @@ const Navigation = () => {
           </button>
         </div>
 
-        {/* Mobile Navigation - NO backdrop that blocks clicks */}
+        {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="lg:hidden bg-hospital-primary border-t border-white/20 shadow-lg">
+          <div className="lg:hidden bg-white border-t border-gray-200 shadow-lg">
             <div className="py-2 space-y-0">
               {navigationItems.map((item) => (
                 <button
@@ -181,8 +178,8 @@ const Navigation = () => {
                     e.stopPropagation();
                     handleMobileNavigation(item.href, item.label);
                   }}
-                  className={`block w-full text-left px-6 py-4 text-white hover:bg-white/10 transition-colors duration-200 font-medium text-base border-b border-white/10 cursor-pointer touch-manipulation active:bg-white/20 ${
-                    isActive(item.href) ? 'bg-white/10 border-r-4 border-white' : ''
+                  className={`block w-full text-left px-6 py-4 text-black hover:bg-gray-50 transition-colors duration-200 font-medium text-base border-b border-gray-100 cursor-pointer touch-manipulation active:bg-gray-100 ${
+                    isActive(item.href) ? 'bg-blue-50 border-r-4 border-blue-600 text-blue-700' : ''
                   }`}
                   type="button"
                 >
@@ -191,7 +188,7 @@ const Navigation = () => {
               ))}
               
               {/* WhatsApp Button */}
-              <div className="px-6 pt-4 pb-2 border-t border-white/10">
+              <div className="px-6 pt-4 pb-2 border-t border-gray-200">
                 <Button 
                   onClick={(e) => {
                     e.preventDefault();
@@ -200,7 +197,7 @@ const Navigation = () => {
                     handleWhatsAppClick();
                     setIsMenuOpen(false);
                   }}
-                  className="w-full bg-whatsapp text-white hover:bg-green-600 font-semibold text-base"
+                  className="w-full bg-green-500 text-white hover:bg-green-600 font-semibold text-base"
                   type="button"
                 >
                   <WhatsAppIcon />
@@ -210,7 +207,7 @@ const Navigation = () => {
               
               {/* Phone number as text */}
               <div className="px-6 pb-4">
-                <div className="text-center text-white/80 text-sm bg-white/5 rounded-lg p-3">
+                <div className="text-center text-gray-600 text-sm bg-gray-50 rounded-lg p-3">
                   📞 Hospital: 238 382 4819
                 </div>
               </div>
