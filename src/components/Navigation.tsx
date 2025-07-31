@@ -66,10 +66,12 @@ const Navigation = () => {
     console.log(`🔍 Click detectado en: ${label} (${href})`);
     console.log(`🔍 Estado actual del menú: ${isMenuOpen ? 'abierto' : 'cerrado'}`);
     
-    // Cerrar menú y navegar
-    setIsMenuOpen(false);
-    navigate(href);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Small delay to ensure menu closes before navigation
+    setTimeout(() => {
+      setIsMenuOpen(false);
+      navigate(href);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 100);
     
     console.log(`✅ Navegación completada a: ${href}`);
   };
@@ -103,20 +105,23 @@ const Navigation = () => {
     >
       <div className="container-custom">
         <div className="flex items-center justify-between h-16 sm:h-18 md:h-20">
-          {/* Logo - Optimized for all screen sizes */}
+          {/* Logo - Updated with official Hospital Independencia logo */}
           <Link to="/" className="flex items-center space-x-2 sm:space-x-3 flex-shrink-0 max-w-[60%] sm:max-w-none">
-            <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 bg-white rounded-xl flex items-center justify-center shadow-sm p-1 flex-shrink-0">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 flex items-center justify-center flex-shrink-0">
               <img 
-                src="/lovable-uploads/34c5be76-cf86-4d35-a2e4-c27b77abb024.png" 
+                src="/lovable-uploads/43efa578-f21d-46b3-95de-ee32883410c1.png" 
                 alt="Hospital Independencia Logo"
                 className="w-full h-full object-contain"
+                style={{
+                  filter: 'brightness(0) invert(1)', // Converts logo to white
+                }}
               />
             </div>
-            <div className="text-white min-w-0">
-              <div className="text-xs sm:text-sm md:text-lg lg:text-xl font-bold font-heading leading-tight truncate">
+            <div className="min-w-0">
+              <div className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-bold font-heading leading-tight truncate text-black">
                 Hospital Independencia
               </div>
-              <div className="text-xs sm:text-sm opacity-90 font-light leading-tight">
+              <div className="text-xs sm:text-sm md:text-base opacity-90 font-light leading-tight text-gray-800">
                 Tehuacán, Puebla
               </div>
             </div>
@@ -138,7 +143,7 @@ const Navigation = () => {
             <Button 
               onClick={handleWhatsAppClick}
               size="sm"
-              className="ml-4 bg-whatsapp text-white hover:bg-whatsapp font-semibold min-h-[44px] px-4 xl:px-6 text-sm whitespace-nowrap"
+              className="ml-4 bg-whatsapp text-white hover:bg-green-600 font-semibold min-h-[44px] px-4 xl:px-6 text-sm whitespace-nowrap"
             >
               <WhatsAppIcon />
               <span className="ml-2">WhatsApp</span>
@@ -152,9 +157,10 @@ const Navigation = () => {
               console.log(`🔍 Menu toggle: ${!isMenuOpen ? 'opening' : 'closing'}`);
               setIsMenuOpen(!isMenuOpen);
             }}
-            className="lg:hidden p-2 text-white hover:bg-white/10 rounded-lg transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
+            className="lg:hidden p-2 text-white hover:bg-white/10 rounded-lg transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center touch-manipulation active:bg-white/20"
             aria-label={isMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
             aria-expanded={isMenuOpen}
+            type="button"
           >
             {isMenuOpen ? (
               <X className="w-6 h-6" />
@@ -164,7 +170,7 @@ const Navigation = () => {
           </button>
         </div>
 
-        {/* Mobile Navigation - SIN BACKDROP QUE BLOQUEE CLICS */}
+        {/* Mobile Navigation - NO backdrop that blocks clicks */}
         {isMenuOpen && (
           <div className="lg:hidden bg-hospital-primary border-t border-white/20 shadow-lg">
             <div className="py-2 space-y-0">
@@ -176,7 +182,7 @@ const Navigation = () => {
                     e.stopPropagation();
                     handleMobileNavigation(item.href, item.label);
                   }}
-                  className={`block w-full text-left px-6 py-4 text-white hover:bg-white/10 transition-colors duration-200 font-medium text-base border-b border-white/10 cursor-pointer ${
+                  className={`block w-full text-left px-6 py-4 text-white hover:bg-white/10 transition-colors duration-200 font-medium text-base border-b border-white/10 cursor-pointer touch-manipulation active:bg-white/20 ${
                     isActive(item.href) ? 'bg-white/10 border-r-4 border-white' : ''
                   }`}
                   type="button"
