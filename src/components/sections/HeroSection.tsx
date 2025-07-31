@@ -149,10 +149,13 @@ const HeroSection = () => {
         </div>
       </section>
 
-      {/* Subtle Visual Divider */}
-      <div className="w-full py-4 bg-white">
+      {/* Elegant Divider Band */}
+      <div className="w-full bg-slate-50 py-16 md:py-20">
         <div className="container mx-auto px-4">
-          <div className="h-px bg-gradient-to-r from-transparent via-blue-100 to-transparent opacity-60"></div>
+          {/* Optional subtle decoration - can be removed if too much */}
+          <div className="max-w-md mx-auto">
+            <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent"></div>
+          </div>
         </div>
       </div>
     </>
