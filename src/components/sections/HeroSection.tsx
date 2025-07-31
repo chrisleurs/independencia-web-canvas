@@ -149,14 +149,16 @@ const HeroSection = () => {
         </div>
       </section>
 
-      {/* Elegant Divider Band */}
-      <div className="w-full bg-slate-50 py-16 md:py-20">
-        <div className="container mx-auto px-4">
-          {/* Optional subtle decoration - can be removed if too much */}
-          <div className="max-w-md mx-auto">
-            <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent"></div>
-          </div>
-        </div>
+      {/* Elegant Shadow Divider - Medical Design */}
+      <div 
+        className="w-full bg-white relative"
+        style={{ 
+          height: '30px',
+          boxShadow: '0 -10px 25px rgba(0, 0, 0, 0.04)'
+        }}
+      >
+        {/* Additional subtle gradient for enhanced medical aesthetic */}
+        <div className="absolute inset-0 bg-gradient-to-b from-gray-50/20 to-transparent"></div>
       </div>
     </>
   );
