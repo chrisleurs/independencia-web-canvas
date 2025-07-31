@@ -61,6 +61,11 @@ const Navigation = () => {
     window.open(whatsappUrl, '_blank');
   };
 
+  const handleMobileNavClick = (href: string, label: string) => {
+    console.log(`🔍 Navegando a: ${label} (${href})`);
+    setIsMenuOpen(false);
+  };
+
   const isActive = (href: string) => {
     if (href === '/') {
       return location.pathname === '/';
@@ -136,6 +141,7 @@ const Navigation = () => {
           <button
             onClick={(e) => {
               e.stopPropagation();
+              console.log(`🔍 Menu toggle: ${!isMenuOpen ? 'opening' : 'closing'}`);
               setIsMenuOpen(!isMenuOpen);
             }}
             className="lg:hidden p-2 text-white hover:bg-white/10 rounded-lg transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
@@ -150,28 +156,23 @@ const Navigation = () => {
           </button>
         </div>
 
-        {/* Mobile Navigation - Fixed blur issues and improved functionality */}
+        {/* Mobile Navigation - Fixed navigation and removed Fragment warnings */}
         <div className={`lg:hidden transition-all duration-300 ease-in-out ${
           isMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
         }`}>
-          {/* Solid background instead of blur effects */}
           <div className="bg-hospital-primary border-t border-white/20 shadow-lg">
             <div className="py-4 space-y-0 max-h-[calc(100vh-5rem)] overflow-y-auto">
-              {navigationItems.map((item, index) => (
-                <React.Fragment key={item.label}>
-                  <Link
-                    to={item.href}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setIsMenuOpen(false);
-                    }}
-                    className={`block w-full text-left px-6 py-4 text-white hover:bg-white/10 transition-colors duration-200 font-medium min-h-[48px] flex items-center text-base border-b border-white/10 ${
-                      isActive(item.href) ? 'bg-white/10 border-r-4 border-white' : ''
-                    }`}
-                  >
-                    <span>{item.label}</span>
-                  </Link>
-                </React.Fragment>
+              {navigationItems.map((item) => (
+                <Link
+                  key={item.label}
+                  to={item.href}
+                  onClick={() => handleMobileNavClick(item.href, item.label)}
+                  className={`block w-full text-left px-6 py-4 text-white hover:bg-white/10 transition-colors duration-200 font-medium min-h-[48px] flex items-center text-base border-b border-white/10 ${
+                    isActive(item.href) ? 'bg-white/10 border-r-4 border-white' : ''
+                  }`}
+                >
+                  <span>{item.label}</span>
+                </Link>
               ))}
               
               {/* WhatsApp Button */}
@@ -179,6 +180,7 @@ const Navigation = () => {
                 <Button 
                   onClick={(e) => {
                     e.stopPropagation();
+                    console.log('🔍 WhatsApp clicked from mobile menu');
                     handleWhatsAppClick();
                     setIsMenuOpen(false);
                   }}
