@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -73,6 +74,7 @@
 
   html {
     scroll-behavior: auto !important; /* Override smooth scrolling to prevent loading issues */
+    overflow-x: hidden; /* Prevent horizontal scroll */
   }
 
   body {
@@ -80,6 +82,8 @@
     font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     line-height: 1.7;
     overflow-x: hidden; /* Prevent horizontal scroll issues */
+    /* Minimum font size for better mobile readability */
+    font-size: 16px;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -105,22 +109,31 @@
     color: hsl(var(--hospital-title-light));
   }
 
-  /* Mobile-first responsive typography */
+  /* Mobile-first responsive typography with better readability */
   h1 {
-    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl;
+    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl;
+    line-height: 1.2;
   }
 
   h2 {
-    @apply text-2xl sm:text-3xl md:text-4xl;
+    @apply text-xl sm:text-2xl md:text-3xl lg:text-4xl;
+    line-height: 1.3;
   }
 
   h3 {
-    @apply text-lg sm:text-xl md:text-2xl;
+    @apply text-lg sm:text-xl md:text-2xl lg:text-3xl;
+    line-height: 1.4;
+  }
+
+  /* Base paragraph improvements */
+  p {
+    @apply text-sm sm:text-base;
+    line-height: 1.6;
   }
 
   /* Enhanced Layout Utilities with Mobile-first Approach */
   .section-padding {
-    @apply py-16 sm:py-20 lg:py-28;
+    @apply py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24;
   }
 
   .container-custom {
@@ -196,14 +209,16 @@
   @apply h-px bg-gradient-to-r from-transparent via-hospital-gray/15 to-transparent;
 }
 
-/* Professional card hover effects */
+/* Professional card hover effects - disabled on mobile */
 .card-hover {
   transition: all 0.4s ease;
 }
 
-.card-hover:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(28, 61, 132, 0.08);
+@media (min-width: 768px) {
+  .card-hover:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(28, 61, 132, 0.08);
+  }
 }
 
 /* Professional button effects */
@@ -213,10 +228,12 @@
   transition: all 0.3s ease;
 }
 
-.btn-primary:hover {
-  background: hsl(var(--hospital-blue-dark));
-  transform: translateY(-1px);
-  box-shadow: 0 8px 25px rgba(28, 61, 132, 0.2);
+@media (min-width: 768px) {
+  .btn-primary:hover {
+    background: hsl(var(--hospital-blue-dark));
+    transform: translateY(-1px);
+    box-shadow: 0 8px 25px rgba(28, 61, 132, 0.2);
+  }
 }
 
 /* WhatsApp button - keep green for brand recognition */
@@ -230,19 +247,21 @@
   transition: all 0.3s ease;
 }
 
-/* Mobile-specific adjustments */
+/* Mobile-specific adjustments for WhatsApp float */
 @media (max-width: 640px) {
   .whatsapp-float {
-    bottom: 24px;
+    bottom: 20px;
     right: 16px;
     width: 56px;
     height: 56px;
   }
 }
 
-.whatsapp-float:hover {
-  transform: scale(1.05);
-  box-shadow: 0 12px 40px rgba(37, 211, 102, 0.4);
+@media (min-width: 641px) {
+  .whatsapp-float:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 40px rgba(37, 211, 102, 0.4);
+  }
 }
 
 /* Enhanced focus states for accessibility */
@@ -291,26 +310,93 @@ nav[aria-label="breadcrumb"] svg {
   margin-bottom: 0 !important;
 }
 
+/* Mobile-first responsive utilities */
+.grid-responsive-cards {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8;
+}
+
+.grid-responsive-doctors {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8;
+}
+
+.grid-responsive-nursing {
+  @apply grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8;
+}
+
 /* Touch-friendly improvements for mobile */
 @media (max-width: 768px) {
-  .card-hover:hover {
-    transform: none; /* Disable hover transforms on touch devices */
+  /* Ensure proper touch targets - minimum 44px */
+  button, a, [role="button"], input, select, textarea {
+    min-height: 44px;
+    touch-action: manipulation;
   }
   
-  /* Ensure proper touch targets */
-  button, a, [role="button"] {
-    min-height: 44px;
-    min-width: 44px;
+  /* Prevent zoom on form focus in iOS */
+  input[type="text"], 
+  input[type="email"], 
+  input[type="tel"], 
+  textarea, 
+  select {
+    font-size: 16px !important;
+    transform: translateZ(0);
+  }
+  
+  /* Better text readability */
+  body {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
 }
 
-/* Improved text readability on mobile */
+/* Improved text readability on all devices */
 @media (max-width: 640px) {
-  body {
-    font-size: 16px; /* Prevent zoom on iOS */
+  /* Small text improvements */
+  .text-xs {
+    @apply text-sm;
   }
   
-  p {
-    line-height: 1.6;
+  /* Better line height for mobile */
+  p, li {
+    line-height: 1.7;
+  }
+  
+  /* Card padding adjustments */
+  .card-content-mobile {
+    @apply p-3 sm:p-4 md:p-6;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .card-hover {
+    border: 2px solid hsl(var(--hospital-primary));
+  }
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .card-hover:hover {
+    transform: none;
+  }
+}
+
+/* Print styles */
+@media print {
+  .whatsapp-float,
+  nav,
+  footer {
+    display: none;
+  }
+  
+  body {
+    font-size: 12pt;
+    line-height: 1.5;
   }
 }
