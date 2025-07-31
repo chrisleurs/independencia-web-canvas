@@ -30,14 +30,6 @@ const HeroSection = () => {
   return (
     <>
       <section id="hero" className="min-h-screen flex items-center bg-white relative overflow-hidden">
-        {/* Background Pattern - Subtle medical elements */}
-        <div className="absolute inset-0 opacity-3">
-          <div className="absolute top-32 left-16 w-40 h-40 border border-gray-100 rounded-full"></div>
-          <div className="absolute top-60 right-24 w-28 h-28 border border-gray-100 rounded-full"></div>
-          <div className="absolute bottom-48 left-28 w-48 h-48 border border-gray-100 rounded-full"></div>
-          <div className="absolute top-80 right-1/3 w-20 h-20 border border-gray-50 rounded-full"></div>
-        </div>
-
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             {/* Content - Mobile-first approach */}
