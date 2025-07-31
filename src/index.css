@@ -56,6 +56,9 @@
     --hospital-blue-dark: 213 100% 25%; /* Azul muy oscuro */
     --hospital-blue-light: 213 40% 95%; /* Azul muy claro para fondos */
     --hospital-blue-muted: 213 30% 90%; /* Azul suave para elementos sutiles */
+
+    /* WhatsApp Official Green */
+    --whatsapp-green: 142 70% 49%; /* #25D366 - Official WhatsApp green */
   }
 
   .dark {
@@ -193,6 +196,23 @@
   .text-hospital-blue-dark {
     color: hsl(var(--hospital-blue-dark));
   }
+
+  /* WhatsApp official green utilities */
+  .bg-whatsapp {
+    background-color: hsl(var(--whatsapp-green));
+  }
+
+  .text-whatsapp {
+    color: hsl(var(--whatsapp-green));
+  }
+
+  .border-whatsapp {
+    border-color: hsl(var(--whatsapp-green));
+  }
+
+  .hover\:bg-whatsapp:hover {
+    background-color: hsl(var(--whatsapp-green));
+  }
 }
 
 /* Professional gradient backgrounds */
@@ -236,13 +256,14 @@
   }
 }
 
-/* WhatsApp button - keep green for brand recognition */
+/* WhatsApp button - official green for brand recognition */
 .whatsapp-float {
   position: fixed;
   bottom: 20px;
   right: 20px;
   z-index: 1000;
   border-radius: 50%;
+  background-color: hsl(var(--whatsapp-green));
   box-shadow: 0 8px 32px rgba(37, 211, 102, 0.3);
   transition: all 0.3s ease;
 }
@@ -323,6 +344,41 @@ nav[aria-label="breadcrumb"] svg {
   @apply grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8;
 }
 
+/* Enhanced mobile contact section */
+.contact-section-mobile {
+  @apply px-4 py-6;
+}
+
+.contact-card-mobile {
+  @apply p-4 sm:p-6 md:p-8;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.contact-buttons-mobile {
+  @apply flex flex-col gap-3 sm:gap-4;
+}
+
+.contact-button-mobile {
+  @apply w-full min-h-[56px] px-4 py-3 text-base font-semibold;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Card content improvements */
+.specialty-card-content {
+  @apply p-4 sm:p-6;
+  width: 100%;
+  min-width: 0;
+}
+
+.specialty-card-mobile {
+  @apply w-full;
+  max-width: 100%;
+  min-width: 0;
+}
+
 /* Touch-friendly improvements for mobile */
 @media (max-width: 768px) {
   /* Ensure proper touch targets - minimum 44px */
@@ -346,23 +402,31 @@ nav[aria-label="breadcrumb"] svg {
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
   }
-}
 
-/* Improved text readability on all devices */
-@media (max-width: 640px) {
-  /* Small text improvements */
-  .text-xs {
-    @apply text-sm;
+  /* Mobile-specific padding adjustments */
+  .section-padding {
+    @apply py-6 sm:py-8;
   }
-  
-  /* Better line height for mobile */
-  p, li {
-    line-height: 1.7;
-  }
-  
-  /* Card padding adjustments */
+
+  /* Mobile card adjustments */
   .card-content-mobile {
-    @apply p-3 sm:p-4 md:p-6;
+    @apply p-3 sm:p-4;
+  }
+
+  /* Prevent horizontal overflow */
+  * {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Mobile text adjustments */
+  h1 { @apply text-2xl leading-tight; }
+  h2 { @apply text-xl leading-tight; }
+  h3 { @apply text-lg leading-tight; }
+  
+  /* Mobile button improvements */
+  .btn-mobile {
+    @apply w-full min-h-[48px] px-4 py-3 text-sm;
   }
 }
 

@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { MapPin, Phone, Clock, Car } from 'lucide-react';
+import { MapPin, Clock, Car } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 
@@ -69,13 +69,13 @@ const Mapa = () => {
               <Card>
                 <CardContent className="flex items-start space-x-4 p-6">
                   <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Phone className="w-6 h-6 text-primary" />
+                    <span className="text-primary font-bold text-lg">Tel</span>
                   </div>
                   <div>
                     <h4 className="font-semibold mb-1">Teléfonos</h4>
                     <p className="text-muted-foreground text-sm">
-                      Recepción: (238) 123-4567<br />
-                      Urgencias: (238) 123-4567
+                      Hospital: 238 382 4819<br />
+                      Urgencias: 238 382 4819
                     </p>
                   </div>
                 </CardContent>
@@ -112,14 +112,9 @@ const Mapa = () => {
               </Card>
             </div>
 
-            <div className="flex space-x-4 pt-4">
-              <Button className="flex-1">
-                <Phone className="w-4 h-4 mr-2" />
-                Llamar Ahora
-              </Button>
+            <div className="pt-4">
               <Button 
-                variant="outline" 
-                className="flex-1"
+                className="w-full"
                 onClick={handleMapClick}
               >
                 <MapPin className="w-4 h-4 mr-2" />
