@@ -2,12 +2,13 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,7 +35,7 @@ const Navigation = () => {
 
     if (isMenuOpen) {
       document.addEventListener('click', handleClickOutside);
-      document.body.style.overflow = 'hidden'; // Prevent body scroll
+      document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
     }
@@ -61,9 +62,17 @@ const Navigation = () => {
     window.open(whatsappUrl, '_blank');
   };
 
-  const handleMobileNavClick = (href: string, label: string) => {
+  const handleMobileNavigation = (href: string, label: string) => {
     console.log(`🔍 Navegando a: ${label} (${href})`);
+    
+    // Cerrar menú primero
     setIsMenuOpen(false);
+    
+    // Navegar programáticamente
+    navigate(href);
+    
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const isActive = (href: string) => {
@@ -137,7 +146,7 @@ const Navigation = () => {
             </Button>
           </div>
 
-          {/* Mobile Menu Button - Larger touch target */}
+          {/* Mobile Menu Button */}
           <button
             onClick={(e) => {
               e.stopPropagation();
@@ -156,23 +165,22 @@ const Navigation = () => {
           </button>
         </div>
 
-        {/* Mobile Navigation - Fixed navigation and removed Fragment warnings */}
+        {/* Mobile Navigation - Fixed with programmatic navigation */}
         <div className={`lg:hidden transition-all duration-300 ease-in-out ${
           isMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
         }`}>
           <div className="bg-hospital-primary border-t border-white/20 shadow-lg">
             <div className="py-4 space-y-0 max-h-[calc(100vh-5rem)] overflow-y-auto">
               {navigationItems.map((item) => (
-                <Link
+                <button
                   key={item.label}
-                  to={item.href}
-                  onClick={() => handleMobileNavClick(item.href, item.label)}
-                  className={`block w-full text-left px-6 py-4 text-white hover:bg-white/10 transition-colors duration-200 font-medium min-h-[48px] flex items-center text-base border-b border-white/10 ${
+                  onClick={() => handleMobileNavigation(item.href, item.label)}
+                  className={`block w-full text-left px-6 py-4 text-white hover:bg-white/10 transition-colors duration-200 font-medium min-h-[48px] text-base border-b border-white/10 ${
                     isActive(item.href) ? 'bg-white/10 border-r-4 border-white' : ''
                   }`}
                 >
                   <span>{item.label}</span>
-                </Link>
+                </button>
               ))}
               
               {/* WhatsApp Button */}
@@ -202,7 +210,7 @@ const Navigation = () => {
         </div>
       </div>
 
-      {/* Mobile Menu Backdrop - Removed blur effects */}
+      {/* Mobile Menu Backdrop */}
       {isMenuOpen && (
         <div 
           className="lg:hidden fixed inset-0 bg-black/50"
