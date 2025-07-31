@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Shield, Heart, Users, MapPin } from 'lucide-react';
+import { ArrowRight, Heart, MapPin } from 'lucide-react';
 
 const HeroSection = () => {
   const handleWhatsAppClick = () => {
@@ -48,39 +48,6 @@ const HeroSection = () => {
                 <p className="text-lg sm:text-xl md:text-2xl text-gray-700 max-w-2xl leading-relaxed mx-auto lg:mx-0">
                   Más de 25 años brindando atención médica de calidad con tecnología de vanguardia y el compromiso humano que tu familia merece
                 </p>
-              </div>
-
-              {/* Stats - Medical professional design */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 py-8 lg:py-12">
-                <div className="flex items-center space-x-4 sm:space-x-6 bg-white border-2 border-gray-100 rounded-2xl p-4 sm:p-6 shadow-sm hover:shadow-md transition-shadow duration-300">
-                  <div className="w-12 h-12 sm:w-14 sm:h-14 bg-hospital-primary rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Shield className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
-                  </div>
-                  <div>
-                    <div className="text-xl sm:text-2xl font-bold font-heading text-hospital-primary">25+</div>
-                    <div className="text-gray-600 text-xs sm:text-sm">Años de experiencia</div>
-                  </div>
-                </div>
-                
-                <div className="flex items-center space-x-4 sm:space-x-6 bg-white border-2 border-gray-100 rounded-2xl p-4 sm:p-6 shadow-sm hover:shadow-md transition-shadow duration-300">
-                  <div className="w-12 h-12 sm:w-14 sm:h-14 bg-hospital-primary rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Heart className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
-                  </div>
-                  <div>
-                    <div className="text-xl sm:text-2xl font-bold font-heading text-hospital-primary">30+</div>
-                    <div className="text-gray-600 text-xs sm:text-sm">Especialidades</div>
-                  </div>
-                </div>
-                
-                <div className="flex items-center space-x-4 sm:space-x-6 bg-white border-2 border-gray-100 rounded-2xl p-4 sm:p-6 shadow-sm hover:shadow-md transition-shadow duration-300 sm:col-span-1 col-span-1">
-                  <div className="w-12 h-12 sm:w-14 sm:h-14 bg-hospital-primary rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Users className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
-                  </div>
-                  <div>
-                    <div className="text-xl sm:text-2xl font-bold font-heading text-hospital-primary">50K+</div>
-                    <div className="text-gray-600 text-xs sm:text-sm">Pacientes atendidos</div>
-                  </div>
-                </div>
               </div>
 
               {/* CTA Buttons - Medical professional styling */}
@@ -131,10 +98,6 @@ const HeroSection = () => {
                     <p className="text-sm text-gray-500">Hospital Independencia</p>
                   </div>
                 </div>
-                
-                {/* Floating Elements - Subtle medical accents */}
-                <div className="absolute -top-6 -right-6 w-24 h-24 bg-hospital-primary/5 border border-hospital-primary/10 rounded-full animate-float"></div>
-                <div className="absolute -bottom-8 -left-8 w-20 h-20 bg-hospital-secondary/5 border border-hospital-secondary/10 rounded-full animate-float" style={{animationDelay: '2s'}}></div>
               </div>
             </div>
           </div>
