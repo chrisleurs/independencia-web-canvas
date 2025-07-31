@@ -74,9 +74,79 @@ const Nosotros = () => {
                 Hoy, con una mirada puesta en el futuro, seguimos siendo un hospital de puertas abiertas, tecnología avanzada y atención humana. Nuestro compromiso es claro: cuidar de ti y de los tuyos con profesionalismo, compasión y excelencia.
               </p>
             </div>
+          </div>
+        </section>
 
-            {/* Highlighted Quote */}
-            <div className="text-center mb-20">
+        {/* Galería integrada después del texto */}
+        <section className="py-12 sm:py-16 bg-gray-50">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+            <div className="text-center mb-8 sm:mb-12">
+              <h3 className="text-2xl sm:text-3xl md:text-3xl font-bold text-hospital-primary mb-4">
+                Nuestras Instalaciones
+              </h3>
+              <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto px-4">
+                Conoce las modernas instalaciones que respaldan nuestro compromiso con la excelencia médica
+              </p>
+            </div>
+            
+            {/* Gallery Component Content Integrated */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 xl:gap-8">
+              {[
+                {
+                  titulo: 'Recepción Principal',
+                  descripcion: 'Área de recepción y bienvenida',
+                  imagen: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=600&h=400&fit=crop&crop=center'
+                },
+                {
+                  titulo: 'Habitaciones Privadas',
+                  descripcion: 'Habitaciones equipadas con tecnología moderna',
+                  imagen: 'https://images.unsplash.com/photo-1631815588090-d4bfec5b1ccb?w=600&h=400&fit=crop&crop=center'
+                },
+                {
+                  titulo: 'Quirófanos',
+                  descripcion: 'Salas de cirugía con equipamiento avanzado',
+                  imagen: 'https://images.unsplash.com/photo-1551190822-a9333d879b1f?w=600&h=400&fit=crop&crop=center'
+                },
+                {
+                  titulo: 'Equipo Médico',
+                  descripcion: 'Profesionales de la salud en acción',
+                  imagen: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&h=400&fit=crop&crop=center'
+                },
+                {
+                  titulo: 'Laboratorio Clínico',
+                  descripcion: 'Equipos de análisis y diagnóstico',
+                  imagen: 'https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=600&h=400&fit=crop&crop=center'
+                },
+                {
+                  titulo: 'Sala de Espera',
+                  descripcion: 'Espacios cómodos para pacientes y familiares',
+                  imagen: 'https://images.unsplash.com/photo-1473177104440-ffee2f376098?w=600&h=400&fit=crop&crop=center'
+                }
+              ].map((imagen, index) => (
+                <div key={index} className="overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl bg-white">
+                  <div className="relative group">
+                    <img
+                      src={imagen.imagen}
+                      alt={imagen.titulo}
+                      className="w-full h-56 xl:h-64 object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="absolute bottom-0 left-0 right-0 p-6">
+                        <h4 className="font-semibold text-lg mb-2 text-white">{imagen.titulo}</h4>
+                        <p className="text-sm text-white/90">{imagen.descripcion}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Highlighted Quote - Después de la galería */}
+        <section className="py-12 sm:py-16 bg-white">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+            <div className="text-center">
               <div className="max-w-3xl mx-auto p-8 bg-gradient-to-r from-hospital-primary/5 to-hospital-secondary/5 border-l-4 border-hospital-primary rounded-r-2xl">
                 <blockquote className="text-2xl md:text-3xl font-bold text-hospital-primary italic leading-tight">
                   "Hospital Independencia: más de 40 años escribiendo historias de amor por la salud."
@@ -175,8 +245,6 @@ const Nosotros = () => {
             </div>
           </div>
         </section>
-        
-        <Galeria />
       </div>
     </Layout>
   );
