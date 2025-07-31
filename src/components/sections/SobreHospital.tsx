@@ -45,7 +45,7 @@ const SobreHospital = () => {
             {/* Stats Card */}
             <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-lg">
               <div className="text-center">
-                <div className="text-3xl font-bold text-primary mb-1">25+</div>
+                <div className="text-3xl font-bold text-primary mb-1">40+</div>
                 <div className="text-sm text-muted-foreground">Años de experiencia</div>
               </div>
             </div>
@@ -54,18 +54,31 @@ const SobreHospital = () => {
           {/* Content */}
           <div className="space-y-8 order-1 lg:order-2">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                Sobre Hospital Independencia
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-hospital-primary">
+                Un legado de esperanza, tecnología y excelencia médica
               </h2>
-              <div className="space-y-4 text-muted-foreground">
-                <p className="text-lg">
-                  Desde hace más de 25 años, Hospital Independencia ha sido un referente en atención médica privada, comprometido con brindar servicios de salud de la más alta calidad.
+              <div className="space-y-6 text-muted-foreground">
+                <p className="text-lg leading-relaxed">
+                  Desde 1983, Hospital Independencia ha sido más que una institución médica: ha sido un faro de esperanza para miles de familias en Tehuacán y la región. Fundado por el Dr. Cleo de la Peña Tello con la visión de brindar cuidados intensivos con dignidad y humanidad, nuestro hospital nació como una clínica especializada y ha evolucionado hasta convertirse en un centro de alta especialidad reconocido por su calidad y compromiso con la vida.
                 </p>
-                <p>
-                  Nuestro enfoque integral combina tecnología de vanguardia, instalaciones modernas y un equipo médico altamente especializado para ofrecer atención personalizada a cada paciente.
+                
+                <p className="leading-relaxed">
+                  A lo largo de las décadas, hemos crecido junto con los avances de la medicina. En 2010 dimos paso a nuestra Clínica de Alta Especialidad (CAE), fortalecida con quirófanos de vanguardia, tecnología de última generación y personal altamente capacitado. Más tarde, incorporamos áreas estratégicas como Rayos X, tomografía integral y ventilación mecánica, ampliando nuestras capacidades para atender a pacientes críticos con eficiencia y cuidado.
                 </p>
-                <p>
-                  Contamos con certificaciones internacionales que avalan nuestro compromiso con la excelencia y la seguridad del paciente.
+                
+                <p className="leading-relaxed">
+                  En 2018, nuestro trabajo fue reconocido oficialmente cuando la Unidad de Cuidados Intensivos fue nombrada "Clínica Modelo" por COFEPRIS, gracias a nuestro enfoque especializado en embarazos de alto riesgo. Y durante la pandemia, nos transformamos en la única clínica privada de Tehuacán dedicada a atender pacientes con COVID-19, reafirmando nuestro compromiso con la salud pública en los momentos más desafiantes.
+                </p>
+                
+                <p className="leading-relaxed">
+                  Hoy, con una mirada puesta en el futuro, seguimos siendo un hospital de puertas abiertas, tecnología avanzada y atención humana. Nuestro compromiso es claro: cuidar de ti y de los tuyos con profesionalismo, compasión y excelencia.
+                </p>
+              </div>
+              
+              {/* Frase destacada */}
+              <div className="mt-8 p-6 bg-hospital-primary/5 border-l-4 border-hospital-primary rounded-r-lg">
+                <p className="text-xl font-semibold text-hospital-primary italic">
+                  "Hospital Independencia: más de 40 años escribiendo historias de amor por la salud."
                 </p>
               </div>
             </div>
