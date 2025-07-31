@@ -150,39 +150,48 @@ const Navigation = () => {
           </button>
         </div>
 
-        {/* Mobile Navigation - Improved UX and accessibility */}
+        {/* Mobile Navigation - Fixed blur issues and improved functionality */}
         <div className={`lg:hidden transition-all duration-300 ease-in-out ${
           isMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
         }`}>
-          <div className="bg-hospital-primary border-t border-white/10">
-            <div className="py-4 space-y-1 max-h-[calc(100vh-5rem)] overflow-y-auto">
-              {navigationItems.map((item) => (
-                <Link
-                  key={item.label}
-                  to={item.href}
-                  onClick={() => setIsMenuOpen(false)}
-                  className={`block w-full text-left px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-colors duration-200 font-medium min-h-[48px] flex items-center text-base ${
-                    isActive(item.href) ? 'text-white bg-white/10 border-r-4 border-white' : ''
-                  }`}
-                >
-                  {item.label}
-                </Link>
+          {/* Solid background instead of blur effects */}
+          <div className="bg-hospital-primary border-t border-white/20 shadow-lg">
+            <div className="py-4 space-y-0 max-h-[calc(100vh-5rem)] overflow-y-auto">
+              {navigationItems.map((item, index) => (
+                <React.Fragment key={item.label}>
+                  <Link
+                    to={item.href}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setIsMenuOpen(false);
+                    }}
+                    className={`block w-full text-left px-6 py-4 text-white hover:bg-white/10 transition-colors duration-200 font-medium min-h-[48px] flex items-center text-base border-b border-white/10 ${
+                      isActive(item.href) ? 'bg-white/10 border-r-4 border-white' : ''
+                    }`}
+                  >
+                    <span>{item.label}</span>
+                  </Link>
+                </React.Fragment>
               ))}
-              <div className="px-6 pt-4 pb-2">
+              
+              {/* WhatsApp Button */}
+              <div className="px-6 pt-4 pb-2 border-t border-white/10">
                 <Button 
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.stopPropagation();
                     handleWhatsAppClick();
                     setIsMenuOpen(false);
                   }}
-                  className="w-full bg-whatsapp text-white hover:bg-whatsapp font-semibold min-h-[48px] text-base"
+                  className="w-full bg-whatsapp text-white hover:bg-green-600 font-semibold min-h-[48px] text-base transition-colors"
                 >
                   <WhatsAppIcon />
                   <span className="ml-3">WhatsApp</span>
                 </Button>
               </div>
+              
               {/* Phone number as text */}
               <div className="px-6 pb-4">
-                <div className="text-center text-white/70 text-sm bg-white/5 rounded-lg p-3">
+                <div className="text-center text-white/80 text-sm bg-white/5 rounded-lg p-3">
                   📞 Hospital: 238 382 4819
                 </div>
               </div>
@@ -191,10 +200,10 @@ const Navigation = () => {
         </div>
       </div>
 
-      {/* Mobile Menu Backdrop */}
+      {/* Mobile Menu Backdrop - Removed blur effects */}
       {isMenuOpen && (
         <div 
-          className="lg:hidden fixed inset-0 bg-black/20 backdrop-blur-sm"
+          className="lg:hidden fixed inset-0 bg-black/50"
           style={{ top: '64px' }}
           onClick={() => setIsMenuOpen(false)}
         />
