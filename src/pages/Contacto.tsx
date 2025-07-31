@@ -143,10 +143,26 @@ const Contacto = () => {
                     <label className="block text-sm font-medium mb-2">Especialidad de Interés</label>
                     <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-hospital-primary focus:border-transparent">
                       <option>Selecciona una especialidad</option>
+                      <option>Anestesiología</option>
+                      <option>Cardineumología</option>
                       <option>Cardiología</option>
+                      <option>Cirugía General y Especializada</option>
+                      <option>Cirugía Plástica</option>
+                      <option>Dermatología</option>
+                      <option>Gastroenterología</option>
+                      <option>Ginecología y Obstetricia</option>
+                      <option>Medicina Crítica - Terapia Intensiva</option>
+                      <option>Medicina General</option>
+                      <option>Nefrología</option>
+                      <option>Neurocirugía</option>
                       <option>Neurología</option>
+                      <option>Neumología</option>
+                      <option>Nutrición</option>
+                      <option>Oftalmología Pediátrica</option>
                       <option>Pediatría</option>
-                      <option>Ginecología</option>
+                      <option>Traumatología y Ortopedia</option>
+                      <option>Urgenciología</option>
+                      <option>Urología</option>
                       <option>Otra especialidad</option>
                     </select>
                   </div>
