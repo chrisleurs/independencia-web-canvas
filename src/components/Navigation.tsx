@@ -63,16 +63,15 @@ const Navigation = () => {
   };
 
   const handleMobileNavigation = (href: string, label: string) => {
-    console.log(`🔍 Navegando a: ${label} (${href})`);
+    console.log(`🔍 Click detectado en: ${label} (${href})`);
+    console.log(`🔍 Estado actual del menú: ${isMenuOpen ? 'abierto' : 'cerrado'}`);
     
-    // Cerrar menú inmediatamente
+    // Cerrar menú y navegar
     setIsMenuOpen(false);
+    navigate(href);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     
-    // Pequeño delay para asegurar que el menú se cierre antes de navegar
-    setTimeout(() => {
-      navigate(href);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, 100);
+    console.log(`✅ Navegación completada a: ${href}`);
   };
 
   const isActive = (href: string) => {
@@ -165,22 +164,24 @@ const Navigation = () => {
           </button>
         </div>
 
-        {/* Mobile Navigation - Optimizado para funcionalidad */}
-        <div className={`lg:hidden transition-all duration-300 ease-in-out ${
-          isMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
-        }`}>
-          <div className="bg-hospital-primary border-t border-white/20 shadow-lg">
-            <div className="py-4 space-y-0 max-h-[calc(100vh-5rem)] overflow-y-auto">
+        {/* Mobile Navigation - SIN BACKDROP QUE BLOQUEE CLICS */}
+        {isMenuOpen && (
+          <div className="lg:hidden bg-hospital-primary border-t border-white/20 shadow-lg">
+            <div className="py-2 space-y-0">
               {navigationItems.map((item) => (
                 <button
                   key={item.label}
-                  onClick={() => handleMobileNavigation(item.href, item.label)}
-                  className={`block w-full text-left px-6 py-4 text-white hover:bg-white/10 transition-colors duration-200 font-medium min-h-[48px] text-base border-b border-white/10 active:bg-white/20 touch-manipulation ${
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    handleMobileNavigation(item.href, item.label);
+                  }}
+                  className={`block w-full text-left px-6 py-4 text-white hover:bg-white/10 transition-colors duration-200 font-medium text-base border-b border-white/10 cursor-pointer ${
                     isActive(item.href) ? 'bg-white/10 border-r-4 border-white' : ''
                   }`}
                   type="button"
                 >
-                  <span>{item.label}</span>
+                  {item.label}
                 </button>
               ))}
               
@@ -188,12 +189,13 @@ const Navigation = () => {
               <div className="px-6 pt-4 pb-2 border-t border-white/10">
                 <Button 
                   onClick={(e) => {
+                    e.preventDefault();
                     e.stopPropagation();
                     console.log('🔍 WhatsApp clicked from mobile menu');
                     handleWhatsAppClick();
                     setIsMenuOpen(false);
                   }}
-                  className="w-full bg-whatsapp text-white hover:bg-green-600 font-semibold min-h-[48px] text-base transition-colors touch-manipulation"
+                  className="w-full bg-whatsapp text-white hover:bg-green-600 font-semibold text-base"
                   type="button"
                 >
                   <WhatsAppIcon />
@@ -209,17 +211,8 @@ const Navigation = () => {
               </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
-
-      {/* Mobile Menu Backdrop */}
-      {isMenuOpen && (
-        <div 
-          className="lg:hidden fixed inset-0 bg-black/50"
-          style={{ top: '64px' }}
-          onClick={() => setIsMenuOpen(false)}
-        />
-      )}
     </nav>
   );
 };
