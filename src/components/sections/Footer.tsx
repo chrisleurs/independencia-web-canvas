@@ -2,24 +2,40 @@
 import React from 'react';
 import { Phone, Mail, MapPin, Clock, Facebook, Instagram, Twitter } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
-  const especialidades = [
-    'Cardiología',
-    'Neurología',
-    'Pediatría',
-    'Ginecología',
-    'Traumatología',
-    'Oncología',
+  const especialidadesPrincipales = [
+    { nombre: 'Medicina General', slug: 'medicina-general' },
+    { nombre: 'Ginecología y Obstetricia', slug: 'ginecologia' },
+    { nombre: 'Pediatría y Neonatología', slug: 'pediatria' },
+    { nombre: 'Traumatología y Ortopedia', slug: 'traumatologia' },
+    { nombre: 'Medicina Crítica', slug: 'medicina-critica' },
+    { nombre: 'Cardiología', slug: 'cardioneumologia' },
+    { nombre: 'Cirugía General', slug: 'cirugia-general-especializada' },
+    { nombre: 'Urgenciología', slug: 'urgenciologia' },
+    { nombre: 'Urología', slug: 'urologia' },
+    { nombre: 'Dermatología', slug: 'dermatologia' }
   ];
 
-  const servicios = [
+  const serviciosMedicos = [
     'Consulta Externa',
     'Urgencias 24/7',
     'Hospitalización',
-    'Cirugía',
-    'Laboratorio',
-    'Imagenología',
+    'Cirugía General',
+    'Cirugía Especializada',
+    'Laboratorio Clínico',
+    'Imagenología y Diagnóstico',
+    'Terapia Intensiva',
+    'Cuidados Post-operatorios',
+    'Medicina Preventiva'
+  ];
+
+  const enlacesUtiles = [
+    { nombre: 'Equipo Médico', ruta: '/equipo' },
+    { nombre: 'Especialidades', ruta: '/especialidades' },
+    { nombre: 'Nosotros', ruta: '/nosotros' },
+    { nombre: 'Contacto', ruta: '/contacto' }
   ];
 
   return (
@@ -40,41 +56,44 @@ const Footer = () => {
                 Más de 25 años brindando atención médica de calidad con tecnología de vanguardia y un equipo humano comprometido con tu bienestar.
               </p>
               <div className="flex space-x-3">
-                <Button size="sm" variant="ghost" className="text-white hover:text-primary hover:bg-white/10">
+                <Button size="sm" variant="ghost" className="text-white hover:text-primary hover:bg-white/10 min-h-[44px]">
                   <Facebook className="w-4 h-4" />
                 </Button>
-                <Button size="sm" variant="ghost" className="text-white hover:text-primary hover:bg-white/10">
+                <Button size="sm" variant="ghost" className="text-white hover:text-primary hover:bg-white/10 min-h-[44px]">
                   <Instagram className="w-4 h-4" />
                 </Button>
-                <Button size="sm" variant="ghost" className="text-white hover:text-primary hover:bg-white/10">
+                <Button size="sm" variant="ghost" className="text-white hover:text-primary hover:bg-white/10 min-h-[44px]">
                   <Twitter className="w-4 h-4" />
                 </Button>
               </div>
             </div>
 
-            {/* Especialidades */}
+            {/* Especialidades Principales */}
             <div>
               <h3 className="font-semibold text-lg mb-4">Especialidades</h3>
               <ul className="space-y-2">
-                {especialidades.map((especialidad, index) => (
+                {especialidadesPrincipales.map((especialidad, index) => (
                   <li key={index}>
-                    <a href="#" className="text-slate-300 hover:text-white text-sm transition-colors duration-200">
-                      {especialidad}
-                    </a>
+                    <Link 
+                      to={`/especialidades/${especialidad.slug}`}
+                      className="text-slate-300 hover:text-white text-sm transition-colors duration-200 block py-1 min-h-[44px] flex items-center"
+                    >
+                      {especialidad.nombre}
+                    </Link>
                   </li>
                 ))}
               </ul>
             </div>
 
-            {/* Servicios */}
+            {/* Servicios Médicos */}
             <div>
-              <h3 className="font-semibold text-lg mb-4">Servicios</h3>
+              <h3 className="font-semibold text-lg mb-4">Servicios Médicos</h3>
               <ul className="space-y-2">
-                {servicios.map((servicio, index) => (
+                {serviciosMedicos.map((servicio, index) => (
                   <li key={index}>
-                    <a href="#" className="text-slate-300 hover:text-white text-sm transition-colors duration-200">
+                    <span className="text-slate-300 text-sm block py-1">
                       {servicio}
-                    </a>
+                    </span>
                   </li>
                 ))}
               </ul>
@@ -114,6 +133,45 @@ const Footer = () => {
               </div>
             </div>
           </div>
+
+          {/* Enlaces Útiles - Segunda fila en móvil */}
+          <div className="mt-8 pt-8 border-t border-slate-800">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              <div>
+                <h4 className="font-medium text-white mb-3">Enlaces Útiles</h4>
+                <ul className="space-y-2">
+                  {enlacesUtiles.map((enlace, index) => (
+                    <li key={index}>
+                      <Link 
+                        to={enlace.ruta}
+                        className="text-slate-300 hover:text-white text-sm transition-colors duration-200 block py-1 min-h-[44px] flex items-center"
+                      >
+                        {enlace.nombre}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-medium text-white mb-3">Especialidades Adicionales</h4>
+                <ul className="space-y-2 text-sm text-slate-300">
+                  <li>Neurología</li>
+                  <li>Gastroenterología</li>
+                  <li>Nefrología</li>
+                  <li>Neumología</li>
+                  <li>Anestesiología</li>
+                  <li>Neurocirugía</li>
+                </ul>
+              </div>
+              <div className="sm:col-span-2 lg:col-span-2">
+                <h4 className="font-medium text-white mb-3">Certificaciones y Reconocimientos</h4>
+                <p className="text-slate-300 text-sm">
+                  Hospital certificado con más de 25 años de experiencia en atención médica especializada. 
+                  Equipo médico altamente calificado y tecnología de vanguardia.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -121,17 +179,17 @@ const Footer = () => {
       <div className="border-t border-slate-800">
         <div className="container-custom py-6">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="text-slate-400 text-sm">
+            <div className="text-slate-400 text-sm text-center md:text-left">
               © 2024 Hospital Independencia. Todos los derechos reservados.
             </div>
-            <div className="flex space-x-6 text-sm">
-              <a href="#" className="text-slate-400 hover:text-white transition-colors duration-200">
+            <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-6 text-sm">
+              <a href="#" className="text-slate-400 hover:text-white transition-colors duration-200 text-center min-h-[44px] flex items-center justify-center">
                 Política de Privacidad
               </a>
-              <a href="#" className="text-slate-400 hover:text-white transition-colors duration-200">
+              <a href="#" className="text-slate-400 hover:text-white transition-colors duration-200 text-center min-h-[44px] flex items-center justify-center">
                 Términos de Uso
               </a>
-              <a href="#" className="text-slate-400 hover:text-white transition-colors duration-200">
+              <a href="#" className="text-slate-400 hover:text-white transition-colors duration-200 text-center min-h-[44px] flex items-center justify-center">
                 Aviso Legal
               </a>
             </div>
