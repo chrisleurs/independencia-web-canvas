@@ -40,13 +40,20 @@ const HeroSection = () => {
                   <span className="text-gray-600">Tehuacán, Puebla</span>
                 </div>
                 
+                {/* SEO-optimized H1 */}
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-heading leading-tight text-black">
-                  Hospital
-                  <span className="block text-hospital-primary">Independencia</span>
+                  Hospital Independencia - Atención Médica en 
+                  <span className="block text-hospital-primary">Tehuacán, Puebla</span>
                 </h1>
                 
-                <p className="text-lg sm:text-xl md:text-2xl text-gray-700 max-w-2xl leading-relaxed mx-auto lg:mx-0">
-                  Más de 25 años brindando atención médica de calidad con tecnología de vanguardia y el compromiso humano que tu familia merece
+                {/* SEO-optimized H2 */}
+                <h2 className="text-lg sm:text-xl md:text-2xl text-gray-700 max-w-2xl leading-relaxed mx-auto lg:mx-0 font-medium">
+                  Atención médica confiable, con tecnología de vanguardia y un equipo especializado a tu servicio.
+                </h2>
+
+                {/* Supporting paragraph */}
+                <p className="text-base sm:text-lg text-gray-600 max-w-xl mx-auto lg:mx-0">
+                  Más de 40 años cuidando lo más importante: tu salud.
                 </p>
               </div>
 
