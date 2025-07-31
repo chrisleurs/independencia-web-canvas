@@ -65,14 +65,14 @@ const Navigation = () => {
   const handleMobileNavigation = (href: string, label: string) => {
     console.log(`🔍 Navegando a: ${label} (${href})`);
     
-    // Cerrar menú primero
+    // Cerrar menú inmediatamente
     setIsMenuOpen(false);
     
-    // Navegar programáticamente
-    navigate(href);
-    
-    // Scroll to top
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Pequeño delay para asegurar que el menú se cierre antes de navegar
+    setTimeout(() => {
+      navigate(href);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 100);
   };
 
   const isActive = (href: string) => {
@@ -165,7 +165,7 @@ const Navigation = () => {
           </button>
         </div>
 
-        {/* Mobile Navigation - Fixed with programmatic navigation */}
+        {/* Mobile Navigation - Optimizado para funcionalidad */}
         <div className={`lg:hidden transition-all duration-300 ease-in-out ${
           isMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
         }`}>
@@ -175,9 +175,10 @@ const Navigation = () => {
                 <button
                   key={item.label}
                   onClick={() => handleMobileNavigation(item.href, item.label)}
-                  className={`block w-full text-left px-6 py-4 text-white hover:bg-white/10 transition-colors duration-200 font-medium min-h-[48px] text-base border-b border-white/10 ${
+                  className={`block w-full text-left px-6 py-4 text-white hover:bg-white/10 transition-colors duration-200 font-medium min-h-[48px] text-base border-b border-white/10 active:bg-white/20 touch-manipulation ${
                     isActive(item.href) ? 'bg-white/10 border-r-4 border-white' : ''
                   }`}
+                  type="button"
                 >
                   <span>{item.label}</span>
                 </button>
@@ -192,7 +193,8 @@ const Navigation = () => {
                     handleWhatsAppClick();
                     setIsMenuOpen(false);
                   }}
-                  className="w-full bg-whatsapp text-white hover:bg-green-600 font-semibold min-h-[48px] text-base transition-colors"
+                  className="w-full bg-whatsapp text-white hover:bg-green-600 font-semibold min-h-[48px] text-base transition-colors touch-manipulation"
+                  type="button"
                 >
                   <WhatsAppIcon />
                   <span className="ml-3">WhatsApp</span>
