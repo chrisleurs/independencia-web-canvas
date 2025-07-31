@@ -31,13 +31,6 @@ const Footer = () => {
     'Medicina Preventiva'
   ];
 
-  const enlacesUtiles = [
-    { nombre: 'Equipo Médico', ruta: '/equipo' },
-    { nombre: 'Especialidades', ruta: '/especialidades' },
-    { nombre: 'Nosotros', ruta: '/nosotros' },
-    { nombre: 'Contacto', ruta: '/contacto' }
-  ];
-
   return (
     <footer id="contacto" className="bg-slate-900 text-white">
       {/* Main Footer */}
@@ -130,45 +123,6 @@ const Footer = () => {
                     Consulta: 7:00 - 21:00
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Enlaces Útiles - Segunda fila en móvil */}
-          <div className="mt-8 pt-8 border-t border-slate-800">
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              <div>
-                <h4 className="font-medium text-white mb-3">Enlaces Útiles</h4>
-                <ul className="space-y-2">
-                  {enlacesUtiles.map((enlace, index) => (
-                    <li key={index}>
-                      <Link 
-                        to={enlace.ruta}
-                        className="text-slate-300 hover:text-white text-sm transition-colors duration-200 block py-1 min-h-[44px] flex items-center"
-                      >
-                        {enlace.nombre}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-medium text-white mb-3">Especialidades Adicionales</h4>
-                <ul className="space-y-2 text-sm text-slate-300">
-                  <li>Neurología</li>
-                  <li>Gastroenterología</li>
-                  <li>Nefrología</li>
-                  <li>Neumología</li>
-                  <li>Anestesiología</li>
-                  <li>Neurocirugía</li>
-                </ul>
-              </div>
-              <div className="sm:col-span-2 lg:col-span-2">
-                <h4 className="font-medium text-white mb-3">Certificaciones y Reconocimientos</h4>
-                <p className="text-slate-300 text-sm">
-                  Hospital certificado con más de 25 años de experiencia en atención médica especializada. 
-                  Equipo médico altamente calificado y tecnología de vanguardia.
-                </p>
               </div>
             </div>
           </div>
