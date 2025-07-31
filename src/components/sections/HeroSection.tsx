@@ -29,44 +29,44 @@ const HeroSection = () => {
 
   return (
     <>
-      <section id="hero" className="min-h-screen flex items-center bg-white relative overflow-hidden">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+      <section id="hero" className="min-h-screen flex items-center bg-white relative overflow-hidden py-16 lg:py-20">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 max-w-7xl relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             {/* Content - Mobile-first approach */}
-            <div className="text-gray-900 space-y-6 lg:space-y-8 text-center lg:text-left">
-              <div className="space-y-6 lg:space-y-8">
-                <div className="inline-flex items-center bg-gray-50 border border-gray-200 rounded-full px-4 py-2 sm:px-6 sm:py-3 text-sm font-medium">
-                  <MapPin className="w-4 h-4 mr-2 sm:mr-3 text-gray-500" />
+            <div className="text-gray-900 space-y-8 lg:space-y-12 text-center lg:text-left">
+              <div className="space-y-8 lg:space-y-12">
+                <div className="inline-flex items-center bg-gray-50 border border-gray-200 rounded-full px-5 py-3 text-sm font-medium">
+                  <MapPin className="w-4 h-4 mr-3 text-gray-500" />
                   <span className="text-gray-600">Tehuacán, Puebla</span>
                 </div>
                 
                 {/* SEO-optimized H1 with improved visual hierarchy */}
-                <div className="space-y-3 lg:space-y-4">
-                  <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-heading leading-tight text-black">
+                <div className="space-y-5 lg:space-y-6">
+                  <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-heading leading-tight text-black">
                     Hospital Independencia
                   </h1>
-                  <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-hospital-primary leading-tight">
+                  <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-hospital-primary leading-tight">
                     Atención Médica en Tehuacán, Puebla
                   </div>
                 </div>
                 
                 {/* SEO-optimized H2 with better spacing */}
-                <h2 className="text-xl sm:text-2xl md:text-3xl text-gray-700 max-w-2xl leading-relaxed mx-auto lg:mx-0 font-medium mt-8">
+                <h2 className="text-lg sm:text-xl md:text-2xl text-gray-700 max-w-2xl leading-relaxed mx-auto lg:mx-0 font-medium mt-12">
                   Atención médica confiable, con tecnología de vanguardia y un equipo especializado a tu servicio.
                 </h2>
 
                 {/* Supporting paragraph with proper spacing */}
-                <p className="text-lg sm:text-xl text-gray-600 max-w-xl mx-auto lg:mx-0 font-medium mt-6">
+                <p className="text-base sm:text-lg text-gray-600 max-w-xl mx-auto lg:mx-0 font-medium mt-8">
                   Más de 40 años cuidando lo más importante: tu salud.
                 </p>
               </div>
 
               {/* CTA Buttons - Medical professional styling */}
-              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mt-10">
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mt-12">
                 <Button 
                   onClick={handleWhatsAppClick}
                   size="lg" 
-                  className="bg-whatsapp text-white hover:bg-whatsapp/90 font-semibold text-base sm:text-lg px-8 sm:px-10 py-4 sm:py-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 min-h-[56px] w-full sm:w-auto"
+                  className="bg-whatsapp text-white hover:bg-whatsapp/90 font-semibold text-sm sm:text-base px-6 sm:px-8 py-3 sm:py-4 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 min-h-[48px] w-full sm:w-auto"
                 >
                   <WhatsAppIcon />
                   <span className="ml-3">Agendar por WhatsApp</span>
@@ -77,17 +77,17 @@ const HeroSection = () => {
                   onClick={handleMapClick}
                   size="lg" 
                   variant="outline"
-                  className="border-2 border-hospital-primary text-hospital-primary bg-white hover:bg-hospital-primary hover:text-white font-semibold text-base sm:text-lg px-8 sm:px-10 py-4 sm:py-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 min-h-[56px] w-full sm:w-auto"
+                  className="border-2 border-hospital-primary text-hospital-primary bg-white hover:bg-hospital-primary hover:text-white font-semibold text-sm sm:text-base px-6 sm:px-8 py-3 sm:py-4 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 min-h-[48px] w-full sm:w-auto"
                 >
-                  <MapPin className="w-5 h-5 mr-3" />
+                  <MapPin className="w-4 h-4 mr-3" />
                   Ver en Mapa
                 </Button>
               </div>
 
               {/* Contact Info - Clean medical design */}
-              <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 pt-8 justify-center lg:justify-start">
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 pt-12 justify-center lg:justify-start">
                 <div className="flex items-center justify-center lg:justify-start bg-gray-50 border border-gray-200 rounded-full px-4 py-2">
-                  <span className="text-lg mr-3">📞</span>
+                  <span className="text-base mr-3">📞</span>
                   <span className="text-sm font-medium text-gray-700">Hospital: 238 382 4819</span>
                 </div>
                 <div className="flex items-center justify-center lg:justify-start bg-green-50 border border-green-200 rounded-full px-4 py-2">
@@ -100,12 +100,12 @@ const HeroSection = () => {
             {/* Hero Image Placeholder - Clean medical design */}
             <div className="hidden lg:block">
               <div className="relative">
-                <div className="w-full h-[500px] bg-gray-50 border-2 border-gray-100 rounded-3xl flex items-center justify-center shadow-sm">
+                <div className="w-full h-[450px] bg-gray-50 border-2 border-gray-100 rounded-3xl flex items-center justify-center shadow-sm">
                   <div className="text-center text-gray-400">
-                    <div className="w-28 h-28 mx-auto mb-6 bg-hospital-primary/10 rounded-full flex items-center justify-center">
-                      <Heart className="w-14 h-14 text-hospital-primary" />
+                    <div className="w-20 h-20 mx-auto mb-4 bg-hospital-primary/10 rounded-full flex items-center justify-center">
+                      <Heart className="w-10 h-10 text-hospital-primary" />
                     </div>
-                    <p className="text-xl font-semibold text-gray-600">Imagen Principal</p>
+                    <p className="text-lg font-semibold text-gray-600">Imagen Principal</p>
                     <p className="text-sm text-gray-500">Hospital Independencia</p>
                   </div>
                 </div>
