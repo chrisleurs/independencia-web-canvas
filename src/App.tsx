@@ -10,6 +10,8 @@ import EspecialidadIndividual from "./pages/EspecialidadIndividualSupabase";
 import DoctorIndividual from "./pages/DoctorIndividual";
 import Servicios from "./pages/Servicios";
 import ServicioIndividual from "./pages/ServicioIndividual";
+import EstudiosPage from './pages/EstudiosPage';
+import EstudioDetalle from './pages/EstudioDetalle';
 import Nosotros from "./pages/Nosotros";
 import Contacto from "./pages/Contacto";
 import Equipo from "./pages/Equipo";
@@ -37,6 +39,8 @@ const App = () => {
             <Route path="/especialidades/:slug" element={<EspecialidadIndividual />} />
             <Route path="/servicios" element={<Servicios />} />
             <Route path="/servicios/:slug" element={<ServicioIndividual />} />
+            <Route path="/estudios" element={<EstudiosPage />} />
+            <Route path="/estudios/:slug" element={<EstudioDetalle />} />
             <Route path="/nosotros" element={<Nosotros />} />
             <Route path="/contacto" element={<Contacto />} />
             
