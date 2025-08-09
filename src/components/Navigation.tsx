@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -46,9 +47,9 @@ const Navigation = () => {
   }, [isMenuOpen]);
 
   const navigationItems = [
-    { label: 'Inicio', href: '/' },
     { label: 'Especialidades', href: '/especialidades' },
     { label: 'Servicios', href: '/servicios' },
+    { label: 'Estudios', href: '/estudios' },
     { label: 'Nosotros', href: '/nosotros' },
     { label: 'Equipo', href: '/equipo' },
     { label: 'Contacto', href: '/contacto' },
